@@ -275,10 +275,6 @@ Not currently. Language selection is done individually per post in the editor. F
 
 Yes, if you enable language selection for the `product` post type in settings. However, Simple Lang only changes the interface language, not product data. You'll need to manually enter product titles and descriptions in the target language.
 
-### How do I get support?
-
-For bug reports and feature requests, please use the [GitHub issue tracker](https://github.com/JPKCom/jpkcom-simple-lang/issues).
-
 
 ## Installation
 
