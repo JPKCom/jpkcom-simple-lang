@@ -2,7 +2,7 @@
 /*
 Plugin Name: JPKCom Simple Lang
 Plugin URI: https://github.com/JPKCom/jpkcom-simple-lang
-Description: Simple language selection for frontend pages
+Description: Simple language selection for frontend pages.
 Version: 1.0.0
 Author: Jean Pierre Kolb <jpk@jpkc.com>
 Author URI: https://www.jpkc.com/
