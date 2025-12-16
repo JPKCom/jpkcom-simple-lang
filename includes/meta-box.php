@@ -94,7 +94,7 @@ function jpkcom_simplelang_render_meta_box( WP_Post $post ): void {
 	<select
 		name="jpkcom_simplelang_language"
 		id="jpkcom_simplelang_language"
-		class="widefat"
+		style="width: auto; max-width: 100%;"
 	>
 		<?php foreach ( $language_options as $locale => $name ) : ?>
 			<option
