@@ -34,7 +34,7 @@ This is particularly useful for sites that are primarily in one language but occ
 - **Post Type Control**: Enable or disable language selection per post type via settings page
 - **Frontend Locale Override**: Automatically switches locale in frontend for proper translation support
 - **HTML Lang Attribute**: Updates the `<html lang="">` attribute to match the selected language
-- **Open Graph Integration**: Sets the `og:locale` meta tag for proper social media sharing
+- **SEO Plugin Compatible**: SEO plugins (Yoast, Rank Math, etc.) automatically detect the locale change and output correct `og:locale` meta tags
 - **Plugin Compatibility**: Other plugins respect the locale change for their frontend output
 - **Oxygen Builder Support**: Provides conditional logic for Oxygen Builder based on selected language
 - **Clean Admin UI**: Simple dropdown in the post editor sidebar
@@ -79,7 +79,7 @@ The documentation includes detailed information about all functions, classes, ho
    - Theme translations
    - Plugin translations that respect the current locale
    - HTML `lang` attribute
-   - Open Graph `og:locale` meta tag
+   - SEO plugin meta tags (og:locale via `get_locale()`)
 
 ### Helper Functions
 
@@ -402,7 +402,7 @@ DELETE FROM wp_postmeta WHERE meta_key = '_jpkcom_simplelang_language';
 - Language selection dropdown in post editor sidebar
 - Support for all WordPress core languages
 - Post type activation settings page
-- Frontend locale override (including HTML lang and og:locale)
+- Frontend locale override (HTML lang attribute and SEO plugin compatibility)
 - Oxygen Builder conditional logic integration
 - Helper functions for developers
 - Template override system

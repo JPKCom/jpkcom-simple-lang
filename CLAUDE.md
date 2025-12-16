@@ -100,14 +100,11 @@ Handles locale switching and HTML attribute modifications in the frontend.
    - Uses regex to replace lang attribute value
    - Converts locale to language code (de_DE → de)
 
-3. **`wp_head` (priority 1)** - Adds/overwrites Open Graph locale meta tag
-   - Outputs: `<meta property="og:locale" content="de_DE" />`
-   - Priority 1 ensures it runs early before other wp_head hooks
-
-4. **`locale` filter** - Ensures locale consistency throughout rendering
+3. **`locale` filter** - Ensures locale consistency throughout rendering
    - Returns custom language if set, otherwise returns default
+   - SEO plugins automatically detect this via `get_locale()` and output correct `og:locale` meta tags
 
-5. **`wp_footer` (priority 999)** - Restores original locale after rendering
+4. **`wp_footer` (priority 999)** - Restores original locale after rendering
    - Calls `restore_previous_locale()`
    - Cleans up global variable
 

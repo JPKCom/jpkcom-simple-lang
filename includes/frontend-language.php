@@ -91,32 +91,6 @@ add_filter( 'language_attributes', function( string $output ): string {
 }, 10 );
 
 /**
- * Add or modify Open Graph locale meta tag
- *
- * Adds og:locale meta tag for the custom language.
- *
- * @since 1.0.0
- * @return void
- */
-add_action( 'wp_head', function(): void {
-
-	// Check if we have a custom language set
-	if ( ! isset( $GLOBALS['jpkcom_simplelang_current_language'] ) ) {
-		return;
-	}
-
-	if ( ! is_singular() ) {
-		return;
-	}
-
-	$language = $GLOBALS['jpkcom_simplelang_current_language'];
-
-	// Output Open Graph locale meta tag
-	echo '<meta property="og:locale" content="' . esc_attr( $language ) . '" />' . "\n";
-
-}, 1 ); // Priority 1 to ensure it runs early
-
-/**
  * Filter locale for frontend
  *
  * Ensures the locale is properly set throughout the frontend rendering.
