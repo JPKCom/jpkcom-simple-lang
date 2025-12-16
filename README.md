@@ -211,13 +211,29 @@ Yes! Go to **Settings → Simple Lang** and check/uncheck the post types you wan
 
 ### How do I install additional WordPress languages?
 
+**Important:** The language dropdown only shows installed languages. Here's how to add more:
+
+**Quick Method:**
 1. Go to **Settings → General** in WordPress admin
 2. Find the **Site Language** dropdown
-3. Select the language you want to install
+3. Select the language you want to install (e.g., "Deutsch", "Français")
 4. Click **Save Changes**
-5. WordPress downloads the language pack automatically
+5. WordPress automatically downloads the language pack (5-10 seconds)
+6. Optional: Change back to your default language if needed
+7. The new language now appears in Simple Lang's dropdown!
 
-The new language will immediately appear in Simple Lang's dropdown.
+**Why only installed languages?**
+- Language packs contain WordPress translations (buttons, menus, date formats, etc.)
+- Without the pack, switching language would only change the HTML `lang` attribute
+- Content would remain untranslated, creating a poor user experience
+- This approach ensures every selectable language actually works
+
+**Need help?**
+- Go to **Settings → Simple Lang** for a detailed step-by-step guide
+- Click the "Go to General Settings" button for quick access
+- View all 200+ available languages at [translate.wordpress.org](https://translate.wordpress.org/)
+
+**Pro Tip:** You can install multiple languages without changing your site's default language. Just install each language and switch back to your preferred default afterward. All installed languages remain available!
 
 ### Does this work on WordPress Multisite?
 
@@ -309,11 +325,41 @@ Then activate via WordPress admin.
    - Click **Save Settings**
 
 2. **Install Additional Languages** (Recommended):
-   - Go to **Settings → General**
-   - Select a language from the **Site Language** dropdown
-   - Click **Save Changes** (this downloads the language pack)
-   - Return the site language to your primary language
-   - Repeat for any additional languages you want available
+
+   **Why is this needed?** The language dropdown in the post editor only shows languages that are already installed on your WordPress site. By default, WordPress only includes English. To display pages in other languages, you need to install the corresponding language packs first.
+
+   **Step-by-Step Guide:**
+
+   a. **Navigate to Language Settings:**
+      - In WordPress admin, go to **Settings → General**
+      - Scroll down to find the **Site Language** dropdown
+
+   b. **Install a Language Pack:**
+      - Click the **Site Language** dropdown
+      - Select the language you want to add (e.g., "Deutsch", "Français", "Español")
+      - Click **Save Changes** at the bottom of the page
+      - WordPress will automatically download and install the language pack (takes 5-10 seconds)
+
+   c. **Restore Your Default Language (Optional):**
+      - If you don't want to change your site's default language, immediately go back to **Settings → General**
+      - Change the **Site Language** back to your preferred default (e.g., "English (United States)" or "Deutsch")
+      - Click **Save Changes** again
+
+   d. **Verify Installation:**
+      - Go to **Settings → Simple Lang**
+      - You'll see a helpful guide with a **"Go to General Settings"** button for quick access
+      - The newly installed language is now available in the dropdown!
+
+   e. **Add More Languages:**
+      - Repeat steps b-c for each additional language you need
+      - You can install as many languages as you want (WordPress supports 200+ languages)
+      - Each language pack is typically 1-2 MB in size
+
+   **Quick Tips:**
+   - You don't need to keep your site in a different language to use it for individual pages
+   - Language packs remain installed even after you switch back to your default language
+   - Already installed languages will appear immediately in the post editor dropdown
+   - View all available languages at [translate.wordpress.org](https://translate.wordpress.org/)
 
 3. **Test Language Selection**:
    - Edit any post or page

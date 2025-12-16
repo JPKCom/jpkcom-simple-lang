@@ -36,5 +36,18 @@ return [
 		// Plugin Updater
 		'Download failed: %s' => 'Download fehlgeschlagen: %s',
 		'Security verification failed: Plugin checksum mismatch. Expected: %s, Got: %s' => 'Sicherheitsüberprüfung fehlgeschlagen: Plugin-Prüfsumme stimmt nicht überein. Erwartet: %s, Erhalten: %s',
+
+		// Language Installation Guide
+		'How to Add More Languages' => 'Weitere Sprachen hinzufügen',
+		'The language dropdown in the post editor only shows languages that are already installed on your WordPress site. To add more languages:' => 'Die Sprachauswahl im Beitragseditor zeigt nur Sprachen an, die bereits auf Ihrer WordPress-Website installiert sind. Um weitere Sprachen hinzuzufügen:',
+		'Go to Settings → General in your WordPress admin' => 'Gehen Sie zu Einstellungen → Allgemein in Ihrem WordPress-Adminbereich',
+		'Find the "Site Language" dropdown' => 'Suchen Sie das Dropdown-Menü "Sprache der Website"',
+		'Select the language you want to add (e.g., French, Spanish, Italian)' => 'Wählen Sie die Sprache aus, die Sie hinzufügen möchten (z.B. Französisch, Spanisch, Italienisch)',
+		'Click "Save Changes" - WordPress will automatically download the language pack' => 'Klicken Sie auf "Änderungen speichern" - WordPress lädt das Sprachpaket automatisch herunter',
+		'Optional: Change the site language back to your preferred default language' => 'Optional: Ändern Sie die Website-Sprache zurück zu Ihrer bevorzugten Standardsprache',
+		'The new language will now appear in the post editor dropdown!' => 'Die neue Sprache erscheint nun in der Sprachauswahl des Beitragseditors!',
+		'Quick Access:' => 'Schnellzugriff:',
+		'Go to General Settings' => 'Zu den Allgemeinen Einstellungen',
+		'WordPress supports over 200 languages. View the full list at %s' => 'WordPress unterstützt über 200 Sprachen. Die vollständige Liste finden Sie unter %s',
 	],
 ];

@@ -120,3 +120,58 @@ msgid ""
 msgstr ""
 "Dies überschreibt die Website-Sprache für diese spezifische Seite im Frontend. "
 "Belassen Sie \"Standard\" ausgewählt, um die globale Spracheinstellung zu verwenden."
+
+#: includes/admin-settings.php:187
+msgid "How to Add More Languages"
+msgstr "Weitere Sprachen hinzufügen"
+
+#: includes/admin-settings.php:188
+msgid ""
+"The language dropdown in the post editor only shows languages that are "
+"already installed on your WordPress site. To add more languages:"
+msgstr ""
+"Die Sprachauswahl im Beitragseditor zeigt nur Sprachen an, die bereits auf "
+"Ihrer WordPress-Website installiert sind. Um weitere Sprachen hinzuzufügen:"
+
+#: includes/admin-settings.php:190
+msgid "Go to Settings → General in your WordPress admin"
+msgstr "Gehen Sie zu Einstellungen → Allgemein in Ihrem WordPress-Adminbereich"
+
+#: includes/admin-settings.php:191
+msgid "Find the \"Site Language\" dropdown"
+msgstr "Suchen Sie das Dropdown-Menü \"Sprache der Website\""
+
+#: includes/admin-settings.php:192
+msgid "Select the language you want to add (e.g., French, Spanish, Italian)"
+msgstr ""
+"Wählen Sie die Sprache aus, die Sie hinzufügen möchten (z.B. Französisch, "
+"Spanisch, Italienisch)"
+
+#: includes/admin-settings.php:193
+msgid "Click \"Save Changes\" - WordPress will automatically download the language pack"
+msgstr ""
+"Klicken Sie auf \"Änderungen speichern\" - WordPress lädt das Sprachpaket "
+"automatisch herunter"
+
+#: includes/admin-settings.php:194
+msgid "Optional: Change the site language back to your preferred default language"
+msgstr ""
+"Optional: Ändern Sie die Website-Sprache zurück zu Ihrer bevorzugten "
+"Standardsprache"
+
+#: includes/admin-settings.php:195
+msgid "The new language will now appear in the post editor dropdown!"
+msgstr "Die neue Sprache erscheint nun in der Sprachauswahl des Beitragseditors!"
+
+#: includes/admin-settings.php:198
+msgid "Quick Access:"
+msgstr "Schnellzugriff:"
+
+#: includes/admin-settings.php:200
+msgid "Go to General Settings"
+msgstr "Zu den Allgemeinen Einstellungen"
+
+#: includes/admin-settings.php:207
+#, php-format
+msgid "WordPress supports over 200 languages. View the full list at %s"
+msgstr "WordPress unterstützt über 200 Sprachen. Die vollständige Liste finden Sie unter %s"

@@ -174,6 +174,7 @@ function jpkcom_simplelang_settings_page(): void {
 	?>
 	<div class="wrap">
 		<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
+
 		<form method="post" action="options.php">
 			<?php
 			settings_fields( 'jpkcom_simplelang_options' );
@@ -181,6 +182,34 @@ function jpkcom_simplelang_settings_page(): void {
 			submit_button( __( 'Save Settings', 'jpkcom-simple-lang' ) );
 			?>
 		</form>
+
+		<div class="notice notice-info" style="margin-top: 20px;">
+			<h2><?php esc_html_e( 'How to Add More Languages', 'jpkcom-simple-lang' ); ?></h2>
+			<p><?php esc_html_e( 'The language dropdown in the post editor only shows languages that are already installed on your WordPress site. To add more languages:', 'jpkcom-simple-lang' ); ?></p>
+			<ol style="margin-left: 20px;">
+				<li><?php esc_html_e( 'Go to Settings → General in your WordPress admin', 'jpkcom-simple-lang' ); ?></li>
+				<li><?php esc_html_e( 'Find the "Site Language" dropdown', 'jpkcom-simple-lang' ); ?></li>
+				<li><?php esc_html_e( 'Select the language you want to add (e.g., French, Spanish, Italian)', 'jpkcom-simple-lang' ); ?></li>
+				<li><?php esc_html_e( 'Click "Save Changes" - WordPress will automatically download the language pack', 'jpkcom-simple-lang' ); ?></li>
+				<li><?php esc_html_e( 'Optional: Change the site language back to your preferred default language', 'jpkcom-simple-lang' ); ?></li>
+				<li><?php esc_html_e( 'The new language will now appear in the post editor dropdown!', 'jpkcom-simple-lang' ); ?></li>
+			</ol>
+			<p>
+				<strong><?php esc_html_e( 'Quick Access:', 'jpkcom-simple-lang' ); ?></strong>
+				<a href="<?php echo esc_url( admin_url( 'options-general.php' ) ); ?>" class="button button-secondary">
+					<?php esc_html_e( 'Go to General Settings', 'jpkcom-simple-lang' ); ?>
+				</a>
+			</p>
+			<p class="description">
+				<?php
+				printf(
+					/* translators: %s: URL to WordPress translations page */
+					esc_html__( 'WordPress supports over 200 languages. View the full list at %s', 'jpkcom-simple-lang' ),
+					'<a href="https://translate.wordpress.org/" target="_blank" rel="noopener noreferrer">translate.wordpress.org</a>'
+				);
+				?>
+			</p>
+		</div>
 	</div>
 	<?php
 }
