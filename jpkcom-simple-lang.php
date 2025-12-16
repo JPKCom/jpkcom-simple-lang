@@ -31,7 +31,7 @@ if ( ! defined( constant_name: 'WPINC' ) ) {
  * @since 1.0.0
  */
 if ( ! defined( 'JPKCOM_SIMPLELANG_VERSION' ) ) {
-	define( 'JPKCOM_SIMPLELANG_VERSION', '1.0.2' );
+	define( 'JPKCOM_SIMPLELANG_VERSION', '1.0.0' );
 }
 
 if ( ! defined( 'JPKCOM_SIMPLELANG_BASENAME' ) ) {
@@ -81,14 +81,43 @@ add_action( 'init', static function (): void {
  * @return void
  */
 function jpkcom_simplelang_textdomain(): void {
-    load_plugin_textdomain(
-        'jpkcom-simple-lang',
-        false,
-        dirname( path: JPKCOM_SIMPLELANG_BASENAME ) . '/languages'
-    );
+	load_plugin_textdomain(
+		'jpkcom-simple-lang',
+		false,
+		dirname( path: JPKCOM_SIMPLELANG_BASENAME ) . '/languages'
+	);
 }
 
 add_action( 'plugins_loaded', 'jpkcom_simplelang_textdomain' );
+
+
+/**
+ * Load plugin modules
+ *
+ * Loads all functional modules using the locate file function with override support.
+ *
+ * @since 1.0.0
+ * @return void
+ */
+add_action( 'plugins_loaded', function(): void {
+
+	// Core modules to load
+	$modules = [
+		'admin-settings.php',
+		'meta-box.php',
+		'frontend-language.php',
+		'oxygen-conditions.php',
+	];
+
+	foreach ( $modules as $module ) {
+		$file = jpkcom_simplelang_locate_file( $module );
+
+		if ( $file && file_exists( $file ) ) {
+			require_once $file;
+		}
+	}
+
+}, 5 );
 
 
 /**
