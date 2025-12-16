@@ -1,0 +1,474 @@
+<h1 id="jpkcom-simple-lang">JPKCom Simple Lang</h1>
+<p><strong>Plugin Name:</strong> JPKCom Simple Lang<br />
+<strong>Plugin URI:</strong>
+https://github.com/JPKCom/jpkcom-simple-lang<br />
+<strong>Description:</strong> Simple language selection for frontend
+pages.<br />
+<strong>Version:</strong> 1.0.0<br />
+<strong>Author:</strong> Jean Pierre Kolb <a href="mailto:jpk@jpkc.com"
+class="email">jpk@jpkc.com</a><br />
+<strong>Author URI:</strong> https://www.jpkc.com/<br />
+<strong>Contributors:</strong> JPKCom<br />
+<strong>Tags:</strong> Language, Lang, Locale, Multilingual,
+Translation, i18n, Oxygen Builder<br />
+<strong>Requires at least:</strong> 6.8<br />
+<strong>Tested up to:</strong> 6.9<br />
+<strong>Requires PHP:</strong> 8.3<br />
+<strong>Network:</strong> true<br />
+<strong>Stable tag:</strong> 1.0.0<br />
+<strong>License:</strong> GPL-2.0+<br />
+<strong>License URI:</strong>
+http://www.gnu.org/licenses/gpl-2.0.txt<br />
+<strong>Text Domain:</strong> jpkcom-simple-lang<br />
+<strong>Domain Path:</strong> /languages</p>
+<p>A plugin to provide per-post language selection that overrides the
+site-wide language setting in the frontend.</p>
+<h2 id="description">Description</h2>
+<p><strong>JPKCom Simple Lang</strong> is a lightweight solution for
+displaying individual pages or posts in different languages than your
+site’s default language. Unlike full-fledged multilingual plugins,
+Simple Lang focuses on a single task: allowing you to override the
+WordPress locale on a per-post basis for frontend display.</p>
+<p>This is particularly useful for sites that are primarily in one
+language but occasionally need to display specific pages in another
+language, without the complexity and overhead of managing multiple
+translations for every piece of content.</p>
+<h3 id="key-features">Key Features</h3>
+<ul>
+<li><strong>Per-Post Language Selection</strong>: Choose a different
+language for individual posts, pages, or custom post types</li>
+<li><strong>WordPress Core Languages</strong>: Uses WordPress’s built-in
+language system - no additional translation files needed</li>
+<li><strong>Post Type Control</strong>: Enable or disable language
+selection per post type via settings page</li>
+<li><strong>Frontend Locale Override</strong>: Automatically switches
+locale in frontend for proper translation support</li>
+<li><strong>HTML Lang Attribute</strong>: Updates the
+<code>&lt;html lang=""&gt;</code> attribute to match the selected
+language</li>
+<li><strong>SEO Plugin Compatible</strong>: SEO plugins (Yoast, Rank
+Math, etc.) automatically detect the locale change and output correct
+<code>og:locale</code> meta tags</li>
+<li><strong>Plugin Compatibility</strong>: Other plugins respect the
+locale change for their frontend output</li>
+<li><strong>Oxygen Builder Support</strong>: Provides conditional logic
+for Oxygen Builder based on selected language</li>
+<li><strong>Clean Admin UI</strong>: Simple dropdown in the post editor
+sidebar</li>
+<li><strong>Default Fallback</strong>: Posts without a custom language
+use the site’s default language</li>
+<li><strong>Multisite Compatible</strong>: Works seamlessly with
+WordPress multisite installations</li>
+<li><strong>Developer-Friendly</strong>: Template override system and
+helper functions for custom development</li>
+<li><strong>Automatic Updates</strong>: Secure GitHub-based plugin
+updates with SHA256 checksum verification</li>
+<li><strong>Modern PHP</strong>: Built with PHP 8.3+ strict typing for
+performance and reliability</li>
+</ul>
+<h3 id="use-cases">Use Cases</h3>
+<ul>
+<li><strong>Bilingual Content</strong>: Display specific pages in a
+secondary language while keeping your site primarily in one
+language</li>
+<li><strong>International Landing Pages</strong>: Create marketing pages
+in different languages without managing full site translations</li>
+<li><strong>Documentation</strong>: Provide documentation pages in
+multiple languages on demand</li>
+<li><strong>Legal Pages</strong>: Display terms of service or privacy
+policies in required languages</li>
+<li><strong>Client Presentations</strong>: Create project presentations
+in your client’s language</li>
+<li><strong>Oxygen Builder</strong>: Show/hide specific Oxygen elements
+based on page language</li>
+</ul>
+<h3 id="whats-included">What’s Included</h3>
+<ul>
+<li><strong>Admin Settings</strong>
+(<code>includes/admin-settings.php</code>) - Settings page under
+Settings → Simple Lang for post type activation</li>
+<li><strong>Meta Box</strong> (<code>includes/meta-box.php</code>) -
+Language selection dropdown in post editor sidebar</li>
+<li><strong>Frontend Language</strong>
+(<code>includes/frontend-language.php</code>) - Locale switching and
+HTML attribute override logic</li>
+<li><strong>Oxygen Conditions</strong>
+(<code>includes/oxygen-conditions.php</code>) - Conditional logic
+integration for Oxygen Builder</li>
+<li><strong>Translation Files</strong> (<code>languages/</code>) -
+Plugin interface translations (German included)</li>
+<li><strong>Automatic Updates</strong>
+(<code>includes/class-plugin-updater.php</code>) - GitHub-based update
+system with SHA256 checksum verification</li>
+</ul>
+<h3 id="documentation">Documentation</h3>
+<p><strong>API Documentation:</strong> Complete PHPDoc-generated API
+documentation is available at: <a
+href="https://jpkcom.github.io/jpkcom-simple-lang/docs/">https://jpkcom.github.io/jpkcom-simple-lang/docs/</a></p>
+<p>The documentation includes detailed information about all functions,
+classes, hooks, and filters available in the plugin.</p>
+<h3 id="how-it-works">How It Works</h3>
+<ol type="1">
+<li><strong>In the Admin</strong>: When editing a post, you’ll see a
+“Frontend Language Select” dropdown in the sidebar</li>
+<li><strong>Select a Language</strong>: Choose from any WordPress
+language installed on your system, or use the default</li>
+<li><strong>In the Frontend</strong>: When visitors view that post,
+WordPress automatically switches to the selected language</li>
+<li><strong>Locale Override</strong>: The entire page renders with
+translations from the selected language, including:
+<ul>
+<li>WordPress core strings (dates, buttons, messages)</li>
+<li>Theme translations</li>
+<li>Plugin translations that respect the current locale</li>
+<li>HTML <code>lang</code> attribute</li>
+<li>SEO plugin meta tags (og:locale via <code>get_locale()</code>)</li>
+</ul></li>
+</ol>
+<h3 id="helper-functions">Helper Functions</h3>
+<h4 id="get-the-language-set-for-a-post">Get the language set for a
+post:</h4>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode php"><code class="sourceCode php"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Get language for a specific post</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">$language</span> <span class="op">=</span> jpkcom_simplelang_get_post_language( <span class="va">$post_id</span> )<span class="ot">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Returns: &#39;de_DE&#39;, &#39;fr_FR&#39;, etc. or null if using default</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">// Get language for current post</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="va">$language</span> <span class="op">=</span> jpkcom_simplelang_get_post_language()<span class="ot">;</span></span></code></pre></div>
+<h4 id="get-the-currently-active-frontend-language">Get the currently
+active frontend language:</h4>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode php"><code class="sourceCode php"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Get the active language in frontend (after locale switch)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">$current_lang</span> <span class="op">=</span> jpkcom_simplelang_get_current_language()<span class="ot">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Returns: &#39;de_DE&#39;, &#39;fr_FR&#39;, etc. or null if using site default</span></span></code></pre></div>
+<h4 id="convert-locale-to-language-code">Convert locale to language
+code:</h4>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode php"><code class="sourceCode php"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Convert locale (de_DE) to language code (de) for HTML lang attribute</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">$lang_code</span> <span class="op">=</span> jpkcom_simplelang_get_language_code( <span class="st">&#39;de_DE&#39;</span> )<span class="ot">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Returns: &#39;de&#39;</span></span></code></pre></div>
+<h3 id="oxygen-builder-conditions">Oxygen Builder Conditions</h3>
+<p>If <a href="https://oxygenbuilder.com/">Oxygen Builder</a> is
+installed, Simple Lang provides three custom conditions:</p>
+<h4 id="post-language-is">1. Post Language Is</h4>
+<p>Check if the current post is set to a specific language.</p>
+<p><strong>Usage:</strong> Show German-specific content only when post
+language is German.</p>
+<p><strong>Parameters:</strong> Select from dropdown of all available
+languages.</p>
+<p><strong>Example:</strong> Display a German contact form only on
+German pages.</p>
+<h4 id="post-has-custom-language">2. Post Has Custom Language</h4>
+<p>Check if the current post has any custom language set (not using site
+default).</p>
+<p><strong>Usage:</strong> Show a language indicator badge on posts with
+custom languages.</p>
+<p><strong>Example:</strong> Display “This page is available in
+[Language]” notification.</p>
+<h4 id="post-uses-default-language">3. Post Uses Default Language</h4>
+<p>Check if the current post uses the site default language (no custom
+language set).</p>
+<p><strong>Usage:</strong> Show default language content only when no
+custom language is selected.</p>
+<p><strong>Example:</strong> Display site-wide navigation only on
+default language pages.</p>
+<h3 id="filters">Filters</h3>
+<h4 id="modify-file-search-paths">Modify file search paths</h4>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode php"><code class="sourceCode php"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"> * Filter the file search paths for template overrides</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"> *</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">array</span><span class="co">  $paths    Default search paths</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">string</span><span class="co"> $filename The filename being located</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"> */</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>add_filter( <span class="st">&#39;jpkcom_simplelang_file_paths&#39;</span><span class="ot">,</span> <span class="kw">function</span>( <span class="va">$paths</span><span class="ot">,</span> <span class="va">$filename</span> ) {</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Add custom search path</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">$paths</span>[] <span class="op">=</span> <span class="st">&#39;/custom/path/to/overrides/&#39;</span> <span class="op">.</span> <span class="va">$filename</span><span class="ot">;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">$paths</span><span class="ot">;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>}<span class="ot">,</span> <span class="dv">10</span><span class="ot">,</span> <span class="dv">2</span> )<span class="ot">;</span></span></code></pre></div>
+<h2 id="faq">FAQ</h2>
+<h3
+id="whats-the-difference-between-this-and-a-full-multilingual-plugin-like-wpml-or-polylang">What’s
+the difference between this and a full multilingual plugin like WPML or
+Polylang?</h3>
+<p>Simple Lang is intentionally simple. It doesn’t create separate
+translations of your content, manage language switchers, or handle
+complex translation workflows. It simply allows you to tell WordPress
+“display this specific post in German” without creating a duplicate post
+or managing translation relationships.</p>
+<p><strong>Use Simple Lang when:</strong> - You need occasional pages in
+different languages - Your site is primarily one language - You want
+minimal overhead and complexity</p>
+<p><strong>Use WPML/Polylang when:</strong> - You need full site
+translations - You want translation management workflows - You need
+language switchers and translation relationships</p>
+<h3 id="which-languages-are-available">Which languages are
+available?</h3>
+<p>Simple Lang uses WordPress’s built-in language system. Any language
+pack installed on your WordPress site is automatically available in the
+dropdown. You can install language packs via <strong>Settings → General
+→ Site Language</strong>.</p>
+<p>WordPress supports 200+ languages. See the <a
+href="https://translate.wordpress.org/">full list of available
+languages</a>.</p>
+<h3 id="does-this-translate-my-content">Does this translate my
+content?</h3>
+<p>No. Simple Lang only changes the <strong>interface language</strong>
+(WordPress core strings, theme strings, plugin strings). Your post
+content remains exactly as you write it. You’re responsible for writing
+the content in the target language.</p>
+<p><strong>What gets translated:</strong> - WordPress admin bar links
+(if visible) - Post date formats - Comment form labels - Theme
+navigation elements - Plugin interface elements</p>
+<p><strong>What doesn’t get translated:</strong> - Your post title -
+Your post content - Your custom fields - Media captions</p>
+<h3 id="can-i-use-this-with-page-builders-like-elementor-or-oxygen">Can
+I use this with page builders like Elementor or Oxygen?</h3>
+<p>Yes! Simple Lang works with any page builder. The locale change
+happens at the WordPress level, so builder elements that use WordPress
+translation functions will automatically display in the selected
+language.</p>
+<p>For <strong>Oxygen Builder</strong>, there’s built-in support with
+custom conditions that let you show/hide elements based on the page
+language.</p>
+<h3 id="does-this-work-with-gutenberg-blocks">Does this work with
+Gutenberg blocks?</h3>
+<p>Yes. Block editor blocks that use WordPress’s translation system will
+display in the selected language. Core blocks and properly
+internationalized third-party blocks work seamlessly.</p>
+<h3 id="what-about-seo-and-hreflang-tags">What about SEO and hreflang
+tags?</h3>
+<p>Simple Lang focuses on displaying content in different languages but
+doesn’t generate hreflang tags or manage SEO relationships between
+language versions. For full SEO multilingual support, consider using
+dedicated SEO plugins like Yoast SEO or Rank Math in combination with
+your multilingual solution.</p>
+<h3 id="can-i-restrict-which-post-types-have-language-selection">Can I
+restrict which post types have language selection?</h3>
+<p>Yes! Go to <strong>Settings → Simple Lang</strong> and check/uncheck
+the post types you want. By default, Posts and Pages have language
+selection enabled. Custom post types can be enabled individually.</p>
+<h3 id="how-do-i-install-additional-wordpress-languages">How do I
+install additional WordPress languages?</h3>
+<p><strong>Important:</strong> The language dropdown only shows
+installed languages. Here’s how to add more:</p>
+<p><strong>Quick Method:</strong> 1. Go to <strong>Settings →
+General</strong> in WordPress admin 2. Find the <strong>Site
+Language</strong> dropdown 3. Select the language you want to install
+(e.g., “Deutsch”, “Français”) 4. Click <strong>Save Changes</strong> 5.
+WordPress automatically downloads the language pack (5-10 seconds) 6.
+Optional: Change back to your default language if needed 7. The new
+language now appears in Simple Lang’s dropdown!</p>
+<p><strong>Why only installed languages?</strong> - Language packs
+contain WordPress translations (buttons, menus, date formats, etc.) -
+Without the pack, switching language would only change the HTML
+<code>lang</code> attribute - Content would remain untranslated,
+creating a poor user experience - This approach ensures every selectable
+language actually works</p>
+<p><strong>Need help?</strong> - Go to <strong>Settings → Simple
+Lang</strong> for a detailed step-by-step guide - Click the “Go to
+General Settings” button for quick access - View all 200+ available
+languages at <a
+href="https://translate.wordpress.org/">translate.wordpress.org</a></p>
+<p><strong>Pro Tip:</strong> You can install multiple languages without
+changing your site’s default language. Just install each language and
+switch back to your preferred default afterward. All installed languages
+remain available!</p>
+<h3 id="does-this-work-on-wordpress-multisite">Does this work on
+WordPress Multisite?</h3>
+<p>Yes! Simple Lang is fully compatible with WordPress Multisite
+installations. Each site in the network can have language selection
+enabled independently.</p>
+<h3 id="will-this-slow-down-my-site">Will this slow down my site?</h3>
+<p>No. Simple Lang adds minimal overhead: - One meta query per post to
+check for custom language - Locale switching happens once per request -
+No additional database tables - No frontend JavaScript or CSS</p>
+<p>The plugin uses WordPress’s native locale switching functions which
+are highly optimized.</p>
+<h3 id="can-i-customize-the-plugin-files">Can I customize the plugin
+files?</h3>
+<p>Yes! Simple Lang uses a template override system. You can override
+any plugin file by placing it in:</p>
+<ol type="1">
+<li><strong>Child theme</strong>:
+<code>{child-theme}/jpkcom-simple-lang/{filename}</code></li>
+<li><strong>Parent theme</strong>:
+<code>{parent-theme}/jpkcom-simple-lang/{filename}</code></li>
+<li><strong>MU plugins</strong>:
+<code>{WPMU_PLUGIN_DIR}/jpkcom-simple-lang-overrides/{filename}</code></li>
+</ol>
+<p>This lets you customize functionality without modifying plugin files
+directly.</p>
+<h3 id="does-the-language-selection-appear-in-the-rest-api">Does the
+language selection appear in the REST API?</h3>
+<p>Yes. The language meta is stored as post meta with the key
+<code>_jpkcom_simplelang_language</code> and is accessible via the REST
+API if your setup includes post meta in responses.</p>
+<h3 id="what-happens-if-i-deactivate-the-plugin">What happens if I
+deactivate the plugin?</h3>
+<p>Nothing breaks. Posts will simply display in your site’s default
+language. The language selection meta data remains in the database, so
+if you reactivate the plugin later, your language selections are
+restored.</p>
+<h3 id="can-i-bulk-assign-languages-to-multiple-posts">Can I bulk-assign
+languages to multiple posts?</h3>
+<p>Not currently. Language selection is done individually per post in
+the editor. For bulk operations, you’d need to write custom code using
+<code>update_post_meta()</code> with the meta key
+<code>_jpkcom_simplelang_language</code>.</p>
+<h3 id="does-this-work-with-woocommerce">Does this work with
+WooCommerce?</h3>
+<p>Yes, if you enable language selection for the <code>product</code>
+post type in settings. However, Simple Lang only changes the interface
+language, not product data. You’ll need to manually enter product titles
+and descriptions in the target language.</p>
+<h3 id="how-do-i-get-support">How do I get support?</h3>
+<p>For bug reports and feature requests, please use the <a
+href="https://github.com/JPKCom/jpkcom-simple-lang/issues">GitHub issue
+tracker</a>.</p>
+<h2 id="installation">Installation</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>Before installing this plugin, ensure you have:</p>
+<ul>
+<li><strong>WordPress 6.8 or higher</strong></li>
+<li><strong>PHP 8.3 or higher</strong></li>
+<li>At least one additional language pack installed (optional but
+recommended)</li>
+</ul>
+<h3 id="method-1-wordpress-admin-upload">Method 1: WordPress Admin
+Upload</h3>
+<ol type="1">
+<li>Download the latest release ZIP file from <a
+href="https://github.com/JPKCom/jpkcom-simple-lang/releases">GitHub
+Releases</a></li>
+<li>Log in to your WordPress admin panel</li>
+<li>Navigate to <strong>Plugins → Add New</strong></li>
+<li>Click <strong>Upload Plugin</strong> at the top</li>
+<li>Choose the downloaded ZIP file</li>
+<li>Click <strong>Install Now</strong></li>
+<li>Click <strong>Activate Plugin</strong></li>
+</ol>
+<h3 id="method-2-ftp-installation">Method 2: FTP Installation</h3>
+<ol type="1">
+<li>Download and extract the plugin ZIP file</li>
+<li>Upload the <code>jpkcom-simple-lang</code> folder to
+<code>/wp-content/plugins/</code></li>
+<li>Log in to your WordPress admin panel</li>
+<li>Navigate to <strong>Plugins</strong></li>
+<li>Find “JPKCom Simple Lang” and click <strong>Activate</strong></li>
+</ol>
+<h3 id="method-3-github-installation-developers">Method 3: GitHub
+Installation (Developers)</h3>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /path/to/wordpress/wp-content/plugins/</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/JPKCom/jpkcom-simple-lang.git</span></code></pre></div>
+<p>Then activate via WordPress admin.</p>
+<h3 id="post-installation-steps">Post-Installation Steps</h3>
+<ol type="1">
+<li><p><strong>Configure Post Types</strong> (Optional):</p>
+<ul>
+<li>Go to <strong>Settings → Simple Lang</strong></li>
+<li>Check/uncheck which post types should have language selection</li>
+<li>Click <strong>Save Settings</strong></li>
+</ul></li>
+<li><p><strong>Install Additional Languages</strong> (Recommended):</p>
+<p><strong>Why is this needed?</strong> The language dropdown in the
+post editor only shows languages that are already installed on your
+WordPress site. By default, WordPress only includes English. To display
+pages in other languages, you need to install the corresponding language
+packs first.</p>
+<p><strong>Step-by-Step Guide:</strong></p>
+<ol type="a">
+<li><strong>Navigate to Language Settings:</strong>
+<ul>
+<li>In WordPress admin, go to <strong>Settings → General</strong></li>
+<li>Scroll down to find the <strong>Site Language</strong> dropdown</li>
+</ul></li>
+<li><strong>Install a Language Pack:</strong>
+<ul>
+<li>Click the <strong>Site Language</strong> dropdown</li>
+<li>Select the language you want to add (e.g., “Deutsch”, “Français”,
+“Español”)</li>
+<li>Click <strong>Save Changes</strong> at the bottom of the page</li>
+<li>WordPress will automatically download and install the language pack
+(takes 5-10 seconds)</li>
+</ul></li>
+<li><strong>Restore Your Default Language (Optional):</strong>
+<ul>
+<li>If you don’t want to change your site’s default language,
+immediately go back to <strong>Settings → General</strong></li>
+<li>Change the <strong>Site Language</strong> back to your preferred
+default (e.g., “English (United States)” or “Deutsch”)</li>
+<li>Click <strong>Save Changes</strong> again</li>
+</ul></li>
+<li><strong>Verify Installation:</strong>
+<ul>
+<li>Go to <strong>Settings → Simple Lang</strong></li>
+<li>You’ll see a helpful guide with a <strong>“Go to General
+Settings”</strong> button for quick access</li>
+<li>The newly installed language is now available in the dropdown!</li>
+</ul></li>
+<li><strong>Add More Languages:</strong>
+<ul>
+<li>Repeat steps b-c for each additional language you need</li>
+<li>You can install as many languages as you want (WordPress supports
+200+ languages)</li>
+<li>Each language pack is typically 1-2 MB in size</li>
+</ul></li>
+</ol>
+<p><strong>Quick Tips:</strong></p>
+<ul>
+<li>You don’t need to keep your site in a different language to use it
+for individual pages</li>
+<li>Language packs remain installed even after you switch back to your
+default language</li>
+<li>Already installed languages will appear immediately in the post
+editor dropdown</li>
+<li>View all available languages at <a
+href="https://translate.wordpress.org/">translate.wordpress.org</a></li>
+</ul></li>
+<li><p><strong>Test Language Selection</strong>:</p>
+<ul>
+<li>Edit any post or page</li>
+<li>Look for “Frontend Language Select” in the sidebar</li>
+<li>Select a language from the dropdown</li>
+<li>Save/update the post</li>
+<li>View the post in frontend and verify the language changed</li>
+</ul></li>
+</ol>
+<h3 id="updating">Updating</h3>
+<p>The plugin includes automatic update support via GitHub. When a new
+version is released:</p>
+<ol type="1">
+<li>You’ll see an update notification in <strong>Plugins</strong></li>
+<li>Click <strong>Update Now</strong></li>
+<li>WordPress automatically downloads and installs the update</li>
+</ol>
+<p>Updates include SHA256 checksum verification for security.</p>
+<h3 id="uninstallation">Uninstallation</h3>
+<p>To remove the plugin:</p>
+<ol type="1">
+<li>Deactivate the plugin via <strong>Plugins</strong></li>
+<li>Click <strong>Delete</strong></li>
+<li>Confirm deletion</li>
+</ol>
+<p><strong>Note:</strong> Language selection meta data will remain in
+the database. If you want to remove this data, run:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> wp_postmeta <span class="kw">WHERE</span> meta_key <span class="op">=</span> <span class="st">&#39;_jpkcom_simplelang_language&#39;</span>;</span></code></pre></div>
+<h2 id="changelog">Changelog</h2>
+<h3 id="section">1.0.0 - 2025-12-16</h3>
+<p><strong>Initial Release</strong></p>
+<ul>
+<li>Language selection dropdown in post editor sidebar</li>
+<li>Support for all WordPress core languages</li>
+<li>Post type activation settings page</li>
+<li>Frontend locale override (HTML lang attribute and SEO plugin
+compatibility)</li>
+<li>Oxygen Builder conditional logic integration</li>
+<li>Helper functions for developers</li>
+<li>Template override system</li>
+<li>Automatic GitHub-based updates</li>
+<li>German translations included</li>
+<li>Full documentation and API docs</li>
+</ul>

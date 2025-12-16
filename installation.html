@@ -1,0 +1,129 @@
+<h3 id="prerequisites">Prerequisites</h3>
+<p>Before installing this plugin, ensure you have:</p>
+<ul>
+<li><strong>WordPress 6.8 or higher</strong></li>
+<li><strong>PHP 8.3 or higher</strong></li>
+<li>At least one additional language pack installed (optional but
+recommended)</li>
+</ul>
+<h3 id="method-1-wordpress-admin-upload">Method 1: WordPress Admin
+Upload</h3>
+<ol type="1">
+<li>Download the latest release ZIP file from <a
+href="https://github.com/JPKCom/jpkcom-simple-lang/releases">GitHub
+Releases</a></li>
+<li>Log in to your WordPress admin panel</li>
+<li>Navigate to <strong>Plugins → Add New</strong></li>
+<li>Click <strong>Upload Plugin</strong> at the top</li>
+<li>Choose the downloaded ZIP file</li>
+<li>Click <strong>Install Now</strong></li>
+<li>Click <strong>Activate Plugin</strong></li>
+</ol>
+<h3 id="method-2-ftp-installation">Method 2: FTP Installation</h3>
+<ol type="1">
+<li>Download and extract the plugin ZIP file</li>
+<li>Upload the <code>jpkcom-simple-lang</code> folder to
+<code>/wp-content/plugins/</code></li>
+<li>Log in to your WordPress admin panel</li>
+<li>Navigate to <strong>Plugins</strong></li>
+<li>Find “JPKCom Simple Lang” and click <strong>Activate</strong></li>
+</ol>
+<h3 id="method-3-github-installation-developers">Method 3: GitHub
+Installation (Developers)</h3>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /path/to/wordpress/wp-content/plugins/</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/JPKCom/jpkcom-simple-lang.git</span></code></pre></div>
+<p>Then activate via WordPress admin.</p>
+<h3 id="post-installation-steps">Post-Installation Steps</h3>
+<ol type="1">
+<li><p><strong>Configure Post Types</strong> (Optional):</p>
+<ul>
+<li>Go to <strong>Settings → Simple Lang</strong></li>
+<li>Check/uncheck which post types should have language selection</li>
+<li>Click <strong>Save Settings</strong></li>
+</ul></li>
+<li><p><strong>Install Additional Languages</strong> (Recommended):</p>
+<p><strong>Why is this needed?</strong> The language dropdown in the
+post editor only shows languages that are already installed on your
+WordPress site. By default, WordPress only includes English. To display
+pages in other languages, you need to install the corresponding language
+packs first.</p>
+<p><strong>Step-by-Step Guide:</strong></p>
+<ol type="a">
+<li><strong>Navigate to Language Settings:</strong>
+<ul>
+<li>In WordPress admin, go to <strong>Settings → General</strong></li>
+<li>Scroll down to find the <strong>Site Language</strong> dropdown</li>
+</ul></li>
+<li><strong>Install a Language Pack:</strong>
+<ul>
+<li>Click the <strong>Site Language</strong> dropdown</li>
+<li>Select the language you want to add (e.g., “Deutsch”, “Français”,
+“Español”)</li>
+<li>Click <strong>Save Changes</strong> at the bottom of the page</li>
+<li>WordPress will automatically download and install the language pack
+(takes 5-10 seconds)</li>
+</ul></li>
+<li><strong>Restore Your Default Language (Optional):</strong>
+<ul>
+<li>If you don’t want to change your site’s default language,
+immediately go back to <strong>Settings → General</strong></li>
+<li>Change the <strong>Site Language</strong> back to your preferred
+default (e.g., “English (United States)” or “Deutsch”)</li>
+<li>Click <strong>Save Changes</strong> again</li>
+</ul></li>
+<li><strong>Verify Installation:</strong>
+<ul>
+<li>Go to <strong>Settings → Simple Lang</strong></li>
+<li>You’ll see a helpful guide with a <strong>“Go to General
+Settings”</strong> button for quick access</li>
+<li>The newly installed language is now available in the dropdown!</li>
+</ul></li>
+<li><strong>Add More Languages:</strong>
+<ul>
+<li>Repeat steps b-c for each additional language you need</li>
+<li>You can install as many languages as you want (WordPress supports
+200+ languages)</li>
+<li>Each language pack is typically 1-2 MB in size</li>
+</ul></li>
+</ol>
+<p><strong>Quick Tips:</strong></p>
+<ul>
+<li>You don’t need to keep your site in a different language to use it
+for individual pages</li>
+<li>Language packs remain installed even after you switch back to your
+default language</li>
+<li>Already installed languages will appear immediately in the post
+editor dropdown</li>
+<li>View all available languages at <a
+href="https://translate.wordpress.org/">translate.wordpress.org</a></li>
+</ul></li>
+<li><p><strong>Test Language Selection</strong>:</p>
+<ul>
+<li>Edit any post or page</li>
+<li>Look for “Frontend Language Select” in the sidebar</li>
+<li>Select a language from the dropdown</li>
+<li>Save/update the post</li>
+<li>View the post in frontend and verify the language changed</li>
+</ul></li>
+</ol>
+<h3 id="updating">Updating</h3>
+<p>The plugin includes automatic update support via GitHub. When a new
+version is released:</p>
+<ol type="1">
+<li>You’ll see an update notification in <strong>Plugins</strong></li>
+<li>Click <strong>Update Now</strong></li>
+<li>WordPress automatically downloads and installs the update</li>
+</ol>
+<p>Updates include SHA256 checksum verification for security.</p>
+<h3 id="uninstallation">Uninstallation</h3>
+<p>To remove the plugin:</p>
+<ol type="1">
+<li>Deactivate the plugin via <strong>Plugins</strong></li>
+<li>Click <strong>Delete</strong></li>
+<li>Confirm deletion</li>
+</ol>
+<p><strong>Note:</strong> Language selection meta data will remain in
+the database. If you want to remove this data, run:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> wp_postmeta <span class="kw">WHERE</span> meta_key <span class="op">=</span> <span class="st">&#39;_jpkcom_simplelang_language&#39;</span>;</span></code></pre></div>

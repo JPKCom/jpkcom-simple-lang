@@ -1,0 +1,139 @@
+<h3
+id="whats-the-difference-between-this-and-a-full-multilingual-plugin-like-wpml-or-polylang">What’s
+the difference between this and a full multilingual plugin like WPML or
+Polylang?</h3>
+<p>Simple Lang is intentionally simple. It doesn’t create separate
+translations of your content, manage language switchers, or handle
+complex translation workflows. It simply allows you to tell WordPress
+“display this specific post in German” without creating a duplicate post
+or managing translation relationships.</p>
+<p><strong>Use Simple Lang when:</strong> - You need occasional pages in
+different languages - Your site is primarily one language - You want
+minimal overhead and complexity</p>
+<p><strong>Use WPML/Polylang when:</strong> - You need full site
+translations - You want translation management workflows - You need
+language switchers and translation relationships</p>
+<h3 id="which-languages-are-available">Which languages are
+available?</h3>
+<p>Simple Lang uses WordPress’s built-in language system. Any language
+pack installed on your WordPress site is automatically available in the
+dropdown. You can install language packs via <strong>Settings → General
+→ Site Language</strong>.</p>
+<p>WordPress supports 200+ languages. See the <a
+href="https://translate.wordpress.org/">full list of available
+languages</a>.</p>
+<h3 id="does-this-translate-my-content">Does this translate my
+content?</h3>
+<p>No. Simple Lang only changes the <strong>interface language</strong>
+(WordPress core strings, theme strings, plugin strings). Your post
+content remains exactly as you write it. You’re responsible for writing
+the content in the target language.</p>
+<p><strong>What gets translated:</strong> - WordPress admin bar links
+(if visible) - Post date formats - Comment form labels - Theme
+navigation elements - Plugin interface elements</p>
+<p><strong>What doesn’t get translated:</strong> - Your post title -
+Your post content - Your custom fields - Media captions</p>
+<h3 id="can-i-use-this-with-page-builders-like-elementor-or-oxygen">Can
+I use this with page builders like Elementor or Oxygen?</h3>
+<p>Yes! Simple Lang works with any page builder. The locale change
+happens at the WordPress level, so builder elements that use WordPress
+translation functions will automatically display in the selected
+language.</p>
+<p>For <strong>Oxygen Builder</strong>, there’s built-in support with
+custom conditions that let you show/hide elements based on the page
+language.</p>
+<h3 id="does-this-work-with-gutenberg-blocks">Does this work with
+Gutenberg blocks?</h3>
+<p>Yes. Block editor blocks that use WordPress’s translation system will
+display in the selected language. Core blocks and properly
+internationalized third-party blocks work seamlessly.</p>
+<h3 id="what-about-seo-and-hreflang-tags">What about SEO and hreflang
+tags?</h3>
+<p>Simple Lang focuses on displaying content in different languages but
+doesn’t generate hreflang tags or manage SEO relationships between
+language versions. For full SEO multilingual support, consider using
+dedicated SEO plugins like Yoast SEO or Rank Math in combination with
+your multilingual solution.</p>
+<h3 id="can-i-restrict-which-post-types-have-language-selection">Can I
+restrict which post types have language selection?</h3>
+<p>Yes! Go to <strong>Settings → Simple Lang</strong> and check/uncheck
+the post types you want. By default, Posts and Pages have language
+selection enabled. Custom post types can be enabled individually.</p>
+<h3 id="how-do-i-install-additional-wordpress-languages">How do I
+install additional WordPress languages?</h3>
+<p><strong>Important:</strong> The language dropdown only shows
+installed languages. Here’s how to add more:</p>
+<p><strong>Quick Method:</strong> 1. Go to <strong>Settings →
+General</strong> in WordPress admin 2. Find the <strong>Site
+Language</strong> dropdown 3. Select the language you want to install
+(e.g., “Deutsch”, “Français”) 4. Click <strong>Save Changes</strong> 5.
+WordPress automatically downloads the language pack (5-10 seconds) 6.
+Optional: Change back to your default language if needed 7. The new
+language now appears in Simple Lang’s dropdown!</p>
+<p><strong>Why only installed languages?</strong> - Language packs
+contain WordPress translations (buttons, menus, date formats, etc.) -
+Without the pack, switching language would only change the HTML
+<code>lang</code> attribute - Content would remain untranslated,
+creating a poor user experience - This approach ensures every selectable
+language actually works</p>
+<p><strong>Need help?</strong> - Go to <strong>Settings → Simple
+Lang</strong> for a detailed step-by-step guide - Click the “Go to
+General Settings” button for quick access - View all 200+ available
+languages at <a
+href="https://translate.wordpress.org/">translate.wordpress.org</a></p>
+<p><strong>Pro Tip:</strong> You can install multiple languages without
+changing your site’s default language. Just install each language and
+switch back to your preferred default afterward. All installed languages
+remain available!</p>
+<h3 id="does-this-work-on-wordpress-multisite">Does this work on
+WordPress Multisite?</h3>
+<p>Yes! Simple Lang is fully compatible with WordPress Multisite
+installations. Each site in the network can have language selection
+enabled independently.</p>
+<h3 id="will-this-slow-down-my-site">Will this slow down my site?</h3>
+<p>No. Simple Lang adds minimal overhead: - One meta query per post to
+check for custom language - Locale switching happens once per request -
+No additional database tables - No frontend JavaScript or CSS</p>
+<p>The plugin uses WordPress’s native locale switching functions which
+are highly optimized.</p>
+<h3 id="can-i-customize-the-plugin-files">Can I customize the plugin
+files?</h3>
+<p>Yes! Simple Lang uses a template override system. You can override
+any plugin file by placing it in:</p>
+<ol type="1">
+<li><strong>Child theme</strong>:
+<code>{child-theme}/jpkcom-simple-lang/{filename}</code></li>
+<li><strong>Parent theme</strong>:
+<code>{parent-theme}/jpkcom-simple-lang/{filename}</code></li>
+<li><strong>MU plugins</strong>:
+<code>{WPMU_PLUGIN_DIR}/jpkcom-simple-lang-overrides/{filename}</code></li>
+</ol>
+<p>This lets you customize functionality without modifying plugin files
+directly.</p>
+<h3 id="does-the-language-selection-appear-in-the-rest-api">Does the
+language selection appear in the REST API?</h3>
+<p>Yes. The language meta is stored as post meta with the key
+<code>_jpkcom_simplelang_language</code> and is accessible via the REST
+API if your setup includes post meta in responses.</p>
+<h3 id="what-happens-if-i-deactivate-the-plugin">What happens if I
+deactivate the plugin?</h3>
+<p>Nothing breaks. Posts will simply display in your site’s default
+language. The language selection meta data remains in the database, so
+if you reactivate the plugin later, your language selections are
+restored.</p>
+<h3 id="can-i-bulk-assign-languages-to-multiple-posts">Can I bulk-assign
+languages to multiple posts?</h3>
+<p>Not currently. Language selection is done individually per post in
+the editor. For bulk operations, you’d need to write custom code using
+<code>update_post_meta()</code> with the meta key
+<code>_jpkcom_simplelang_language</code>.</p>
+<h3 id="does-this-work-with-woocommerce">Does this work with
+WooCommerce?</h3>
+<p>Yes, if you enable language selection for the <code>product</code>
+post type in settings. However, Simple Lang only changes the interface
+language, not product data. You’ll need to manually enter product titles
+and descriptions in the target language.</p>
+<h3 id="how-do-i-get-support">How do I get support?</h3>
+<p>For bug reports and feature requests, please use the <a
+href="https://github.com/JPKCom/jpkcom-simple-lang/issues">GitHub issue
+tracker</a>.</p>
