@@ -395,7 +395,7 @@ DELETE FROM wp_postmeta WHERE meta_key = '_jpkcom_simplelang_language';
 
 ## Changelog
 
-### 1.0.0 - 2025-01-XX
+### 1.0.0 - 2025-12-16
 
 **Initial Release**
 
