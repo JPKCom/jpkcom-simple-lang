@@ -3,7 +3,7 @@
 **Plugin Name:** JPKCom Simple Lang  
 **Plugin URI:** https://github.com/JPKCom/jpkcom-simple-lang  
 **Description:** Simple language selection for frontend pages.  
-**Version:** 1.1.0  
+**Version:** 1.1.1  
 **Author:** Jean Pierre Kolb <jpk@jpkc.com>  
 **Author URI:** https://www.jpkc.com/  
 **Contributors:** JPKCom  
@@ -12,7 +12,7 @@
 **Tested up to:** 6.9  
 **Requires PHP:** 8.3  
 **Network:** true  
-**Stable tag:** 1.1.0  
+**Stable tag:** 1.1.1  
 **License:** GPL-2.0+  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.txt  
 **Text Domain:** jpkcom-simple-lang  
@@ -457,6 +457,30 @@ DELETE FROM wp_postmeta WHERE meta_key = '_jpkcom_simplelang_language';
 
 
 ## Changelog
+
+### 1.1.1 - 2025-12-17
+
+**Bug Fixes**
+
+- Fixed duplicate "Settings saved" message on admin settings page
+- Fixed Oxygen Builder conditions not displaying dropdown options
+- Fixed Oxygen Builder condition callback signatures to match API requirements
+
+**Improvements**
+
+- Updated Oxygen Builder conditions to use correct API structure with 'options' array
+- Added proper operator support (==, !=) for "Post Language Is" condition
+- Added Yes/No dropdown options for boolean Oxygen conditions
+- Added German translations for Oxygen condition options (Ja/Nein)
+- All Oxygen conditions now appear under "Simple Lang" category
+
+**Technical Changes**
+
+- Renamed callback functions to match Oxygen API conventions:
+  - `jpkcom_simplelang_oxygen_post_language_is()` with ($value, $operator) parameters
+  - `jpkcom_simplelang_oxygen_has_custom_language()` with ($value, $operator) parameters
+  - `jpkcom_simplelang_oxygen_uses_default_language()` with ($value, $operator) parameters
+- Removed redundant `settings_errors()` call in admin settings page
 
 ### 1.1.0 - 2025-12-17
 
