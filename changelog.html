@@ -1,4 +1,43 @@
-<h3 id="section">1.0.0 - 2025-12-16</h3>
+<h3 id="section">1.1.0 - 2025-12-17</h3>
+<p><strong>New Features</strong></p>
+<ul>
+<li><strong>Translation Links</strong>: New meta box for linking posts
+in different languages</li>
+<li><strong>Hreflang Tags</strong>: Automatic generation of SEO-friendly
+<code>&lt;link rel="alternate" hreflang=""&gt;</code> tags</li>
+<li><strong>Bidirectional Linking</strong>: Posts automatically link to
+each other when translation links are created</li>
+<li><strong>Complete Translation Sets</strong>: All posts in a
+translation group are automatically linked together</li>
+<li><strong>Smart Validation</strong>: Prevents duplicate languages in
+translation sets</li>
+</ul>
+<p><strong>Bug Fixes</strong></p>
+<ul>
+<li>Fixed locale detection for default site language in translation
+grouping</li>
+<li>Fixed type casting issue in translation link display</li>
+<li>Improved meta data consistency across all translation sync
+operations</li>
+</ul>
+<p><strong>Improvements</strong></p>
+<ul>
+<li>New helper function:
+<code>jpkcom_simplelang_get_site_default_locale()</code></li>
+<li>Enhanced hreflang output with deterministic sorting</li>
+<li>Performance optimization: Single query for all translation posts
+(prevents N+1 queries)</li>
+<li>Updated German translations (de_DE and de_DE_formal)</li>
+</ul>
+<p><strong>Developer Notes</strong></p>
+<ul>
+<li>New module: <code>includes/hreflang-translations.php</code></li>
+<li>New meta key: <code>_jpkcom_simplelang_translations</code> (multiple
+entries per post)</li>
+<li>All translation sync operations use loop prevention for data
+integrity</li>
+</ul>
+<h3 id="section-1">1.0.0 - 2025-12-16</h3>
 <p><strong>Initial Release</strong></p>
 <ul>
 <li>Language selection dropdown in post editor sidebar</li>

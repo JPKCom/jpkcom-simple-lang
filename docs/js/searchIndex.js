@@ -91,6 +91,46 @@ Search.appendIndex(
             "summary": "Get\u0020current\u0020frontend\u0020language",
             "url": "namespaces/default.html#function_jpkcom_simplelang_get_current_language"
         },                {
+            "fqsen": "\\jpkcom_simplelang_get_site_default_locale\u0028\u0029",
+            "name": "jpkcom_simplelang_get_site_default_locale",
+            "summary": "Get\u0020site\u0020default\u0020locale",
+            "url": "namespaces/default.html#function_jpkcom_simplelang_get_site_default_locale"
+        },                {
+            "fqsen": "\\jpkcom_simplelang_get_language_name\u0028\u0029",
+            "name": "jpkcom_simplelang_get_language_name",
+            "summary": "Get\u0020language\u0020name\u0020from\u0020locale",
+            "url": "namespaces/default.html#function_jpkcom_simplelang_get_language_name"
+        },                {
+            "fqsen": "\\jpkcom_simplelang_group_posts_by_language\u0028\u0029",
+            "name": "jpkcom_simplelang_group_posts_by_language",
+            "summary": "Group\u0020posts\u0020by\u0020language",
+            "url": "namespaces/default.html#function_jpkcom_simplelang_group_posts_by_language"
+        },                {
+            "fqsen": "\\jpkcom_simplelang_validate_translations\u0028\u0029",
+            "name": "jpkcom_simplelang_validate_translations",
+            "summary": "Validate\u0020translation\u0020links",
+            "url": "namespaces/default.html#function_jpkcom_simplelang_validate_translations"
+        },                {
+            "fqsen": "\\jpkcom_simplelang_get_translation_posts\u0028\u0029",
+            "name": "jpkcom_simplelang_get_translation_posts",
+            "summary": "Get\u0020translation\u0020posts\u0020efficiently",
+            "url": "namespaces/default.html#function_jpkcom_simplelang_get_translation_posts"
+        },                {
+            "fqsen": "\\jpkcom_simplelang_sync_translations\u0028\u0029",
+            "name": "jpkcom_simplelang_sync_translations",
+            "summary": "Sync\u0020translation\u0020links\u0020bidirectionally",
+            "url": "namespaces/default.html#function_jpkcom_simplelang_sync_translations"
+        },                {
+            "fqsen": "\\jpkcom_simplelang_render_translations_meta_box\u0028\u0029",
+            "name": "jpkcom_simplelang_render_translations_meta_box",
+            "summary": "Render\u0020translation\u0020links\u0020meta\u0020box",
+            "url": "namespaces/default.html#function_jpkcom_simplelang_render_translations_meta_box"
+        },                {
+            "fqsen": "\\jpkcom_simplelang_output_hreflang_tags\u0028\u0029",
+            "name": "jpkcom_simplelang_output_hreflang_tags",
+            "summary": "Generate\u0020and\u0020output\u0020hreflang\u0020tags",
+            "url": "namespaces/default.html#function_jpkcom_simplelang_output_hreflang_tags"
+        },                {
             "fqsen": "\\jpkcom_simplelang_render_meta_box\u0028\u0029",
             "name": "jpkcom_simplelang_render_meta_box",
             "summary": "Render\u0020language\u0020selection\u0020meta\u0020box",

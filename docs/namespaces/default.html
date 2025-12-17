@@ -153,7 +153,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a class="" href="namespaces/default.html#constant_JPKCOM_SIMPLELANG_VERSION">JPKCOM_SIMPLELANG_VERSION</a>
     <span>
-        &nbsp;= &#039;1.0.0&#039;                            </span>
+        &nbsp;= &#039;1.1.0&#039;                            </span>
 </dt>
 
     </dl>
@@ -201,6 +201,62 @@
                                 &nbsp;: string|null    </span>
 </dt>
 <dd>Get current frontend language</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_get_site_default_locale">jpkcom_simplelang_get_site_default_locale()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Get site default locale</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_get_language_name">jpkcom_simplelang_get_language_name()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Get language name from locale</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_group_posts_by_language">jpkcom_simplelang_group_posts_by_language()</a>
+    <span>
+                                &nbsp;: array&lt;string, array&lt;int, <abbr title="\WP_Post">WP_Post</abbr>&gt;&gt;    </span>
+</dt>
+<dd>Group posts by language</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_validate_translations">jpkcom_simplelang_validate_translations()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, int&gt;    </span>
+</dt>
+<dd>Validate translation links</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_get_translation_posts">jpkcom_simplelang_get_translation_posts()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, <abbr title="\WP_Post">WP_Post</abbr>&gt;    </span>
+</dt>
+<dd>Get translation posts efficiently</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_sync_translations">jpkcom_simplelang_sync_translations()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Sync translation links bidirectionally</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_render_translations_meta_box">jpkcom_simplelang_render_translations_meta_box()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Render translation links meta box</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_output_hreflang_tags">jpkcom_simplelang_output_hreflang_tags()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Generate and output hreflang tags</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -function -">
     <a class="" href="namespaces/default.html#function_jpkcom_simplelang_render_meta_box">jpkcom_simplelang_render_meta_box()</a>
@@ -377,7 +433,7 @@
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">JPKCOM_SIMPLELANG_VERSION</span>
-    = <span class="phpdocumentor-signature__default-value">&#039;1.0.0&#039;</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;1.1.0&#039;</span>
 </code>
 
 
@@ -657,6 +713,505 @@
 
             </section>
 
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_get_site_default_locale">
+        jpkcom_simplelang_get_site_default_locale()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_get_site_default_locale" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/hreflang-translations.php"><a href="files/includes-hreflang-translations.html"><abbr title="includes/hreflang-translations.php">hreflang-translations.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">28</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Get site default locale</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_get_site_default_locale</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+        <section class="phpdocumentor-description"><p>Returns the site's default locale, ignoring any temporary locale switches.
+This is the locale set in Settings &gt; General.</p>
+</section>
+
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_get_site_default_locale#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">since</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.1.0</span>
+                                                                                
+                                             
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The site default locale (e.g., 'de_DE', 'en_US').</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_get_language_name">
+        jpkcom_simplelang_get_language_name()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_get_language_name" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/hreflang-translations.php"><a href="files/includes-hreflang-translations.html"><abbr title="includes/hreflang-translations.php">hreflang-translations.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">49</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Get language name from locale</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_get_language_name</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$locale</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+        <section class="phpdocumentor-description"><p>Converts a locale code to a human-readable language name.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$locale</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The locale code (e.g., 'de_DE', 'fr_FR').</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_get_language_name#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">since</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.1.0</span>
+                                                                                
+                                             
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The language name in native language.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_group_posts_by_language">
+        jpkcom_simplelang_group_posts_by_language()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_group_posts_by_language" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/hreflang-translations.php"><a href="files/includes-hreflang-translations.html"><abbr title="includes/hreflang-translations.php">hreflang-translations.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">84</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Group posts by language</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_group_posts_by_language</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$query_args</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, array&lt;int, <abbr title="\WP_Post">WP_Post</abbr>&gt;&gt;</span></code>
+
+        <section class="phpdocumentor-description"><p>Queries posts and groups them by their assigned language for display
+in the translation links meta box.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$query_args</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>WP_Query arguments.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_group_posts_by_language#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">since</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.1.0</span>
+                                                                                
+                                             
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string, array&lt;int, <abbr title="\WP_Post">WP_Post</abbr>&gt;&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Posts grouped by locale.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_validate_translations">
+        jpkcom_simplelang_validate_translations()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_validate_translations" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/hreflang-translations.php"><a href="files/includes-hreflang-translations.html"><abbr title="includes/hreflang-translations.php">hreflang-translations.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">122</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Validate translation links</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_validate_translations</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$post_id</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string|int, int&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$translation_ids</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, int&gt;</span></code>
+
+        <section class="phpdocumentor-description"><p>Ensures that translation links are valid and prevents duplicate languages.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$post_id</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The current post ID.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$translation_ids</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, int&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Array of translation post IDs.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_validate_translations#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">since</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.1.0</span>
+                                                                                
+                                             
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, int&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Validated array of translation post IDs.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_get_translation_posts">
+        jpkcom_simplelang_get_translation_posts()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_get_translation_posts" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/hreflang-translations.php"><a href="files/includes-hreflang-translations.html"><abbr title="includes/hreflang-translations.php">hreflang-translations.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">162</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Get translation posts efficiently</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_get_translation_posts</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, int&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$post_ids</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\WP_Post">WP_Post</abbr>&gt;</span></code>
+
+        <section class="phpdocumentor-description"><p>Fetches multiple posts in a single query to avoid N+1 query problems.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$post_ids</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, int&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Array of post IDs to fetch.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_get_translation_posts#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">since</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.1.0</span>
+                                                                                
+                                             
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\WP_Post">WP_Post</abbr>&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Array of post objects.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_sync_translations">
+        jpkcom_simplelang_sync_translations()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_sync_translations" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/hreflang-translations.php"><a href="files/includes-hreflang-translations.html"><abbr title="includes/hreflang-translations.php">hreflang-translations.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">193</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Sync translation links bidirectionally</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_sync_translations</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$post_id</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string|int, int&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$new_translations</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+        <section class="phpdocumentor-description"><p>Updates translation links for the current post and ensures all posts in the
+translation set are linked to each other. Creates a complete translation set
+where every post links to all others in the set.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$post_id</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The post ID to sync.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$new_translations</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, int&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Array of translation post IDs.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_sync_translations#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">since</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.1.0</span>
+                                                                                
+                                             
+                                    </dd>
+                                            </dl>
+
+    
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_render_translations_meta_box">
+        jpkcom_simplelang_render_translations_meta_box()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_render_translations_meta_box" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/hreflang-translations.php"><a href="files/includes-hreflang-translations.html"><abbr title="includes/hreflang-translations.php">hreflang-translations.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">290</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Render translation links meta box</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_render_translations_meta_box</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><abbr title="\WP_Post">WP_Post</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$post</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+        <section class="phpdocumentor-description"><p>Displays a multi-select dropdown with posts grouped by language.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$post</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\WP_Post">WP_Post</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Current post object.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_render_translations_meta_box#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">since</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.1.0</span>
+                                                                                
+                                             
+                                    </dd>
+                                            </dl>
+
+    
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_output_hreflang_tags">
+        jpkcom_simplelang_output_hreflang_tags()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_output_hreflang_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/hreflang-translations.php"><a href="files/includes-hreflang-translations.html"><abbr title="includes/hreflang-translations.php">hreflang-translations.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">488</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Generate and output hreflang tags</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_output_hreflang_tags</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$post_id</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string|int, int&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$translation_ids</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+        <section class="phpdocumentor-description"><p>Creates hreflang link tags for all translations including the current post.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$post_id</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The current post ID.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$translation_ids</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, int&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Array of translation post IDs.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_output_hreflang_tags#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">since</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.1.0</span>
+                                                                                
+                                             
+                                    </dd>
+                                            </dl>
+
+    
 </article>
                     <article class="phpdocumentor-element -function - ">
     <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_render_meta_box">
@@ -1044,7 +1599,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="jpkcom-simple-lang.php"><a href="files/jpkcom-simple-lang.html">jpkcom-simple-lang.php</a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">137</span>
+    <span class="phpdocumentor-element-found-in__line">138</span>
 
     </aside>
 
@@ -1232,16 +1787,24 @@
                                                     <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_enabled_post_types_field">jpkcom_simplelang_enabled_post_types_field()</a></li>
                                                     <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_get_current_language">jpkcom_simplelang_get_current_language()</a></li>
                                                     <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_get_language_code">jpkcom_simplelang_get_language_code()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_get_language_name">jpkcom_simplelang_get_language_name()</a></li>
                                                     <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_get_post_language">jpkcom_simplelang_get_post_language()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_get_site_default_locale">jpkcom_simplelang_get_site_default_locale()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_get_translation_posts">jpkcom_simplelang_get_translation_posts()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_group_posts_by_language">jpkcom_simplelang_group_posts_by_language()</a></li>
                                                     <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_has_custom_language">jpkcom_simplelang_has_custom_language()</a></li>
                                                     <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_locate_file">jpkcom_simplelang_locate_file()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_output_hreflang_tags">jpkcom_simplelang_output_hreflang_tags()</a></li>
                                                     <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_post_language_is">jpkcom_simplelang_post_language_is()</a></li>
                                                     <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_post_language_is_values">jpkcom_simplelang_post_language_is_values()</a></li>
                                                     <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_render_meta_box">jpkcom_simplelang_render_meta_box()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_render_translations_meta_box">jpkcom_simplelang_render_translations_meta_box()</a></li>
                                                     <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_sanitize_post_types">jpkcom_simplelang_sanitize_post_types()</a></li>
                                                     <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_settings_page">jpkcom_simplelang_settings_page()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_sync_translations">jpkcom_simplelang_sync_translations()</a></li>
                                                     <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_textdomain">jpkcom_simplelang_textdomain()</a></li>
                                                     <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_uses_default_language">jpkcom_simplelang_uses_default_language()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_validate_translations">jpkcom_simplelang_validate_translations()</a></li>
                                             </ul>
                 </li>
                     </ul>

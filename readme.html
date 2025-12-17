@@ -4,18 +4,18 @@
 https://github.com/JPKCom/jpkcom-simple-lang<br />
 <strong>Description:</strong> Simple language selection for frontend
 pages.<br />
-<strong>Version:</strong> 1.0.0<br />
+<strong>Version:</strong> 1.1.0<br />
 <strong>Author:</strong> Jean Pierre Kolb <a href="mailto:jpk@jpkc.com"
 class="email">jpk@jpkc.com</a><br />
 <strong>Author URI:</strong> https://www.jpkc.com/<br />
 <strong>Contributors:</strong> JPKCom<br />
 <strong>Tags:</strong> Language, Lang, Locale, Multilingual,
-Translation, i18n, Oxygen Builder<br />
+Translation, i18n, Hreflang, SEO, Oxygen Builder<br />
 <strong>Requires at least:</strong> 6.8<br />
 <strong>Tested up to:</strong> 6.9<br />
 <strong>Requires PHP:</strong> 8.3<br />
 <strong>Network:</strong> true<br />
-<strong>Stable tag:</strong> 1.0.0<br />
+<strong>Stable tag:</strong> 1.1.0<br />
 <strong>License:</strong> GPL-2.0+<br />
 <strong>License URI:</strong>
 http://www.gnu.org/licenses/gpl-2.0.txt<br />
@@ -46,6 +46,9 @@ locale in frontend for proper translation support</li>
 <li><strong>HTML Lang Attribute</strong>: Updates the
 <code>&lt;html lang=""&gt;</code> attribute to match the selected
 language</li>
+<li><strong>Translation Links &amp; Hreflang</strong>: Link related
+posts in different languages and automatically generate SEO-friendly
+hreflang meta tags</li>
 <li><strong>SEO Plugin Compatible</strong>: SEO plugins (Yoast, Rank
 Math, etc.) automatically detect the locale change and output correct
 <code>og:locale</code> meta tags</li>
@@ -92,6 +95,9 @@ Language selection dropdown in post editor sidebar</li>
 <li><strong>Frontend Language</strong>
 (<code>includes/frontend-language.php</code>) - Locale switching and
 HTML attribute override logic</li>
+<li><strong>Hreflang Translations</strong>
+(<code>includes/hreflang-translations.php</code>) - Translation links
+meta box and automatic hreflang tag generation</li>
 <li><strong>Oxygen Conditions</strong>
 (<code>includes/oxygen-conditions.php</code>) - Conditional logic
 integration for Oxygen Builder</li>
@@ -113,6 +119,8 @@ classes, hooks, and filters available in the plugin.</p>
 “Frontend Language Select” dropdown in the sidebar</li>
 <li><strong>Select a Language</strong>: Choose from any WordPress
 language installed on your system, or use the default</li>
+<li><strong>Link Translations (Optional)</strong>: Use the “Translation
+Links” meta box to link related posts in different languages</li>
 <li><strong>In the Frontend</strong>: When visitors view that post,
 WordPress automatically switches to the selected language</li>
 <li><strong>Locale Override</strong>: The entire page renders with
@@ -123,30 +131,80 @@ translations from the selected language, including:
 <li>Plugin translations that respect the current locale</li>
 <li>HTML <code>lang</code> attribute</li>
 <li>SEO plugin meta tags (og:locale via <code>get_locale()</code>)</li>
+<li>Hreflang link tags (if translation links are configured)</li>
 </ul></li>
 </ol>
+<h3 id="translation-links-hreflang-tags">Translation Links &amp;
+Hreflang Tags</h3>
+<p>Simple Lang includes a powerful translation linking system that helps
+search engines understand the relationship between your content in
+different languages.</p>
+<h4 id="how-translation-links-work">How Translation Links Work</h4>
+<ol type="1">
+<li><strong>Link Related Content</strong>: In the post editor sidebar,
+you’ll find a “Translation Links” meta box</li>
+<li><strong>Multi-Select Interface</strong>: Posts are grouped by
+language for easy selection</li>
+<li><strong>Bidirectional Linking</strong>: When you link Post A to Post
+B, both posts automatically link to each other</li>
+<li><strong>Complete Translation Sets</strong>: If you link Post 1 (DE)
+to Post 2 (EN) and Post 3 (FR), all three posts are automatically linked
+together</li>
+<li><strong>Automatic Hreflang Generation</strong>: Linked posts
+automatically get
+<code>&lt;link rel="alternate" hreflang="XX"&gt;</code> tags in the HTML
+<code>&lt;head&gt;</code></li>
+</ol>
+<h4 id="example-scenario">Example Scenario</h4>
+<p>You have three versions of the same page: - <strong>Post 1</strong>:
+German version (de_DE) - <strong>Post 2</strong>: English version
+(en_US) - <strong>Post 3</strong>: French version (fr_FR)</p>
+<p><strong>Steps:</strong> 1. Edit Post 1 (German) 2. In “Translation
+Links” select Post 2 and Post 3 3. Save Post 1</p>
+<p><strong>Result:</strong> - Post 1 now links to Posts 2 &amp; 3 - Post
+2 automatically links to Posts 1 &amp; 3 - Post 3 automatically links to
+Posts 1 &amp; 2 - All three posts display proper hreflang tags</p>
+<p><strong>Generated HTML on each page:</strong></p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- On German page --&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;alternate&quot;</span> <span class="er">hreflang</span><span class="ot">=</span><span class="st">&quot;de&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;https://example.com/german-page/&quot;</span> <span class="dt">/&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;alternate&quot;</span> <span class="er">hreflang</span><span class="ot">=</span><span class="st">&quot;en&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;https://example.com/english-page/&quot;</span> <span class="dt">/&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;alternate&quot;</span> <span class="er">hreflang</span><span class="ot">=</span><span class="st">&quot;fr&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;https://example.com/french-page/&quot;</span> <span class="dt">/&gt;</span></span></code></pre></div>
+<h4 id="seo-benefits">SEO Benefits</h4>
+<ul>
+<li><strong>Language Targeting</strong>: Search engines understand which
+language each page targets</li>
+<li><strong>Duplicate Content Prevention</strong>: Signals that pages
+are translations, not duplicates</li>
+<li><strong>Regional Search Results</strong>: Users see the correct
+language version in their regional search results</li>
+<li><strong>Self-Referencing Tags</strong>: Each page includes its own
+language in hreflang tags (SEO best practice)</li>
+<li><strong>Automatic Updates</strong>: Adding or removing translation
+links automatically updates all related pages</li>
+</ul>
 <h3 id="helper-functions">Helper Functions</h3>
 <h4 id="get-the-language-set-for-a-post">Get the language set for a
 post:</h4>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode php"><code class="sourceCode php"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Get language for a specific post</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">$language</span> <span class="op">=</span> jpkcom_simplelang_get_post_language( <span class="va">$post_id</span> )<span class="ot">;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Returns: &#39;de_DE&#39;, &#39;fr_FR&#39;, etc. or null if using default</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">// Get language for current post</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="va">$language</span> <span class="op">=</span> jpkcom_simplelang_get_post_language()<span class="ot">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode php"><code class="sourceCode php"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Get language for a specific post</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">$language</span> <span class="op">=</span> jpkcom_simplelang_get_post_language( <span class="va">$post_id</span> )<span class="ot">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Returns: &#39;de_DE&#39;, &#39;fr_FR&#39;, etc. or null if using default</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">// Get language for current post</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="va">$language</span> <span class="op">=</span> jpkcom_simplelang_get_post_language()<span class="ot">;</span></span></code></pre></div>
 <h4 id="get-the-currently-active-frontend-language">Get the currently
 active frontend language:</h4>
-<div class="sourceCode" id="cb2"><pre
-class="sourceCode php"><code class="sourceCode php"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Get the active language in frontend (after locale switch)</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">$current_lang</span> <span class="op">=</span> jpkcom_simplelang_get_current_language()<span class="ot">;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Returns: &#39;de_DE&#39;, &#39;fr_FR&#39;, etc. or null if using site default</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode php"><code class="sourceCode php"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Get the active language in frontend (after locale switch)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">$current_lang</span> <span class="op">=</span> jpkcom_simplelang_get_current_language()<span class="ot">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Returns: &#39;de_DE&#39;, &#39;fr_FR&#39;, etc. or null if using site default</span></span></code></pre></div>
 <h4 id="convert-locale-to-language-code">Convert locale to language
 code:</h4>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode php"><code class="sourceCode php"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Convert locale (de_DE) to language code (de) for HTML lang attribute</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">$lang_code</span> <span class="op">=</span> jpkcom_simplelang_get_language_code( <span class="st">&#39;de_DE&#39;</span> )<span class="ot">;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Returns: &#39;de&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode php"><code class="sourceCode php"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Convert locale (de_DE) to language code (de) for HTML lang attribute</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">$lang_code</span> <span class="op">=</span> jpkcom_simplelang_get_language_code( <span class="st">&#39;de_DE&#39;</span> )<span class="ot">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Returns: &#39;de&#39;</span></span></code></pre></div>
 <h3 id="oxygen-builder-conditions">Oxygen Builder Conditions</h3>
 <p>If <a href="https://oxygenbuilder.com/">Oxygen Builder</a> is
 installed, Simple Lang provides three custom conditions:</p>
@@ -174,18 +232,18 @@ custom language is selected.</p>
 default language pages.</p>
 <h3 id="filters">Filters</h3>
 <h4 id="modify-file-search-paths">Modify file search paths</h4>
-<div class="sourceCode" id="cb4"><pre
-class="sourceCode php"><code class="sourceCode php"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"> * Filter the file search paths for template overrides</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"> *</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">array</span><span class="co">  $paths    Default search paths</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">string</span><span class="co"> $filename The filename being located</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"> */</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>add_filter( <span class="st">&#39;jpkcom_simplelang_file_paths&#39;</span><span class="ot">,</span> <span class="kw">function</span>( <span class="va">$paths</span><span class="ot">,</span> <span class="va">$filename</span> ) {</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Add custom search path</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">$paths</span>[] <span class="op">=</span> <span class="st">&#39;/custom/path/to/overrides/&#39;</span> <span class="op">.</span> <span class="va">$filename</span><span class="ot">;</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">$paths</span><span class="ot">;</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>}<span class="ot">,</span> <span class="dv">10</span><span class="ot">,</span> <span class="dv">2</span> )<span class="ot">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode php"><code class="sourceCode php"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"> * Filter the file search paths for template overrides</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"> *</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">array</span><span class="co">  $paths    Default search paths</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">string</span><span class="co"> $filename The filename being located</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"> */</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>add_filter( <span class="st">&#39;jpkcom_simplelang_file_paths&#39;</span><span class="ot">,</span> <span class="kw">function</span>( <span class="va">$paths</span><span class="ot">,</span> <span class="va">$filename</span> ) {</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Add custom search path</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">$paths</span>[] <span class="op">=</span> <span class="st">&#39;/custom/path/to/overrides/&#39;</span> <span class="op">.</span> <span class="va">$filename</span><span class="ot">;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">$paths</span><span class="ot">;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>}<span class="ot">,</span> <span class="dv">10</span><span class="ot">,</span> <span class="dv">2</span> )<span class="ot">;</span></span></code></pre></div>
 <h2 id="faq">FAQ</h2>
 <h3
 id="whats-the-difference-between-this-and-a-full-multilingual-plugin-like-wpml-or-polylang">What’s
@@ -238,11 +296,22 @@ display in the selected language. Core blocks and properly
 internationalized third-party blocks work seamlessly.</p>
 <h3 id="what-about-seo-and-hreflang-tags">What about SEO and hreflang
 tags?</h3>
-<p>Simple Lang focuses on displaying content in different languages but
-doesn’t generate hreflang tags or manage SEO relationships between
-language versions. For full SEO multilingual support, consider using
-dedicated SEO plugins like Yoast SEO or Rank Math in combination with
-your multilingual solution.</p>
+<p>Simple Lang automatically generates hreflang tags when you link posts
+together using the “Translation Links” meta box. The plugin outputs
+proper <code>&lt;link rel="alternate" hreflang="XX"&gt;</code> tags in
+the HTML <code>&lt;head&gt;</code> section for all linked
+translations.</p>
+<p><strong>What’s included:</strong> - Automatic hreflang tag generation
+- Self-referencing hreflang tags (SEO best practice) - Bidirectional
+translation linking - Only published posts appear in hreflang tags -
+Tags sorted by language code for consistency</p>
+<p><strong>SEO Plugin Compatibility:</strong> - Works alongside Yoast
+SEO, Rank Math, and other SEO plugins - SEO plugins automatically output
+correct <code>og:locale</code> meta tags - Hreflang tags appear early in
+<code>&lt;head&gt;</code> (before most SEO plugins)</p>
+<p><strong>What’s NOT included:</strong> - x-default hreflang tags (may
+be added in future versions) - Automatic translation suggestions -
+Language switcher widgets</p>
 <h3 id="can-i-restrict-which-post-types-have-language-selection">Can I
 restrict which post types have language selection?</h3>
 <p>Yes! Go to <strong>Settings → Simple Lang</strong> and check/uncheck
@@ -322,10 +391,6 @@ WooCommerce?</h3>
 post type in settings. However, Simple Lang only changes the interface
 language, not product data. You’ll need to manually enter product titles
 and descriptions in the target language.</p>
-<h3 id="how-do-i-get-support">How do I get support?</h3>
-<p>For bug reports and feature requests, please use the <a
-href="https://github.com/JPKCom/jpkcom-simple-lang/issues">GitHub issue
-tracker</a>.</p>
 <h2 id="installation">Installation</h2>
 <h3 id="prerequisites">Prerequisites</h3>
 <p>Before installing this plugin, ensure you have:</p>
@@ -359,9 +424,9 @@ Releases</a></li>
 </ol>
 <h3 id="method-3-github-installation-developers">Method 3: GitHub
 Installation (Developers)</h3>
-<div class="sourceCode" id="cb5"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /path/to/wordpress/wp-content/plugins/</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/JPKCom/jpkcom-simple-lang.git</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /path/to/wordpress/wp-content/plugins/</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/JPKCom/jpkcom-simple-lang.git</span></code></pre></div>
 <p>Then activate via WordPress admin.</p>
 <h3 id="post-installation-steps">Post-Installation Steps</h3>
 <ol type="1">
@@ -454,10 +519,49 @@ version is released:</p>
 </ol>
 <p><strong>Note:</strong> Language selection meta data will remain in
 the database. If you want to remove this data, run:</p>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> wp_postmeta <span class="kw">WHERE</span> meta_key <span class="op">=</span> <span class="st">&#39;_jpkcom_simplelang_language&#39;</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> wp_postmeta <span class="kw">WHERE</span> meta_key <span class="op">=</span> <span class="st">&#39;_jpkcom_simplelang_language&#39;</span>;</span></code></pre></div>
 <h2 id="changelog">Changelog</h2>
-<h3 id="section">1.0.0 - 2025-12-16</h3>
+<h3 id="section">1.1.0 - 2025-12-17</h3>
+<p><strong>New Features</strong></p>
+<ul>
+<li><strong>Translation Links</strong>: New meta box for linking posts
+in different languages</li>
+<li><strong>Hreflang Tags</strong>: Automatic generation of SEO-friendly
+<code>&lt;link rel="alternate" hreflang=""&gt;</code> tags</li>
+<li><strong>Bidirectional Linking</strong>: Posts automatically link to
+each other when translation links are created</li>
+<li><strong>Complete Translation Sets</strong>: All posts in a
+translation group are automatically linked together</li>
+<li><strong>Smart Validation</strong>: Prevents duplicate languages in
+translation sets</li>
+</ul>
+<p><strong>Bug Fixes</strong></p>
+<ul>
+<li>Fixed locale detection for default site language in translation
+grouping</li>
+<li>Fixed type casting issue in translation link display</li>
+<li>Improved meta data consistency across all translation sync
+operations</li>
+</ul>
+<p><strong>Improvements</strong></p>
+<ul>
+<li>New helper function:
+<code>jpkcom_simplelang_get_site_default_locale()</code></li>
+<li>Enhanced hreflang output with deterministic sorting</li>
+<li>Performance optimization: Single query for all translation posts
+(prevents N+1 queries)</li>
+<li>Updated German translations (de_DE and de_DE_formal)</li>
+</ul>
+<p><strong>Developer Notes</strong></p>
+<ul>
+<li>New module: <code>includes/hreflang-translations.php</code></li>
+<li>New meta key: <code>_jpkcom_simplelang_translations</code> (multiple
+entries per post)</li>
+<li>All translation sync operations use loop prevention for data
+integrity</li>
+</ul>
+<h3 id="section-1">1.0.0 - 2025-12-16</h3>
 <p><strong>Initial Release</strong></p>
 <ul>
 <li>Language selection dropdown in post editor sidebar</li>

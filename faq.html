@@ -49,11 +49,22 @@ display in the selected language. Core blocks and properly
 internationalized third-party blocks work seamlessly.</p>
 <h3 id="what-about-seo-and-hreflang-tags">What about SEO and hreflang
 tags?</h3>
-<p>Simple Lang focuses on displaying content in different languages but
-doesn’t generate hreflang tags or manage SEO relationships between
-language versions. For full SEO multilingual support, consider using
-dedicated SEO plugins like Yoast SEO or Rank Math in combination with
-your multilingual solution.</p>
+<p>Simple Lang automatically generates hreflang tags when you link posts
+together using the “Translation Links” meta box. The plugin outputs
+proper <code>&lt;link rel="alternate" hreflang="XX"&gt;</code> tags in
+the HTML <code>&lt;head&gt;</code> section for all linked
+translations.</p>
+<p><strong>What’s included:</strong> - Automatic hreflang tag generation
+- Self-referencing hreflang tags (SEO best practice) - Bidirectional
+translation linking - Only published posts appear in hreflang tags -
+Tags sorted by language code for consistency</p>
+<p><strong>SEO Plugin Compatibility:</strong> - Works alongside Yoast
+SEO, Rank Math, and other SEO plugins - SEO plugins automatically output
+correct <code>og:locale</code> meta tags - Hreflang tags appear early in
+<code>&lt;head&gt;</code> (before most SEO plugins)</p>
+<p><strong>What’s NOT included:</strong> - x-default hreflang tags (may
+be added in future versions) - Automatic translation suggestions -
+Language switcher widgets</p>
 <h3 id="can-i-restrict-which-post-types-have-language-selection">Can I
 restrict which post types have language selection?</h3>
 <p>Yes! Go to <strong>Settings → Simple Lang</strong> and check/uncheck
@@ -133,7 +144,3 @@ WooCommerce?</h3>
 post type in settings. However, Simple Lang only changes the interface
 language, not product data. You’ll need to manually enter product titles
 and descriptions in the target language.</p>
-<h3 id="how-do-i-get-support">How do I get support?</h3>
-<p>For bug reports and feature requests, please use the <a
-href="https://github.com/JPKCom/jpkcom-simple-lang/issues">GitHub issue
-tracker</a>.</p>
