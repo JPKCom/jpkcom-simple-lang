@@ -29,71 +29,48 @@ add_action( 'init', function(): void {
 		return;
 	}
 
+	// Get available language options
+	$language_options = jpkcom_simplelang_get_oxygen_language_options();
+
 	// Register condition: Post has specific language
 	oxygen_vsb_register_condition(
 		__( 'Post Language Is', 'jpkcom-simple-lang' ),
-		[ 'jpkcom_simplelang_post_language_is' ],
-		[ 'jpkcom_simplelang_post_language_is_values' ],
-		__( 'Simple Lang: Check if post has a specific language', 'jpkcom-simple-lang' ),
-		'jpkcom_simplelang_post_language_is'
+		[ 'options' => $language_options, 'custom' => false ],
+		[ '==', '!=' ],
+		'jpkcom_simplelang_oxygen_post_language_is',
+		'Simple Lang'
 	);
 
 	// Register condition: Post has any custom language set
 	oxygen_vsb_register_condition(
 		__( 'Post Has Custom Language', 'jpkcom-simple-lang' ),
-		[ 'jpkcom_simplelang_has_custom_language' ],
-		[],
-		__( 'Simple Lang: Check if post has any custom language set', 'jpkcom-simple-lang' ),
-		'jpkcom_simplelang_has_custom_language'
+		[ 'options' => [ 'true' => __( 'Yes', 'jpkcom-simple-lang' ), 'false' => __( 'No', 'jpkcom-simple-lang' ) ], 'custom' => false ],
+		[ '==' ],
+		'jpkcom_simplelang_oxygen_has_custom_language',
+		'Simple Lang'
 	);
 
 	// Register condition: Post uses site default language
 	oxygen_vsb_register_condition(
 		__( 'Post Uses Default Language', 'jpkcom-simple-lang' ),
-		[ 'jpkcom_simplelang_uses_default_language' ],
-		[],
-		__( 'Simple Lang: Check if post uses the site default language', 'jpkcom-simple-lang' ),
-		'jpkcom_simplelang_uses_default_language'
+		[ 'options' => [ 'true' => __( 'Yes', 'jpkcom-simple-lang' ), 'false' => __( 'No', 'jpkcom-simple-lang' ) ], 'custom' => false ],
+		[ '==' ],
+		'jpkcom_simplelang_oxygen_uses_default_language',
+		'Simple Lang'
 	);
 
 }, 20 );
 
 /**
- * Oxygen condition: Post language is specific value
+ * Get language options for Oxygen Builder
  *
- * Checks if the post has a specific language set.
- *
- * @since 1.0.0
- *
- * @param string $language_code The language code to check.
- * @return bool True if the post has the specified language.
- */
-function jpkcom_simplelang_post_language_is( string $language_code ): bool {
-
-	if ( ! is_singular() ) {
-		return false;
-	}
-
-	$post_id = get_the_ID();
-	if ( ! $post_id ) {
-		return false;
-	}
-
-	$post_language = get_post_meta( $post_id, '_jpkcom_simplelang_language', true );
-
-	return $post_language === $language_code;
-}
-
-/**
- * Oxygen condition values: Available languages
- *
- * Returns all available languages for the condition dropdown.
+ * Returns an array of available languages formatted for Oxygen Builder conditions.
  *
  * @since 1.0.0
  *
  * @return array<string, string> Array of language codes and names.
  */
-function jpkcom_simplelang_post_language_is_values(): array {
+function jpkcom_simplelang_get_oxygen_language_options(): array {
 
 	$languages = get_available_languages();
 	$language_options = [];
@@ -122,15 +99,62 @@ function jpkcom_simplelang_post_language_is_values(): array {
 }
 
 /**
- * Oxygen condition: Post has custom language
+ * Oxygen condition callback: Post language is specific value
+ *
+ * Checks if the post has a specific language set.
+ *
+ * @since 1.0.0
+ *
+ * @param string $value    The language code to check.
+ * @param string $operator The comparison operator (== or !=).
+ * @return bool True if the condition matches.
+ */
+function jpkcom_simplelang_oxygen_post_language_is( string $value, string $operator ): bool {
+
+	if ( ! is_singular() ) {
+		return false;
+	}
+
+	$post_id = get_the_ID();
+	if ( ! $post_id ) {
+		return false;
+	}
+
+	$post_language = get_post_meta( $post_id, '_jpkcom_simplelang_language', true );
+
+	// If no language is set, treat as empty string
+	if ( empty( $post_language ) ) {
+		$post_language = '';
+	}
+
+	// Evaluate based on operator
+	global $OxygenConditions;
+	if ( isset( $OxygenConditions ) && method_exists( $OxygenConditions, 'eval_string' ) ) {
+		return $OxygenConditions->eval_string( $post_language, $value, $operator );
+	}
+
+	// Fallback to manual comparison
+	if ( $operator === '==' ) {
+		return $post_language === $value;
+	} elseif ( $operator === '!=' ) {
+		return $post_language !== $value;
+	}
+
+	return false;
+}
+
+/**
+ * Oxygen condition callback: Post has custom language
  *
  * Checks if the post has any custom language set (not using site default).
  *
  * @since 1.0.0
  *
- * @return bool True if the post has a custom language.
+ * @param string $value    The value to check ('true' or 'false').
+ * @param string $operator The comparison operator (always ==).
+ * @return bool True if the condition matches.
  */
-function jpkcom_simplelang_has_custom_language(): bool {
+function jpkcom_simplelang_oxygen_has_custom_language( string $value, string $operator ): bool {
 
 	if ( ! is_singular() ) {
 		return false;
@@ -142,20 +166,26 @@ function jpkcom_simplelang_has_custom_language(): bool {
 	}
 
 	$post_language = get_post_meta( $post_id, '_jpkcom_simplelang_language', true );
+	$has_custom = ! empty( $post_language );
 
-	return ! empty( $post_language );
+	// Convert boolean to string for comparison
+	$result = $has_custom ? 'true' : 'false';
+
+	return $result === $value;
 }
 
 /**
- * Oxygen condition: Post uses default language
+ * Oxygen condition callback: Post uses default language
  *
  * Checks if the post is using the site default language (no custom language set).
  *
  * @since 1.0.0
  *
- * @return bool True if the post uses the default language.
+ * @param string $value    The value to check ('true' or 'false').
+ * @param string $operator The comparison operator (always ==).
+ * @return bool True if the condition matches.
  */
-function jpkcom_simplelang_uses_default_language(): bool {
+function jpkcom_simplelang_oxygen_uses_default_language( string $value, string $operator ): bool {
 
 	if ( ! is_singular() ) {
 		return false;
@@ -167,6 +197,10 @@ function jpkcom_simplelang_uses_default_language(): bool {
 	}
 
 	$post_language = get_post_meta( $post_id, '_jpkcom_simplelang_language', true );
+	$uses_default = empty( $post_language );
 
-	return empty( $post_language );
+	// Convert boolean to string for comparison
+	$result = $uses_default ? 'true' : 'false';
+
+	return $result === $value;
 }

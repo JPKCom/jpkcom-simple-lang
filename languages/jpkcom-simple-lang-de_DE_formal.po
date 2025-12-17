@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: JPKCom Simple Lang 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/jpkcom-simple-"
 "lang\n"
-"POT-Creation-Date: 2025-12-17T11:57:24+00:00\n"
+"POT-Creation-Date: 2025-12-17T13:38:59+00:00\n"
 "PO-Revision-Date: 2025-12-16 12:00+0100\n"
 "Last-Translator: Jean Pierre Kolb <jpk@jpkc.com>\n"
 "Language-Team: German (Formal)\n"
@@ -87,15 +87,15 @@ msgstr ""
 msgid "Settings saved successfully."
 msgstr "Einstellungen erfolgreich gespeichert."
 
-#: includes/admin-settings.php:182
+#: includes/admin-settings.php:183
 msgid "Save Settings"
 msgstr "Einstellungen speichern"
 
-#: includes/admin-settings.php:187
+#: includes/admin-settings.php:188
 msgid "How to Add More Languages"
 msgstr "Weitere Sprachen hinzufügen"
 
-#: includes/admin-settings.php:188
+#: includes/admin-settings.php:189
 msgid ""
 "The language dropdown in the post editor only shows languages that are "
 "already installed on your WordPress site. To add more languages:"
@@ -103,21 +103,21 @@ msgstr ""
 "Die Sprachauswahl im Beitragseditor zeigt nur Sprachen an, die bereits auf "
 "Ihrer WordPress-Website installiert sind. Um weitere Sprachen hinzuzufügen:"
 
-#: includes/admin-settings.php:190
+#: includes/admin-settings.php:191
 msgid "Go to Settings → General in your WordPress admin"
 msgstr "Gehen Sie zu Einstellungen → Allgemein in Ihrem WordPress-Adminbereich"
 
-#: includes/admin-settings.php:191
+#: includes/admin-settings.php:192
 msgid "Find the \"Site Language\" dropdown"
 msgstr "Suchen Sie das Dropdown-Menü \"Sprache der Website\""
 
-#: includes/admin-settings.php:192
+#: includes/admin-settings.php:193
 msgid "Select the language you want to add (e.g., French, Spanish, Italian)"
 msgstr ""
 "Wählen Sie die Sprache aus, die Sie hinzufügen möchten (z.B. Französisch, "
 "Spanisch, Italienisch)"
 
-#: includes/admin-settings.php:193
+#: includes/admin-settings.php:194
 msgid ""
 "Click \"Save Changes\" - WordPress will automatically download the language "
 "pack"
@@ -125,28 +125,28 @@ msgstr ""
 "Klicken Sie auf \"Änderungen speichern\" - WordPress lädt das Sprachpaket "
 "automatisch herunter"
 
-#: includes/admin-settings.php:194
+#: includes/admin-settings.php:195
 msgid ""
 "Optional: Change the site language back to your preferred default language"
 msgstr ""
 "Optional: Ändern Sie die Website-Sprache zurück zu Ihrer bevorzugten "
 "Standardsprache"
 
-#: includes/admin-settings.php:195
+#: includes/admin-settings.php:196
 msgid "The new language will now appear in the post editor dropdown!"
 msgstr ""
 "Die neue Sprache erscheint nun in der Sprachauswahl des Beitragseditors!"
 
-#: includes/admin-settings.php:198
+#: includes/admin-settings.php:199
 msgid "Quick Access:"
 msgstr "Schnellzugriff:"
 
-#: includes/admin-settings.php:200
+#: includes/admin-settings.php:201
 msgid "Go to General Settings"
 msgstr "Zu den Allgemeinen Einstellungen"
 
 #. translators: %s: URL to WordPress translations page
-#: includes/admin-settings.php:207
+#: includes/admin-settings.php:208
 #, php-format
 msgid "WordPress supports over 200 languages. View the full list at %s"
 msgstr ""
@@ -170,19 +170,19 @@ msgstr ""
 msgid "Default (Site Language)"
 msgstr "Standard (Website-Sprache)"
 
-#: includes/hreflang-translations.php:256
+#: includes/hreflang-translations.php:270
 msgid "Translation Links"
 msgstr "Übersetzungsverknüpfungen"
 
-#: includes/hreflang-translations.php:299
+#: includes/hreflang-translations.php:313
 msgid "No other posts available for translation linking."
 msgstr "Keine weiteren Beiträge für Übersetzungsverknüpfungen verfügbar."
 
-#: includes/hreflang-translations.php:306
+#: includes/hreflang-translations.php:320
 msgid "Select translations:"
 msgstr "Übersetzungen auswählen:"
 
-#: includes/hreflang-translations.php:336
+#: includes/hreflang-translations.php:350
 msgid ""
 "Hold Ctrl (Cmd on Mac) to select multiple translations. Posts are grouped by "
 "language. Only published translations will appear in hreflang tags."
@@ -191,7 +191,7 @@ msgstr ""
 "Beiträge sind nach Sprache gruppiert. Nur veröffentlichte Übersetzungen "
 "erscheinen in den hreflang-Tags."
 
-#: includes/hreflang-translations.php:350
+#: includes/hreflang-translations.php:364
 #, php-format
 msgid "%d translation linked"
 msgid_plural "%d translations linked"
@@ -215,29 +215,25 @@ msgstr ""
 "Frontend. Belassen Sie \"Standard\" ausgewählt, um die globale "
 "Spracheinstellung zu verwenden."
 
-#: includes/oxygen-conditions.php:34
+#: includes/oxygen-conditions.php:37
 msgid "Post Language Is"
 msgstr "Seitensprache ist"
 
-#: includes/oxygen-conditions.php:37
-msgid "Simple Lang: Check if post has a specific language"
-msgstr "Simple Lang: Prüfen, ob Seite eine bestimmte Sprache hat"
-
-#: includes/oxygen-conditions.php:43
+#: includes/oxygen-conditions.php:46
 msgid "Post Has Custom Language"
 msgstr "Seite hat benutzerdefinierte Sprache"
 
-#: includes/oxygen-conditions.php:46
-msgid "Simple Lang: Check if post has any custom language set"
-msgstr "Simple Lang: Prüfen, ob Seite eine benutzerdefinierte Sprache hat"
+#: includes/oxygen-conditions.php:47 includes/oxygen-conditions.php:56
+msgid "Yes"
+msgstr "Ja"
 
-#: includes/oxygen-conditions.php:52
-msgid "Post Uses Default Language"
-msgstr "Seite verwendet Standardsprache"
+#: includes/oxygen-conditions.php:47 includes/oxygen-conditions.php:56
+msgid "No"
+msgstr "Nein"
 
 #: includes/oxygen-conditions.php:55
-msgid "Simple Lang: Check if post uses the site default language"
-msgstr "Simple Lang: Prüfen, ob Seite die Website-Standardsprache verwendet"
+msgid "Post Uses Default Language"
+msgstr "Seite verwendet Standardsprache"
 
 #: wp/web/app/plugins/woocommerce/assets/client/blocks/coming-soon/block.json
 msgctxt "block title"
@@ -797,3 +793,12 @@ msgstr ""
 msgctxt "Shadow name"
 msgid "Crisp"
 msgstr ""
+
+#~ msgid "Simple Lang: Check if post has a specific language"
+#~ msgstr "Simple Lang: Prüfen, ob Seite eine bestimmte Sprache hat"
+
+#~ msgid "Simple Lang: Check if post has any custom language set"
+#~ msgstr "Simple Lang: Prüfen, ob Seite eine benutzerdefinierte Sprache hat"
+
+#~ msgid "Simple Lang: Check if post uses the site default language"
+#~ msgstr "Simple Lang: Prüfen, ob Seite die Website-Standardsprache verwendet"

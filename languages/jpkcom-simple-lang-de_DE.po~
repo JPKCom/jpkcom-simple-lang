@@ -6,8 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: JPKCom Simple Lang 1.0.0\n"
-"Report-Msgid-Bugs-To: jpk@jpkc.com\n"
-"POT-Creation-Date: 2025-12-16 11:37+0100\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/jpkcom-simple-"
+"lang\n"
+"POT-Creation-Date: 2025-12-17T11:57:24+00:00\n"
 "PO-Revision-Date: 2025-12-16 12:00+0100\n"
 "Last-Translator: Jean Pierre Kolb <jpk@jpkc.com>\n"
 "Language-Team: German\n"
@@ -17,6 +18,32 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Manual translation by JPKCom\n"
+
+#. Plugin Name of the plugin
+#: jpkcom-simple-lang.php
+#, fuzzy
+msgid "JPKCom Simple Lang"
+msgstr "Simple Lang"
+
+#. Plugin URI of the plugin
+#: jpkcom-simple-lang.php
+msgid "https://github.com/JPKCom/jpkcom-simple-lang"
+msgstr ""
+
+#. Description of the plugin
+#: jpkcom-simple-lang.php
+msgid "Simple language selection for frontend pages."
+msgstr ""
+
+#. Author of the plugin
+#: jpkcom-simple-lang.php
+msgid "Jean Pierre Kolb <jpk@jpkc.com>"
+msgstr ""
+
+#. Author URI of the plugin
+#: jpkcom-simple-lang.php
+msgid "https://www.jpkc.com/"
+msgstr ""
 
 #: includes/admin-settings.php:28
 msgid "Simple Lang Settings"
@@ -53,73 +80,16 @@ msgid ""
 "frontend."
 msgstr ""
 "Beiträge und Seiten sind standardmäßig aktiviert. Wenn Sie einen Inhaltstyp "
-"deaktivieren, wird die Sprachauswahl ausgeblendet und die Sprachüberschreibung "
-"im Frontend deaktiviert."
+"deaktivieren, wird die Sprachauswahl ausgeblendet und die "
+"Sprachüberschreibung im Frontend deaktiviert."
 
 #: includes/admin-settings.php:168
 msgid "Settings saved successfully."
 msgstr "Einstellungen erfolgreich gespeichert."
 
-#: includes/admin-settings.php:181
+#: includes/admin-settings.php:182
 msgid "Save Settings"
 msgstr "Einstellungen speichern"
-
-#: includes/oxygen-conditions.php:34
-msgid "Post Language Is"
-msgstr "Seitensprache ist"
-
-#: includes/oxygen-conditions.php:37
-msgid "Simple Lang: Check if post has a specific language"
-msgstr "Simple Lang: Prüfen, ob Seite eine bestimmte Sprache hat"
-
-#: includes/oxygen-conditions.php:43
-msgid "Post Has Custom Language"
-msgstr "Seite hat benutzerdefinierte Sprache"
-
-#: includes/oxygen-conditions.php:46
-msgid "Simple Lang: Check if post has any custom language set"
-msgstr "Simple Lang: Prüfen, ob Seite eine benutzerdefinierte Sprache hat"
-
-#: includes/oxygen-conditions.php:52
-msgid "Post Uses Default Language"
-msgstr "Seite verwendet Standardsprache"
-
-#: includes/oxygen-conditions.php:55
-msgid "Simple Lang: Check if post uses the site default language"
-msgstr "Simple Lang: Prüfen, ob Seite die Website-Standardsprache verwendet"
-
-#: includes/class-plugin-updater.php:409
-#, php-format
-msgid "Download failed: %s"
-msgstr "Download fehlgeschlagen: %s"
-
-#: includes/class-plugin-updater.php:425
-#, php-format
-msgid ""
-"Security verification failed: Plugin checksum mismatch. Expected: %s, Got: %s"
-msgstr ""
-"Sicherheitsüberprüfung fehlgeschlagen: Plugin-Prüfsumme stimmt nicht überein. "
-"Erwartet: %s, Erhalten: %s"
-
-#: includes/meta-box.php:36
-msgid "Frontend Language Select"
-msgstr "Frontend-Sprachauswahl"
-
-#: includes/meta-box.php:68
-msgid "Default (Site Language)"
-msgstr "Standard (Website-Sprache)"
-
-#: includes/meta-box.php:91
-msgid "Select the language for this page:"
-msgstr "Wählen Sie die Sprache für diese Seite:"
-
-#: includes/meta-box.php:109
-msgid ""
-"This will override the site language for this specific page in the frontend. "
-"Leave as \"Default\" to use the site-wide language setting."
-msgstr ""
-"Dies überschreibt die Website-Sprache für diese spezifische Seite im Frontend. "
-"Lassen Sie \"Standard\" ausgewählt, um die globale Spracheinstellung zu verwenden."
 
 #: includes/admin-settings.php:187
 msgid "How to Add More Languages"
@@ -148,20 +118,24 @@ msgstr ""
 "Spanisch, Italienisch)"
 
 #: includes/admin-settings.php:193
-msgid "Click \"Save Changes\" - WordPress will automatically download the language pack"
+msgid ""
+"Click \"Save Changes\" - WordPress will automatically download the language "
+"pack"
 msgstr ""
 "Klicken Sie auf \"Änderungen speichern\" - WordPress lädt das Sprachpaket "
 "automatisch herunter"
 
 #: includes/admin-settings.php:194
-msgid "Optional: Change the site language back to your preferred default language"
+msgid ""
+"Optional: Change the site language back to your preferred default language"
 msgstr ""
 "Optional: Ändern Sie die Website-Sprache zurück zu Ihrer bevorzugten "
 "Standardsprache"
 
 #: includes/admin-settings.php:195
 msgid "The new language will now appear in the post editor dropdown!"
-msgstr "Die neue Sprache erscheint nun in der Sprachauswahl des Beitragseditors!"
+msgstr ""
+"Die neue Sprache erscheint nun in der Sprachauswahl des Beitragseditors!"
 
 #: includes/admin-settings.php:198
 msgid "Quick Access:"
@@ -171,7 +145,655 @@ msgstr "Schnellzugriff:"
 msgid "Go to General Settings"
 msgstr "Zu den Allgemeinen Einstellungen"
 
+#. translators: %s: URL to WordPress translations page
 #: includes/admin-settings.php:207
 #, php-format
 msgid "WordPress supports over 200 languages. View the full list at %s"
-msgstr "WordPress unterstützt über 200 Sprachen. Die vollständige Liste finden Sie unter %s"
+msgstr ""
+"WordPress unterstützt über 200 Sprachen. Die vollständige Liste finden Sie "
+"unter %s"
+
+#: includes/class-plugin-updater.php:409
+#, php-format
+msgid "Download failed: %s"
+msgstr "Download fehlgeschlagen: %s"
+
+#: includes/class-plugin-updater.php:425
+#, php-format
+msgid ""
+"Security verification failed: Plugin checksum mismatch. Expected: %s, Got: %s"
+msgstr ""
+"Sicherheitsüberprüfung fehlgeschlagen: Plugin-Prüfsumme stimmt nicht "
+"überein. Erwartet: %s, Erhalten: %s"
+
+#: includes/hreflang-translations.php:61 includes/meta-box.php:68
+msgid "Default (Site Language)"
+msgstr "Standard (Website-Sprache)"
+
+#: includes/hreflang-translations.php:256
+msgid "Translation Links"
+msgstr "Übersetzungsverknüpfungen"
+
+#: includes/hreflang-translations.php:299
+msgid "No other posts available for translation linking."
+msgstr "Keine weiteren Beiträge für Übersetzungsverknüpfungen verfügbar."
+
+#: includes/hreflang-translations.php:306
+msgid "Select translations:"
+msgstr "Übersetzungen auswählen:"
+
+#: includes/hreflang-translations.php:336
+msgid ""
+"Hold Ctrl (Cmd on Mac) to select multiple translations. Posts are grouped by "
+"language. Only published translations will appear in hreflang tags."
+msgstr ""
+"Halten Sie Strg (Cmd auf Mac), um mehrere Übersetzungen auszuwählen. "
+"Beiträge sind nach Sprache gruppiert. Nur veröffentlichte Übersetzungen "
+"erscheinen in den hreflang-Tags."
+
+#: includes/hreflang-translations.php:350
+#, php-format
+msgid "%d translation linked"
+msgid_plural "%d translations linked"
+msgstr[0] "%d Übersetzung verknüpft"
+msgstr[1] "%d Übersetzungen verknüpft"
+
+#: includes/meta-box.php:36
+msgid "Frontend Language Select"
+msgstr "Frontend-Sprachauswahl"
+
+#: includes/meta-box.php:91
+msgid "Select the language for this page:"
+msgstr "Wählen Sie die Sprache für diese Seite:"
+
+#: includes/meta-box.php:109
+msgid ""
+"This will override the site language for this specific page in the frontend. "
+"Leave as \"Default\" to use the site-wide language setting."
+msgstr ""
+"Dies überschreibt die Website-Sprache für diese spezifische Seite im "
+"Frontend. Lassen Sie \"Standard\" ausgewählt, um die globale "
+"Spracheinstellung zu verwenden."
+
+#: includes/oxygen-conditions.php:34
+msgid "Post Language Is"
+msgstr "Seitensprache ist"
+
+#: includes/oxygen-conditions.php:37
+msgid "Simple Lang: Check if post has a specific language"
+msgstr "Simple Lang: Prüfen, ob Seite eine bestimmte Sprache hat"
+
+#: includes/oxygen-conditions.php:43
+msgid "Post Has Custom Language"
+msgstr "Seite hat benutzerdefinierte Sprache"
+
+#: includes/oxygen-conditions.php:46
+msgid "Simple Lang: Check if post has any custom language set"
+msgstr "Simple Lang: Prüfen, ob Seite eine benutzerdefinierte Sprache hat"
+
+#: includes/oxygen-conditions.php:52
+msgid "Post Uses Default Language"
+msgstr "Seite verwendet Standardsprache"
+
+#: includes/oxygen-conditions.php:55
+msgid "Simple Lang: Check if post uses the site default language"
+msgstr "Simple Lang: Prüfen, ob Seite die Website-Standardsprache verwendet"
+
+#: wp/web/app/plugins/woocommerce/assets/client/blocks/coming-soon/block.json
+msgctxt "block title"
+msgid "Coming Soon"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/assets/client/blocks/mini-cart-contents/block.json
+msgctxt "block title"
+msgid "Mini-Cart Contents"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/assets/client/blocks/mini-cart-contents/block.json
+msgctxt "block description"
+msgid "Display a Mini-Cart widget."
+msgstr ""
+
+#: wp/web/wp/wp-includes/blocks/widget-group/block.json
+msgctxt "block title"
+msgid "Widget Group"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Space size name"
+msgid "1"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Space size name"
+msgid "2"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Space size name"
+msgid "3"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Space size name"
+msgid "4"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Space size name"
+msgid "5"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Space size name"
+msgid "6"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Font family name"
+msgid "Arial"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Font family name"
+msgid "Comic Sans MS"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Font family name"
+msgid "Courier New"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Font family name"
+msgid "Georgia"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Font family name"
+msgid "Lucida"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Font family name"
+msgid "Tahoma"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Font family name"
+msgid "Times New Roman"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Font family name"
+msgid "Trebuchet MS"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Font family name"
+msgid "Verdana"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Font family name"
+msgid "Arvo"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Font family name"
+msgid "Lato"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Font family name"
+msgid "Lora"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Font family name"
+msgid "Merriweather"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Font family name"
+msgid "Merriweather Sans"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Font family name"
+msgid "Noticia Text"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Font family name"
+msgid "Open Sans"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Font family name"
+msgid "Playfair Display"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Font family name"
+msgid "Roboto"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Font family name"
+msgid "Source Sans Pro"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Font family name"
+msgid "Oswald"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Font family name"
+msgid "Raleway"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Font family name"
+msgid "Permanent Marker"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Font family name"
+msgid "Pacifico"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Font size name"
+msgid "small"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Font size name"
+msgid "medium"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Font size name"
+msgid "large"
+msgstr ""
+
+#: wp/web/app/plugins/woocommerce/packages/email-editor/src/Engine/theme.json
+msgctxt "Font size name"
+msgid "extra-large"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+msgctxt "Color name"
+msgid "Base"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+msgctxt "Color name"
+msgid "Contrast"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+msgctxt "Color name"
+msgid "Accent 1"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+msgctxt "Color name"
+msgid "Accent 2"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+msgctxt "Color name"
+msgid "Accent 3"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+msgctxt "Color name"
+msgid "Accent 4"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+msgctxt "Color name"
+msgid "Accent 5"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+msgctxt "Color name"
+msgid "Accent 6"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+msgctxt "Space size name"
+msgid "Tiny"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+msgctxt "Space size name"
+msgid "X-Small"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+msgctxt "Space size name"
+msgid "Small"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+msgctxt "Space size name"
+msgid "Regular"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+msgctxt "Space size name"
+msgid "Large"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+msgctxt "Space size name"
+msgid "X-Large"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+msgctxt "Space size name"
+msgid "XX-Large"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Font size name"
+msgid "Small"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Font size name"
+msgid "Medium"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Font size name"
+msgid "Large"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Font size name"
+msgid "Extra Large"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+msgctxt "Font size name"
+msgid "Extra Extra Large"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+msgctxt "Font family name"
+msgid "Manrope"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+msgctxt "Font family name"
+msgid "Fira Code"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+msgctxt "Template part name"
+msgid "Header"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+msgctxt "Template part name"
+msgid "Vertical site header"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+msgctxt "Template part name"
+msgid "Header with large title"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+msgctxt "Template part name"
+msgid "Footer"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+msgctxt "Template part name"
+msgid "Footer Columns"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+msgctxt "Template part name"
+msgid "Footer Newsletter"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+msgctxt "Template part name"
+msgid "Sidebar"
+msgstr ""
+
+#: wp/web/app/themes/twentytwentyfive/theme.json
+msgctxt "Custom template name"
+msgid "Page No Title"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Duotone name"
+msgid "Dark grayscale"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Duotone name"
+msgid "Grayscale"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Duotone name"
+msgid "Purple and yellow"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Duotone name"
+msgid "Blue and red"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Duotone name"
+msgid "Midnight"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Duotone name"
+msgid "Magenta and yellow"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Duotone name"
+msgid "Purple and green"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Duotone name"
+msgid "Blue and orange"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Gradient name"
+msgid "Vivid cyan blue to vivid purple"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Gradient name"
+msgid "Light green cyan to vivid green cyan"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Gradient name"
+msgid "Luminous vivid amber to luminous vivid orange"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Gradient name"
+msgid "Luminous vivid orange to vivid red"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Gradient name"
+msgid "Very light gray to cyan bluish gray"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Gradient name"
+msgid "Cool to warm spectrum"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Gradient name"
+msgid "Blush light purple"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Gradient name"
+msgid "Blush bordeaux"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Gradient name"
+msgid "Luminous dusk"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Gradient name"
+msgid "Pale ocean"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Gradient name"
+msgid "Electric grass"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Gradient name"
+msgid "Midnight"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Color name"
+msgid "Black"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Color name"
+msgid "Cyan bluish gray"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Color name"
+msgid "White"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Color name"
+msgid "Pale pink"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Color name"
+msgid "Vivid red"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Color name"
+msgid "Luminous vivid orange"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Color name"
+msgid "Luminous vivid amber"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Color name"
+msgid "Light green cyan"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Color name"
+msgid "Vivid green cyan"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Color name"
+msgid "Pale cyan blue"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Color name"
+msgid "Vivid cyan blue"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Color name"
+msgid "Vivid purple"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Aspect ratio name"
+msgid "Square - 1:1"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Aspect ratio name"
+msgid "Standard - 4:3"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Aspect ratio name"
+msgid "Portrait - 3:4"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Aspect ratio name"
+msgid "Classic - 3:2"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Aspect ratio name"
+msgid "Classic Portrait - 2:3"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Aspect ratio name"
+msgid "Wide - 16:9"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Aspect ratio name"
+msgid "Tall - 9:16"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Shadow name"
+msgid "Natural"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Shadow name"
+msgid "Deep"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Shadow name"
+msgid "Sharp"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Shadow name"
+msgid "Outlined"
+msgstr ""
+
+#: wp/web/wp/wp-includes/theme.json
+msgctxt "Shadow name"
+msgid "Crisp"
+msgstr ""
