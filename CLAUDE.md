@@ -29,13 +29,14 @@ This override system allows developers to customize any functional file without 
 
 ### Plugin Modules
 
-Four core modules loaded in `jpkcom-simple-lang.php`:
+Five core modules loaded in `jpkcom-simple-lang.php`:
 
 1. **admin-settings.php** - Settings page for post type activation
 2. **meta-box.php** - Language selection meta box in post editor
 3. **frontend-language.php** - Locale switching and HTML attribute override
-4. **oxygen-conditions.php** - Oxygen Builder conditional logic (optional)
-5. **class-plugin-updater.php** - GitHub-based auto-updater with SHA256 verification
+4. **hreflang-translations.php** - Translation links meta box and hreflang tag generation
+5. **oxygen-conditions.php** - Oxygen Builder conditional logic (optional)
+6. **class-plugin-updater.php** - GitHub-based auto-updater with SHA256 verification
 
 ### Admin Settings (`includes/admin-settings.php`)
 
@@ -114,6 +115,111 @@ Handles locale switching and HTML attribute modifications in the frontend.
 3. All WordPress functions respect the new locale (date formats, translations, etc.)
 4. Theme and plugin translations load in selected language
 5. Locale restored after page rendering completes
+
+### Hreflang Translations (`includes/hreflang-translations.php`)
+
+Handles bidirectional translation linking between posts and automatic hreflang meta tag generation for SEO.
+
+**Key Functions:**
+- `jpkcom_simplelang_get_site_default_locale()` - Returns site default locale from WPLANG option
+- `jpkcom_simplelang_get_language_name()` - Converts locale to native language name
+- `jpkcom_simplelang_group_posts_by_language()` - Groups posts by their language for meta box display
+- `jpkcom_simplelang_validate_translations()` - Prevents duplicate languages in translation sets
+- `jpkcom_simplelang_sync_translations()` - Creates complete translation sets with bidirectional links
+- `jpkcom_simplelang_output_hreflang_tags()` - Generates `<link rel="alternate" hreflang="">` tags
+
+**Meta Storage:**
+- Meta key: `_jpkcom_simplelang_translations`
+- Meta type: Multiple integer values (post IDs)
+- Storage method: WordPress native multiple meta entries with same key
+- Example: Post 1 links to [2, 3] = two separate meta rows with values 2 and 3
+
+**Security:**
+- Nonce verification: `jpkcom_simplelang_translations_nonce`
+- Capability check: Uses post type's `edit_post` capability
+- Post ID sanitization: `absint()` on all post IDs
+- Autosave check: Skips on `DOING_AUTOSAVE`
+
+**Hooks Used:**
+
+1. **`add_meta_boxes` (priority 10)** - Registers "Translation Links" meta box
+   - Renders multi-select dropdown grouped by language using `<optgroup>`
+   - Shows all posts of same post type (except current)
+   - Displays post status (draft, pending, etc.) for unpublished posts
+   - Post selection is grouped alphabetically by language
+
+2. **`save_post` (priority 10, 2 params)** - Handles translation link saving
+   - Validates selected translation IDs (no duplicates, no same-language posts)
+   - Calls `jpkcom_simplelang_sync_translations()` to create complete translation set
+   - Uses static flag to prevent infinite loops during bidirectional sync
+
+3. **`wp_head` (priority 1)** - Outputs hreflang tags in HTML `<head>`
+   - Only on singular pages with enabled post types
+   - Requires at least one translation link to output tags
+   - Calls `jpkcom_simplelang_output_hreflang_tags()`
+
+**Translation Set Sync Logic:**
+
+The sync function creates a **complete translation set** where every post links to all others:
+
+```
+Example: Post 1 (DE) linked to [2 (EN), 3 (FR)]
+
+Result after sync:
+- Post 1: [2, 3]
+- Post 2: [1, 3]  (automatically updated)
+- Post 3: [1, 2]  (automatically updated)
+```
+
+**Algorithm:**
+1. Get current post's old translations
+2. Calculate removed translations
+3. Update current post with new translations
+4. Build complete translation set (current + new translations)
+5. Update ALL posts in set to link to ALL others (except themselves)
+6. Remove links from posts that were removed from set
+7. Static flag prevents infinite loops during updates
+
+**Hreflang Output:**
+
+Tags are generated for all posts in the translation set:
+
+```html
+<link rel="alternate" hreflang="de" href="https://example.com/german-page/" />
+<link rel="alternate" hreflang="en" href="https://example.com/english-page/" />
+<link rel="alternate" hreflang="fr" href="https://example.com/french-page/" />
+```
+
+**Hreflang Features:**
+- Self-referencing tags included (SEO best practice)
+- Only published posts appear in tags
+- Deduplicated post IDs
+- Sorted by language code for deterministic output
+- Uses `jpkcom_simplelang_get_language_code()` from frontend-language.php
+- Single query for all posts (prevents N+1 problem)
+- HTML comments for debugging
+
+**Edge Cases Handled:**
+
+1. **Orphaned links:** WordPress auto-deletes meta on post deletion
+2. **Draft posts:** Only published posts in hreflang output
+3. **Duplicate languages:** Validation prevents multiple posts in same language
+4. **Circular references:** Not a problem - all posts show all versions
+5. **Default language detection:** Uses `jpkcom_simplelang_get_site_default_locale()` instead of `get_locale()` to avoid issues with `switch_to_locale()`
+6. **Type casting:** All post IDs cast to integers for proper array comparisons
+
+**Performance:**
+- Meta box: Single WP_Query for all posts
+- Save: 2-3 queries (delete old meta, add new meta, update related posts)
+- Frontend: 2 queries (get meta, get posts in single query)
+- WordPress object cache handles meta caching automatically
+
+**UI/UX:**
+- Multi-select dropdown with `<optgroup>` for language grouping
+- Shows post title and status
+- Help text explains Ctrl/Cmd multi-select
+- Counter shows number of linked translations
+- Empty state message when no posts available
 
 ### Oxygen Builder Integration (`includes/oxygen-conditions.php`)
 
@@ -239,6 +345,29 @@ add_filter( 'locale', function( $locale ) {
     // Custom logic here
     return $locale;
 }, 100 ); // High priority to run after plugin
+```
+
+### Working with Translation Links (since 1.1.0)
+
+```php
+// Get all translation links for a post
+$translation_ids = get_post_meta( $post_id, '_jpkcom_simplelang_translations', false );
+
+// Check if post has any translations
+if ( ! empty( $translation_ids ) ) {
+    echo 'This post has ' . count( $translation_ids ) . ' translations';
+}
+
+// Get translation posts (only published)
+$translations = jpkcom_simplelang_get_translation_posts( $translation_ids );
+
+foreach ( $translations as $translation ) {
+    $lang = jpkcom_simplelang_get_post_language( $translation->ID );
+    $lang_code = jpkcom_simplelang_get_language_code( $lang );
+    echo '<a href="' . get_permalink( $translation->ID ) . '" hreflang="' . $lang_code . '">';
+    echo get_the_title( $translation->ID );
+    echo '</a>';
+}
 ```
 
 ### Overriding Plugin Files
@@ -398,6 +527,38 @@ $url = JPKCOM_SIMPLELANG_PLUGIN_URL . 'assets/css/styles.css';
 - `jpkcom_simplelang_get_language_code( string $locale ): string`
   - Convert locale (de_DE) to language code (de)
 
+- `jpkcom_simplelang_get_site_default_locale(): string`
+  - Get the site's default locale from WPLANG option
+  - Ignores any temporary locale switches from `switch_to_locale()`
+  - Returns 'en_US' if WPLANG is empty
+
+### Translation Functions (since 1.1.0)
+
+- `jpkcom_simplelang_get_language_name( string $locale ): string`
+  - Convert locale code to native language name
+  - Uses `wp_get_available_translations()` for translation data
+
+- `jpkcom_simplelang_group_posts_by_language( array $query_args ): array`
+  - Group posts by their language for meta box display
+  - Returns associative array: `$locale => $posts[]`
+
+- `jpkcom_simplelang_validate_translations( int $post_id, array $translation_ids ): array`
+  - Validate translation links to prevent duplicate languages
+  - Returns filtered array of valid translation post IDs
+
+- `jpkcom_simplelang_sync_translations( int $post_id, array $new_translations ): void`
+  - Sync translation links bidirectionally across all posts in set
+  - Creates complete translation set where all posts link to all others
+  - Uses static flag to prevent infinite loops
+
+- `jpkcom_simplelang_get_translation_posts( array $post_ids ): array`
+  - Fetch multiple posts in single query (prevents N+1)
+  - Only returns published posts
+
+- `jpkcom_simplelang_output_hreflang_tags( int $post_id, array $translation_ids ): void`
+  - Generate and output hreflang link tags in HTML head
+  - Includes self-referencing tags and all linked translations
+
 ### Internal Functions
 
 - `jpkcom_simplelang_locate_file( string $filename ): ?string`
@@ -424,6 +585,13 @@ $url = JPKCOM_SIMPLELANG_PLUGIN_URL . 'assets/css/styles.css';
 - Format: Locale code (e.g., 'de_DE', 'fr_FR')
 - Description: Selected language for the post
 - Empty/null = use site default
+
+**`_jpkcom_simplelang_translations`** (since 1.1.0)
+- Type: Multiple integer values (post IDs)
+- Storage: WordPress native multiple meta entries with same key
+- Description: Post IDs of linked translation posts
+- Example: Post 1 links to [2, 3] creates two meta rows with values 2 and 3
+- Bidirectional: All posts in a translation set link to all others
 
 ## Filters
 

@@ -3,16 +3,16 @@
 **Plugin Name:** JPKCom Simple Lang  
 **Plugin URI:** https://github.com/JPKCom/jpkcom-simple-lang  
 **Description:** Simple language selection for frontend pages.  
-**Version:** 1.0.0  
+**Version:** 1.1.0  
 **Author:** Jean Pierre Kolb <jpk@jpkc.com>  
 **Author URI:** https://www.jpkc.com/  
 **Contributors:** JPKCom  
-**Tags:** Language, Lang, Locale, Multilingual, Translation, i18n, Oxygen Builder  
+**Tags:** Language, Lang, Locale, Multilingual, Translation, i18n, Hreflang, SEO, Oxygen Builder  
 **Requires at least:** 6.8  
 **Tested up to:** 6.9  
 **Requires PHP:** 8.3  
 **Network:** true  
-**Stable tag:** 1.0.0  
+**Stable tag:** 1.1.0  
 **License:** GPL-2.0+  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.txt  
 **Text Domain:** jpkcom-simple-lang  
@@ -34,6 +34,7 @@ This is particularly useful for sites that are primarily in one language but occ
 - **Post Type Control**: Enable or disable language selection per post type via settings page
 - **Frontend Locale Override**: Automatically switches locale in frontend for proper translation support
 - **HTML Lang Attribute**: Updates the `<html lang="">` attribute to match the selected language
+- **Translation Links & Hreflang**: Link related posts in different languages and automatically generate SEO-friendly hreflang meta tags
 - **SEO Plugin Compatible**: SEO plugins (Yoast, Rank Math, etc.) automatically detect the locale change and output correct `og:locale` meta tags
 - **Plugin Compatibility**: Other plugins respect the locale change for their frontend output
 - **Oxygen Builder Support**: Provides conditional logic for Oxygen Builder based on selected language
@@ -58,6 +59,7 @@ This is particularly useful for sites that are primarily in one language but occ
 - **Admin Settings** (`includes/admin-settings.php`) - Settings page under Settings → Simple Lang for post type activation
 - **Meta Box** (`includes/meta-box.php`) - Language selection dropdown in post editor sidebar
 - **Frontend Language** (`includes/frontend-language.php`) - Locale switching and HTML attribute override logic
+- **Hreflang Translations** (`includes/hreflang-translations.php`) - Translation links meta box and automatic hreflang tag generation
 - **Oxygen Conditions** (`includes/oxygen-conditions.php`) - Conditional logic integration for Oxygen Builder
 - **Translation Files** (`languages/`) - Plugin interface translations (German included)
 - **Automatic Updates** (`includes/class-plugin-updater.php`) - GitHub-based update system with SHA256 checksum verification
@@ -73,13 +75,61 @@ The documentation includes detailed information about all functions, classes, ho
 
 1. **In the Admin**: When editing a post, you'll see a "Frontend Language Select" dropdown in the sidebar
 2. **Select a Language**: Choose from any WordPress language installed on your system, or use the default
-3. **In the Frontend**: When visitors view that post, WordPress automatically switches to the selected language
-4. **Locale Override**: The entire page renders with translations from the selected language, including:
+3. **Link Translations (Optional)**: Use the "Translation Links" meta box to link related posts in different languages
+4. **In the Frontend**: When visitors view that post, WordPress automatically switches to the selected language
+5. **Locale Override**: The entire page renders with translations from the selected language, including:
    - WordPress core strings (dates, buttons, messages)
    - Theme translations
    - Plugin translations that respect the current locale
    - HTML `lang` attribute
    - SEO plugin meta tags (og:locale via `get_locale()`)
+   - Hreflang link tags (if translation links are configured)
+
+### Translation Links & Hreflang Tags
+
+Simple Lang includes a powerful translation linking system that helps search engines understand the relationship between your content in different languages.
+
+#### How Translation Links Work
+
+1. **Link Related Content**: In the post editor sidebar, you'll find a "Translation Links" meta box
+2. **Multi-Select Interface**: Posts are grouped by language for easy selection
+3. **Bidirectional Linking**: When you link Post A to Post B, both posts automatically link to each other
+4. **Complete Translation Sets**: If you link Post 1 (DE) to Post 2 (EN) and Post 3 (FR), all three posts are automatically linked together
+5. **Automatic Hreflang Generation**: Linked posts automatically get `<link rel="alternate" hreflang="XX">` tags in the HTML `<head>`
+
+#### Example Scenario
+
+You have three versions of the same page:
+- **Post 1**: German version (de_DE)
+- **Post 2**: English version (en_US)
+- **Post 3**: French version (fr_FR)
+
+**Steps:**
+1. Edit Post 1 (German)
+2. In "Translation Links" select Post 2 and Post 3
+3. Save Post 1
+
+**Result:**
+- Post 1 now links to Posts 2 & 3
+- Post 2 automatically links to Posts 1 & 3
+- Post 3 automatically links to Posts 1 & 2
+- All three posts display proper hreflang tags
+
+**Generated HTML on each page:**
+```html
+<!-- On German page -->
+<link rel="alternate" hreflang="de" href="https://example.com/german-page/" />
+<link rel="alternate" hreflang="en" href="https://example.com/english-page/" />
+<link rel="alternate" hreflang="fr" href="https://example.com/french-page/" />
+```
+
+#### SEO Benefits
+
+- **Language Targeting**: Search engines understand which language each page targets
+- **Duplicate Content Prevention**: Signals that pages are translations, not duplicates
+- **Regional Search Results**: Users see the correct language version in their regional search results
+- **Self-Referencing Tags**: Each page includes its own language in hreflang tags (SEO best practice)
+- **Automatic Updates**: Adding or removing translation links automatically updates all related pages
 
 ### Helper Functions
 
@@ -203,7 +253,24 @@ Yes. Block editor blocks that use WordPress's translation system will display in
 
 ### What about SEO and hreflang tags?
 
-Simple Lang focuses on displaying content in different languages but doesn't generate hreflang tags or manage SEO relationships between language versions. For full SEO multilingual support, consider using dedicated SEO plugins like Yoast SEO or Rank Math in combination with your multilingual solution.
+Simple Lang automatically generates hreflang tags when you link posts together using the "Translation Links" meta box. The plugin outputs proper `<link rel="alternate" hreflang="XX">` tags in the HTML `<head>` section for all linked translations.
+
+**What's included:**
+- Automatic hreflang tag generation
+- Self-referencing hreflang tags (SEO best practice)
+- Bidirectional translation linking
+- Only published posts appear in hreflang tags
+- Tags sorted by language code for consistency
+
+**SEO Plugin Compatibility:**
+- Works alongside Yoast SEO, Rank Math, and other SEO plugins
+- SEO plugins automatically output correct `og:locale` meta tags
+- Hreflang tags appear early in `<head>` (before most SEO plugins)
+
+**What's NOT included:**
+- x-default hreflang tags (may be added in future versions)
+- Automatic translation suggestions
+- Language switcher widgets
 
 ### Can I restrict which post types have language selection?
 
@@ -390,6 +457,35 @@ DELETE FROM wp_postmeta WHERE meta_key = '_jpkcom_simplelang_language';
 
 
 ## Changelog
+
+### 1.1.0 - 2025-12-17
+
+**New Features**
+
+- **Translation Links**: New meta box for linking posts in different languages
+- **Hreflang Tags**: Automatic generation of SEO-friendly `<link rel="alternate" hreflang="">` tags
+- **Bidirectional Linking**: Posts automatically link to each other when translation links are created
+- **Complete Translation Sets**: All posts in a translation group are automatically linked together
+- **Smart Validation**: Prevents duplicate languages in translation sets
+
+**Bug Fixes**
+
+- Fixed locale detection for default site language in translation grouping
+- Fixed type casting issue in translation link display
+- Improved meta data consistency across all translation sync operations
+
+**Improvements**
+
+- New helper function: `jpkcom_simplelang_get_site_default_locale()`
+- Enhanced hreflang output with deterministic sorting
+- Performance optimization: Single query for all translation posts (prevents N+1 queries)
+- Updated German translations (de_DE and de_DE_formal)
+
+**Developer Notes**
+
+- New module: `includes/hreflang-translations.php`
+- New meta key: `_jpkcom_simplelang_translations` (multiple entries per post)
+- All translation sync operations use loop prevention for data integrity
 
 ### 1.0.0 - 2025-12-16
 
