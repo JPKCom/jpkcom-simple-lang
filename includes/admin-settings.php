@@ -170,7 +170,8 @@ function jpkcom_simplelang_settings_page(): void {
 		);
 	}
 
-	settings_errors( 'jpkcom_simplelang_messages' );
+	// Note: settings_errors() is called automatically by WordPress when using settings_fields()
+	// No need to call it manually here to avoid duplicate messages
 	?>
 	<div class="wrap">
 		<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
