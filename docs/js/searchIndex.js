@@ -141,25 +141,25 @@ Search.appendIndex(
             "summary": "Get\u0020post\u0020language",
             "url": "namespaces/default.html#function_jpkcom_simplelang_get_post_language"
         },                {
-            "fqsen": "\\jpkcom_simplelang_post_language_is\u0028\u0029",
-            "name": "jpkcom_simplelang_post_language_is",
-            "summary": "Oxygen\u0020condition\u003A\u0020Post\u0020language\u0020is\u0020specific\u0020value",
-            "url": "namespaces/default.html#function_jpkcom_simplelang_post_language_is"
+            "fqsen": "\\jpkcom_simplelang_get_oxygen_language_options\u0028\u0029",
+            "name": "jpkcom_simplelang_get_oxygen_language_options",
+            "summary": "Get\u0020language\u0020options\u0020for\u0020Oxygen\u0020Builder",
+            "url": "namespaces/default.html#function_jpkcom_simplelang_get_oxygen_language_options"
         },                {
-            "fqsen": "\\jpkcom_simplelang_post_language_is_values\u0028\u0029",
-            "name": "jpkcom_simplelang_post_language_is_values",
-            "summary": "Oxygen\u0020condition\u0020values\u003A\u0020Available\u0020languages",
-            "url": "namespaces/default.html#function_jpkcom_simplelang_post_language_is_values"
+            "fqsen": "\\jpkcom_simplelang_oxygen_post_language_is\u0028\u0029",
+            "name": "jpkcom_simplelang_oxygen_post_language_is",
+            "summary": "Oxygen\u0020condition\u0020callback\u003A\u0020Post\u0020language\u0020is\u0020specific\u0020value",
+            "url": "namespaces/default.html#function_jpkcom_simplelang_oxygen_post_language_is"
         },                {
-            "fqsen": "\\jpkcom_simplelang_has_custom_language\u0028\u0029",
-            "name": "jpkcom_simplelang_has_custom_language",
-            "summary": "Oxygen\u0020condition\u003A\u0020Post\u0020has\u0020custom\u0020language",
-            "url": "namespaces/default.html#function_jpkcom_simplelang_has_custom_language"
+            "fqsen": "\\jpkcom_simplelang_oxygen_has_custom_language\u0028\u0029",
+            "name": "jpkcom_simplelang_oxygen_has_custom_language",
+            "summary": "Oxygen\u0020condition\u0020callback\u003A\u0020Post\u0020has\u0020custom\u0020language",
+            "url": "namespaces/default.html#function_jpkcom_simplelang_oxygen_has_custom_language"
         },                {
-            "fqsen": "\\jpkcom_simplelang_uses_default_language\u0028\u0029",
-            "name": "jpkcom_simplelang_uses_default_language",
-            "summary": "Oxygen\u0020condition\u003A\u0020Post\u0020uses\u0020default\u0020language",
-            "url": "namespaces/default.html#function_jpkcom_simplelang_uses_default_language"
+            "fqsen": "\\jpkcom_simplelang_oxygen_uses_default_language\u0028\u0029",
+            "name": "jpkcom_simplelang_oxygen_uses_default_language",
+            "summary": "Oxygen\u0020condition\u0020callback\u003A\u0020Post\u0020uses\u0020default\u0020language",
+            "url": "namespaces/default.html#function_jpkcom_simplelang_oxygen_uses_default_language"
         },                {
             "fqsen": "\\JPKCOM_SIMPLELANG_VERSION",
             "name": "JPKCOM_SIMPLELANG_VERSION",

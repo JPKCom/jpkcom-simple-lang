@@ -98,7 +98,7 @@
 https://github.com/JPKCom/jpkcom-simple-lang<br />
 <strong>Description:</strong> Simple language selection for frontend
 pages.<br />
-<strong>Version:</strong> 1.1.0<br />
+<strong>Version:</strong> 1.1.1<br />
 <strong>Author:</strong> Jean Pierre Kolb <a href="mailto:jpk@jpkc.com"
 class="email">jpk@jpkc.com</a><br />
 <strong>Author URI:</strong> https://www.jpkc.com/<br />
@@ -109,7 +109,7 @@ Translation, i18n, Hreflang, SEO, Oxygen Builder<br />
 <strong>Tested up to:</strong> 6.9<br />
 <strong>Requires PHP:</strong> 8.3<br />
 <strong>Network:</strong> true<br />
-<strong>Stable tag:</strong> 1.1.0<br />
+<strong>Stable tag:</strong> 1.1.1<br />
 <strong>License:</strong> GPL-2.0+<br />
 <strong>License URI:</strong>
 http://www.gnu.org/licenses/gpl-2.0.txt<br />
@@ -616,7 +616,40 @@ the database. If you want to remove this data, run:</p>
 <div class="sourceCode" id="cb7"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> wp_postmeta <span class="kw">WHERE</span> meta_key <span class="op">=</span> <span class="st">&#39;_jpkcom_simplelang_language&#39;</span>;</span></code></pre></div>
 <h2 id="changelog">Changelog</h2>
-<h3 id="section">1.1.0 - 2025-12-17</h3>
+<h3 id="section">1.1.1 - 2025-12-17</h3>
+<p><strong>Bug Fixes</strong></p>
+<ul>
+<li>Fixed duplicate “Settings saved” message on admin settings page</li>
+<li>Fixed Oxygen Builder conditions not displaying dropdown options</li>
+<li>Fixed Oxygen Builder condition callback signatures to match API
+requirements</li>
+</ul>
+<p><strong>Improvements</strong></p>
+<ul>
+<li>Updated Oxygen Builder conditions to use correct API structure with
+‘options’ array</li>
+<li>Added proper operator support (==, !=) for “Post Language Is”
+condition</li>
+<li>Added Yes/No dropdown options for boolean Oxygen conditions</li>
+<li>Added German translations for Oxygen condition options
+(Ja/Nein)</li>
+<li>All Oxygen conditions now appear under “Simple Lang” category</li>
+</ul>
+<p><strong>Technical Changes</strong></p>
+<ul>
+<li>Renamed callback functions to match Oxygen API conventions:
+<ul>
+<li><code>jpkcom_simplelang_oxygen_post_language_is()</code> with
+($value, $operator) parameters</li>
+<li><code>jpkcom_simplelang_oxygen_has_custom_language()</code> with
+($value, $operator) parameters</li>
+<li><code>jpkcom_simplelang_oxygen_uses_default_language()</code> with
+($value, $operator) parameters</li>
+</ul></li>
+<li>Removed redundant <code>settings_errors()</code> call in admin
+settings page</li>
+</ul>
+<h3 id="section-1">1.1.0 - 2025-12-17</h3>
 <p><strong>New Features</strong></p>
 <ul>
 <li><strong>Translation Links</strong>: New meta box for linking posts
@@ -655,7 +688,7 @@ entries per post)</li>
 <li>All translation sync operations use loop prevention for data
 integrity</li>
 </ul>
-<h3 id="section-1">1.0.0 - 2025-12-16</h3>
+<h3 id="section-2">1.0.0 - 2025-12-16</h3>
 <p><strong>Initial Release</strong></p>
 <ul>
 <li>Language selection dropdown in post editor sidebar</li>

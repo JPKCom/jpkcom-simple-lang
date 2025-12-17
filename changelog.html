@@ -1,4 +1,37 @@
-<h3 id="section">1.1.0 - 2025-12-17</h3>
+<h3 id="section">1.1.1 - 2025-12-17</h3>
+<p><strong>Bug Fixes</strong></p>
+<ul>
+<li>Fixed duplicate “Settings saved” message on admin settings page</li>
+<li>Fixed Oxygen Builder conditions not displaying dropdown options</li>
+<li>Fixed Oxygen Builder condition callback signatures to match API
+requirements</li>
+</ul>
+<p><strong>Improvements</strong></p>
+<ul>
+<li>Updated Oxygen Builder conditions to use correct API structure with
+‘options’ array</li>
+<li>Added proper operator support (==, !=) for “Post Language Is”
+condition</li>
+<li>Added Yes/No dropdown options for boolean Oxygen conditions</li>
+<li>Added German translations for Oxygen condition options
+(Ja/Nein)</li>
+<li>All Oxygen conditions now appear under “Simple Lang” category</li>
+</ul>
+<p><strong>Technical Changes</strong></p>
+<ul>
+<li>Renamed callback functions to match Oxygen API conventions:
+<ul>
+<li><code>jpkcom_simplelang_oxygen_post_language_is()</code> with
+($value, $operator) parameters</li>
+<li><code>jpkcom_simplelang_oxygen_has_custom_language()</code> with
+($value, $operator) parameters</li>
+<li><code>jpkcom_simplelang_oxygen_uses_default_language()</code> with
+($value, $operator) parameters</li>
+</ul></li>
+<li>Removed redundant <code>settings_errors()</code> call in admin
+settings page</li>
+</ul>
+<h3 id="section-1">1.1.0 - 2025-12-17</h3>
 <p><strong>New Features</strong></p>
 <ul>
 <li><strong>Translation Links</strong>: New meta box for linking posts
@@ -37,7 +70,7 @@ entries per post)</li>
 <li>All translation sync operations use loop prevention for data
 integrity</li>
 </ul>
-<h3 id="section-1">1.0.0 - 2025-12-16</h3>
+<h3 id="section-2">1.0.0 - 2025-12-16</h3>
 <p><strong>Initial Release</strong></p>
 <ul>
 <li>Language selection dropdown in post editor sidebar</li>

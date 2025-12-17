@@ -160,7 +160,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a class="" href="namespaces/default.html#constant_JPKCOM_SIMPLELANG_VERSION">JPKCOM_SIMPLELANG_VERSION</a>
     <span>
-        &nbsp;= &#039;1.1.0&#039;                            </span>
+        &nbsp;= &#039;1.1.1&#039;                            </span>
 </dt>
 
     </dl>
@@ -280,32 +280,32 @@
 <dd>Get post language</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -function -">
-    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_post_language_is">jpkcom_simplelang_post_language_is()</a>
-    <span>
-                                &nbsp;: bool    </span>
-</dt>
-<dd>Oxygen condition: Post language is specific value</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -function -">
-    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_post_language_is_values">jpkcom_simplelang_post_language_is_values()</a>
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_get_oxygen_language_options">jpkcom_simplelang_get_oxygen_language_options()</a>
     <span>
                                 &nbsp;: array&lt;string, string&gt;    </span>
 </dt>
-<dd>Oxygen condition values: Available languages</dd>
+<dd>Get language options for Oxygen Builder</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -function -">
-    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_has_custom_language">jpkcom_simplelang_has_custom_language()</a>
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_oxygen_post_language_is">jpkcom_simplelang_oxygen_post_language_is()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
-<dd>Oxygen condition: Post has custom language</dd>
+<dd>Oxygen condition callback: Post language is specific value</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -function -">
-    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_uses_default_language">jpkcom_simplelang_uses_default_language()</a>
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_oxygen_has_custom_language">jpkcom_simplelang_oxygen_has_custom_language()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
-<dd>Oxygen condition: Post uses default language</dd>
+<dd>Oxygen condition callback: Post has custom language</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_oxygen_uses_default_language">jpkcom_simplelang_oxygen_uses_default_language()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+<dd>Oxygen condition callback: Post uses default language</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -function -">
     <a class="" href="namespaces/default.html#function_jpkcom_simplelang_textdomain">jpkcom_simplelang_textdomain()</a>
@@ -440,7 +440,7 @@
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">JPKCOM_SIMPLELANG_VERSION</span>
-    = <span class="phpdocumentor-signature__default-value">&#039;1.1.0&#039;</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;1.1.1&#039;</span>
 </code>
 
 
@@ -1339,96 +1339,33 @@ where every post links to all others in the set.</p>
 
 </article>
                     <article class="phpdocumentor-element -function - ">
-    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_post_language_is">
-        jpkcom_simplelang_post_language_is()
-        <a href="namespaces/default.html#function_jpkcom_simplelang_post_language_is" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_get_oxygen_language_options">
+        jpkcom_simplelang_get_oxygen_language_options()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_get_oxygen_language_options" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/oxygen-conditions.php"><a href="files/includes-oxygen-conditions.html"><abbr title="includes/oxygen-conditions.php">oxygen-conditions.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">71</span>
+    <span class="phpdocumentor-element-found-in__line">73</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Oxygen condition: Post language is specific value</p>
+        <p class="phpdocumentor-summary">Get language options for Oxygen Builder</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility"></span>
-                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_post_language_is</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$language_code</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_get_oxygen_language_options</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, string&gt;</span></code>
 
-        <section class="phpdocumentor-description"><p>Checks if the post has a specific language set.</p>
-</section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$language_code</span>
-                : <span class="phpdocumentor-argument-list__argument__type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The language code to check.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="namespaces/default.html#function_jpkcom_simplelang_post_language_is#tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0.0</span>
-                                                                                
-                                             
-                                    </dd>
-                                            </dl>
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">bool</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>True if the post has the specified language.</p>
-</section>
-
-            </section>
-
-</article>
-                    <article class="phpdocumentor-element -function - ">
-    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_post_language_is_values">
-        jpkcom_simplelang_post_language_is_values()
-        <a href="namespaces/default.html#function_jpkcom_simplelang_post_language_is_values" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="includes/oxygen-conditions.php"><a href="files/includes-oxygen-conditions.html"><abbr title="includes/oxygen-conditions.php">oxygen-conditions.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">96</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Oxygen condition values: Available languages</p>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility"></span>
-                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_post_language_is_values</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, string&gt;</span></code>
-
-        <section class="phpdocumentor-description"><p>Returns all available languages for the condition dropdown.</p>
+        <section class="phpdocumentor-description"><p>Returns an array of available languages formatted for Oxygen Builder conditions.</p>
 </section>
 
     
     
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
         Tags
-        <a href="namespaces/default.html#function_jpkcom_simplelang_post_language_is_values#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="namespaces/default.html#function_jpkcom_simplelang_get_oxygen_language_options#tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
@@ -1453,33 +1390,54 @@ where every post links to all others in the set.</p>
 
 </article>
                     <article class="phpdocumentor-element -function - ">
-    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_has_custom_language">
-        jpkcom_simplelang_has_custom_language()
-        <a href="namespaces/default.html#function_jpkcom_simplelang_has_custom_language" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_oxygen_post_language_is">
+        jpkcom_simplelang_oxygen_post_language_is()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_oxygen_post_language_is" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/oxygen-conditions.php"><a href="files/includes-oxygen-conditions.html"><abbr title="includes/oxygen-conditions.php">oxygen-conditions.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">133</span>
+    <span class="phpdocumentor-element-found-in__line">112</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Oxygen condition: Post has custom language</p>
+        <p class="phpdocumentor-summary">Oxygen condition callback: Post language is specific value</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility"></span>
-                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_has_custom_language</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_oxygen_post_language_is</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$operator</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
-        <section class="phpdocumentor-description"><p>Checks if the post has any custom language set (not using site default).</p>
+        <section class="phpdocumentor-description"><p>Checks if the post has a specific language set.</p>
 </section>
 
-    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$value</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The language code to check.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$operator</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The comparison operator (== or !=).</p>
+</section>
+
+            </dd>
+            </dl>
+
     
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
         Tags
-        <a href="namespaces/default.html#function_jpkcom_simplelang_has_custom_language#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="namespaces/default.html#function_jpkcom_simplelang_oxygen_post_language_is#tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
@@ -1497,40 +1455,61 @@ where every post links to all others in the set.</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">bool</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>True if the post has a custom language.</p>
+                <section class="phpdocumentor-description"><p>True if the condition matches.</p>
 </section>
 
             </section>
 
 </article>
                     <article class="phpdocumentor-element -function - ">
-    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_uses_default_language">
-        jpkcom_simplelang_uses_default_language()
-        <a href="namespaces/default.html#function_jpkcom_simplelang_uses_default_language" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_oxygen_has_custom_language">
+        jpkcom_simplelang_oxygen_has_custom_language()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_oxygen_has_custom_language" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/oxygen-conditions.php"><a href="files/includes-oxygen-conditions.html"><abbr title="includes/oxygen-conditions.php">oxygen-conditions.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">158</span>
+    <span class="phpdocumentor-element-found-in__line">157</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Oxygen condition: Post uses default language</p>
+        <p class="phpdocumentor-summary">Oxygen condition callback: Post has custom language</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility"></span>
-                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_uses_default_language</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_oxygen_has_custom_language</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$operator</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
-        <section class="phpdocumentor-description"><p>Checks if the post is using the site default language (no custom language set).</p>
+        <section class="phpdocumentor-description"><p>Checks if the post has any custom language set (not using site default).</p>
 </section>
 
-    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$value</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The value to check ('true' or 'false').</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$operator</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The comparison operator (always ==).</p>
+</section>
+
+            </dd>
+            </dl>
+
     
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
         Tags
-        <a href="namespaces/default.html#function_jpkcom_simplelang_uses_default_language#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="namespaces/default.html#function_jpkcom_simplelang_oxygen_has_custom_language#tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
@@ -1548,7 +1527,79 @@ where every post links to all others in the set.</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">bool</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>True if the post uses the default language.</p>
+                <section class="phpdocumentor-description"><p>True if the condition matches.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_oxygen_uses_default_language">
+        jpkcom_simplelang_oxygen_uses_default_language()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_oxygen_uses_default_language" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/oxygen-conditions.php"><a href="files/includes-oxygen-conditions.html"><abbr title="includes/oxygen-conditions.php">oxygen-conditions.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">188</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Oxygen condition callback: Post uses default language</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_oxygen_uses_default_language</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$operator</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+        <section class="phpdocumentor-description"><p>Checks if the post is using the site default language (no custom language set).</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$value</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The value to check ('true' or 'false').</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$operator</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The comparison operator (always ==).</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_oxygen_uses_default_language#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">since</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.0.0</span>
+                                                                                
+                                             
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>True if the condition matches.</p>
 </section>
 
             </section>
