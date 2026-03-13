@@ -156,7 +156,7 @@ add_action( 'save_post', function( int $post_id, WP_Post $post ): void {
 			delete_post_meta( $post_id, '_jpkcom_simplelang_language' );
 		} else {
 			// Validate locale format (basic check)
-			if ( preg_match( '/^[a-z]{2,3}_[A-Z]{2}$/', $language ) || $language === 'en_US' ) {
+			if ( preg_match( '/^[a-z]{2,3}(_[A-Z]{2})?$/', $language ) || $language === 'en_US' ) {
 				update_post_meta( $post_id, '_jpkcom_simplelang_language', $language );
 			}
 		}

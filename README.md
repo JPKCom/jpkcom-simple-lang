@@ -3,7 +3,7 @@
 **Plugin Name:** JPKCom Simple Lang  
 **Plugin URI:** https://github.com/JPKCom/jpkcom-simple-lang  
 **Description:** Simple language selection for frontend pages.  
-**Version:** 1.1.1  
+**Version:** 1.2.0  
 **Author:** Jean Pierre Kolb <jpk@jpkc.com>  
 **Author URI:** https://www.jpkc.com/  
 **Contributors:** JPKCom  
@@ -12,7 +12,7 @@
 **Tested up to:** 6.9  
 **Requires PHP:** 8.3  
 **Network:** true  
-**Stable tag:** 1.1.1  
+**Stable tag:** 1.2.0  
 **License:** GPL-2.0+  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.txt  
 **Text Domain:** jpkcom-simple-lang  
@@ -457,6 +457,13 @@ DELETE FROM wp_postmeta WHERE meta_key = '_jpkcom_simplelang_language';
 
 
 ## Changelog
+
+### 1.2.0 - 2026-03-13
+
+**Bug Fixes**
+
+- Fixed language selection not saving for locales without country code (e.g. `ar` for Arabic)
+- Updated locale validation regex to accept both short (`xx`) and full (`xx_XX`) locale formats
 
 ### 1.1.1 - 2025-12-17
 
