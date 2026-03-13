@@ -1,4 +1,14 @@
-<h3 id="section">1.2.0 - 2026-03-13</h3>
+<h3 id="section">1.2.1 - 2026-03-13</h3>
+<p><strong>Bug Fixes</strong></p>
+<ul>
+<li>Fixed manual ZIP upload failing with “No valid URL” error caused by
+checksum verification running on local file paths instead of remote
+URLs</li>
+<li>Fixed release ZIP missing top-level plugin directory, preventing
+WordPress from recognizing it as an update to the existing
+installation</li>
+</ul>
+<h3 id="section-1">1.2.0 - 2026-03-13</h3>
 <p><strong>Bug Fixes</strong></p>
 <ul>
 <li>Fixed language selection not saving for locales without country code
@@ -6,7 +16,7 @@
 <li>Updated locale validation regex to accept both short
 (<code>xx</code>) and full (<code>xx_XX</code>) locale formats</li>
 </ul>
-<h3 id="section-1">1.1.1 - 2025-12-17</h3>
+<h3 id="section-2">1.1.1 - 2025-12-17</h3>
 <p><strong>Bug Fixes</strong></p>
 <ul>
 <li>Fixed duplicate “Settings saved” message on admin settings page</li>
@@ -39,7 +49,7 @@ condition</li>
 <li>Removed redundant <code>settings_errors()</code> call in admin
 settings page</li>
 </ul>
-<h3 id="section-2">1.1.0 - 2025-12-17</h3>
+<h3 id="section-3">1.1.0 - 2025-12-17</h3>
 <p><strong>New Features</strong></p>
 <ul>
 <li><strong>Translation Links</strong>: New meta box for linking posts
@@ -78,7 +88,7 @@ entries per post)</li>
 <li>All translation sync operations use loop prevention for data
 integrity</li>
 </ul>
-<h3 id="section-3">1.0.0 - 2025-12-16</h3>
+<h3 id="section-4">1.0.0 - 2025-12-16</h3>
 <p><strong>Initial Release</strong></p>
 <ul>
 <li>Language selection dropdown in post editor sidebar</li>
