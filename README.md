@@ -3,7 +3,7 @@
 **Plugin Name:** JPKCom Simple Lang  
 **Plugin URI:** https://github.com/JPKCom/jpkcom-simple-lang  
 **Description:** Simple language selection for frontend pages.  
-**Version:** 1.2.0  
+**Version:** 1.2.1  
 **Author:** Jean Pierre Kolb <jpk@jpkc.com>  
 **Author URI:** https://www.jpkc.com/  
 **Contributors:** JPKCom  
@@ -12,7 +12,7 @@
 **Tested up to:** 6.9  
 **Requires PHP:** 8.3  
 **Network:** true  
-**Stable tag:** 1.2.0  
+**Stable tag:** 1.2.1  
 **License:** GPL-2.0+  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.txt  
 **Text Domain:** jpkcom-simple-lang  
@@ -457,6 +457,13 @@ DELETE FROM wp_postmeta WHERE meta_key = '_jpkcom_simplelang_language';
 
 
 ## Changelog
+
+### 1.2.1 - 2026-03-13
+
+**Bug Fixes**
+
+- Fixed manual ZIP upload failing with "No valid URL" error caused by checksum verification running on local file paths instead of remote URLs
+- Fixed release ZIP missing top-level plugin directory, preventing WordPress from recognizing it as an update to the existing installation
 
 ### 1.2.0 - 2026-03-13
 

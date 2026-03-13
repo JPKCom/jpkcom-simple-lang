@@ -386,8 +386,8 @@ final class JPKComGitPluginUpdater {
      * @return bool|\WP_Error True to proceed, WP_Error if verification fails.
      */
     public function verify_download_checksum( $reply, string $package, \WP_Upgrader $upgrader ) {
-        // Only verify downloads for this plugin
-        if ( strpos( $package, $this->plugin_slug ) === false ) {
+        // Only verify remote downloads for this plugin (skip local file uploads)
+        if ( strpos( $package, $this->plugin_slug ) === false || ! wp_http_validate_url( $package ) ) {
             return $reply;
         }
 
