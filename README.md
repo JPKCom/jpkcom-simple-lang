@@ -3,18 +3,18 @@
 **Plugin Name:** JPKCom Simple Lang  
 **Plugin URI:** https://github.com/JPKCom/jpkcom-simple-lang  
 **Description:** Simple language selection for frontend pages.  
-**Version:** 1.2.2  
+**Version:** 1.2.3  
 **Author:** Jean Pierre Kolb <jpk@jpkc.com>  
 **Author URI:** https://www.jpkc.com/  
 **Contributors:** JPKCom  
 **Tags:** Language, Lang, Locale, Multilingual, Translation, i18n, Hreflang, SEO, Oxygen Builder  
-**Requires at least:** 6.8  
-**Tested up to:** 6.9  
+**Requires at least:** 6.9  
+**Tested up to:** 7.0  
 **Requires PHP:** 8.3  
 **Network:** true  
-**Stable tag:** 1.2.2  
-**License:** GPL-2.0+  
-**License URI:** http://www.gnu.org/licenses/gpl-2.0.txt  
+**Stable tag:** 1.2.3  
+**License:** GPL-2.0-or-later  
+**License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 **Text Domain:** jpkcom-simple-lang  
 **Domain Path:** /languages
 
@@ -457,6 +457,10 @@ DELETE FROM wp_postmeta WHERE meta_key = '_jpkcom_simplelang_language';
 
 
 ## Changelog
+
+### 1.2.3 - 2026-06-16
+* Raised the minimum WordPress version to 6.9 and "Tested up to" to WordPress 7.0
+* Switched license metadata to the SPDX identifier `GPL-2.0-or-later` with the HTTPS license URI
 
 ### 1.2.2 - 2026-06-16
 * Security: updater prefers an exact match against the manifest `download_url` over the slug heuristic, so a tampered manifest can no longer bypass the checksum gate
