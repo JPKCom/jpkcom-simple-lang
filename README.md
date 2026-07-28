@@ -3,7 +3,7 @@
 **Plugin Name:** JPKCom Simple Lang  
 **Plugin URI:** https://github.com/JPKCom/jpkcom-simple-lang  
 **Description:** Simple language selection for frontend pages.  
-**Version:** 1.2.5  
+**Version:** 1.2.6  
 **Author:** Jean Pierre Kolb <jpk@jpkc.com>  
 **Author URI:** https://www.jpkc.com/  
 **Contributors:** JPKCom  
@@ -12,7 +12,7 @@
 **Tested up to:** 7.0  
 **Requires PHP:** 8.3  
 **Network:** true  
-**Stable tag:** 1.2.5  
+**Stable tag:** 1.2.6  
 **License:** GPL-2.0-or-later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 **Text Domain:** jpkcom-simple-lang  
@@ -457,6 +457,9 @@ DELETE FROM wp_postmeta WHERE meta_key = '_jpkcom_simplelang_language';
 
 
 ## Changelog
+
+### 1.2.6
+* Changed: the plugin banners (`assets/banner-1544x500.avif`, `assets/banner-772x250.avif`) are now a plain `#3c4955` surface with no lettering
 
 ### 1.2.5
 * CI: the release step no longer copies the staging directory into itself, so the ZIP has no empty `jpkcom-simple-lang/jpkcom-simple-lang/` folder
