@@ -3,7 +3,7 @@
 **Plugin Name:** JPKCom Simple Lang  
 **Plugin URI:** https://github.com/JPKCom/jpkcom-simple-lang  
 **Description:** Simple language selection for frontend pages.  
-**Version:** 1.2.4  
+**Version:** 1.2.5  
 **Author:** Jean Pierre Kolb <jpk@jpkc.com>  
 **Author URI:** https://www.jpkc.com/  
 **Contributors:** JPKCom  
@@ -12,7 +12,7 @@
 **Tested up to:** 7.0  
 **Requires PHP:** 8.3  
 **Network:** true  
-**Stable tag:** 1.2.4  
+**Stable tag:** 1.2.5  
 **License:** GPL-2.0-or-later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 **Text Domain:** jpkcom-simple-lang  
@@ -457,6 +457,12 @@ DELETE FROM wp_postmeta WHERE meta_key = '_jpkcom_simplelang_language';
 
 
 ## Changelog
+
+### 1.2.5
+* CI: the release step no longer copies the staging directory into itself, so the ZIP has no empty `jpkcom-simple-lang/jpkcom-simple-lang/` folder
+* CI: bumped the pinned GitHub Actions (checkout v7.0.1, setup-python v7.0.0, action-gh-release v3.0.2, fetch-metadata v3.1.0), still pinned to full commit SHAs
+* CI: the release ZIP now excludes the development-only `tests/` and `tools/` directories
+* CI: security and regression tests now run on every pull request, where a plugin has them
 
 ### 1.2.4
 * Security: update packages are now verified *before* installation — the verified file is handed to WordPress instead of being downloaded a second time, so the bytes that were checked are the bytes that get installed
