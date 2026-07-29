@@ -1,11 +1,25 @@
-<h3 id="section">1.2.6</h3>
+<h3 id="section">1.2.7</h3>
+<ul>
+<li>Changed: <code>Tested up to</code> raised to WordPress 7.1</li>
+<li>Changed: the bundled updater’s runtime floor now matches the
+plugin’s own minimum. It bailed out below WordPress 6.8 while the plugin
+header has required 6.9 for several releases, so the check could never
+fire on a supported installation</li>
+<li>Docs: the remaining “WordPress 6.8” requirement statements now say
+6.9, matching the plugin header</li>
+<li>CI: the release manifest’s fallback values for <code>requires</code>
+and <code>tested</code> now say 6.9 and 7.1. They only apply when the
+README metadata cannot be read, but a stale fallback would have
+published a minimum the plugin no longer supports</li>
+</ul>
+<h3 id="section-1">1.2.6</h3>
 <ul>
 <li>Changed: the plugin banners
 (<code>assets/banner-1544x500.avif</code>,
 <code>assets/banner-772x250.avif</code>) are now a plain
 <code>#3c4955</code> surface with no lettering</li>
 </ul>
-<h3 id="section-1">1.2.5</h3>
+<h3 id="section-2">1.2.5</h3>
 <ul>
 <li>CI: the release step no longer copies the staging directory into
 itself, so the ZIP has no empty
@@ -18,7 +32,7 @@ to full commit SHAs</li>
 <li>CI: security and regression tests now run on every pull request,
 where a plugin has them</li>
 </ul>
-<h3 id="section-2">1.2.4</h3>
+<h3 id="section-3">1.2.4</h3>
 <ul>
 <li>Security: update packages are now verified <em>before</em>
 installation — the verified file is handed to WordPress instead of being
@@ -45,14 +59,14 @@ check, YAML validation, action-pinning guard)</li>
 <li>Housekeeping: removed stray editor backups from the release
 package</li>
 </ul>
-<h3 id="section-3">1.2.3 - 2026-06-16</h3>
+<h3 id="section-4">1.2.3 - 2026-06-16</h3>
 <ul>
 <li>Raised the minimum WordPress version to 6.9 and “Tested up to” to
 WordPress 7.0</li>
 <li>Switched license metadata to the SPDX identifier
 <code>GPL-2.0-or-later</code> with the HTTPS license URI</li>
 </ul>
-<h3 id="section-4">1.2.2 - 2026-06-16</h3>
+<h3 id="section-5">1.2.2 - 2026-06-16</h3>
 <ul>
 <li>Security: updater prefers an exact match against the manifest
 <code>download_url</code> over the slug heuristic, so a tampered
@@ -69,7 +83,7 @@ completing the <code>no_update</code> transient entry
 (<code>new_version</code>, <code>package</code>, <code>tested</code>,
 <code>requires_php</code>)</li>
 </ul>
-<h3 id="section-5">1.2.1 - 2026-03-13</h3>
+<h3 id="section-6">1.2.1 - 2026-03-13</h3>
 <p><strong>Bug Fixes</strong></p>
 <ul>
 <li>Fixed manual ZIP upload failing with “No valid URL” error caused by
@@ -79,7 +93,7 @@ URLs</li>
 WordPress from recognizing it as an update to the existing
 installation</li>
 </ul>
-<h3 id="section-6">1.2.0 - 2026-03-13</h3>
+<h3 id="section-7">1.2.0 - 2026-03-13</h3>
 <p><strong>Bug Fixes</strong></p>
 <ul>
 <li>Fixed language selection not saving for locales without country code
@@ -87,7 +101,7 @@ installation</li>
 <li>Updated locale validation regex to accept both short
 (<code>xx</code>) and full (<code>xx_XX</code>) locale formats</li>
 </ul>
-<h3 id="section-7">1.1.1 - 2025-12-17</h3>
+<h3 id="section-8">1.1.1 - 2025-12-17</h3>
 <p><strong>Bug Fixes</strong></p>
 <ul>
 <li>Fixed duplicate “Settings saved” message on admin settings page</li>
@@ -120,7 +134,7 @@ condition</li>
 <li>Removed redundant <code>settings_errors()</code> call in admin
 settings page</li>
 </ul>
-<h3 id="section-8">1.1.0 - 2025-12-17</h3>
+<h3 id="section-9">1.1.0 - 2025-12-17</h3>
 <p><strong>New Features</strong></p>
 <ul>
 <li><strong>Translation Links</strong>: New meta box for linking posts
@@ -159,7 +173,7 @@ entries per post)</li>
 <li>All translation sync operations use loop prevention for data
 integrity</li>
 </ul>
-<h3 id="section-9">1.0.0 - 2025-12-16</h3>
+<h3 id="section-10">1.0.0 - 2025-12-16</h3>
 <p><strong>Initial Release</strong></p>
 <ul>
 <li>Language selection dropdown in post editor sidebar</li>
