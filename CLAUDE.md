@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This is a WordPress plugin called **JPKCom Simple Lang** - a lightweight solution for per-post language selection that overrides the site-wide language setting in the frontend. It allows content editors to display individual pages or posts in different languages without the complexity of full multilingual plugins.
 
 **Requirements:**
-- WordPress 6.8+
+- WordPress 6.9+
 - PHP 8.3+
 - At least one additional language pack installed (optional but recommended)
 

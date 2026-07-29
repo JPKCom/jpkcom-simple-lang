@@ -3,16 +3,16 @@
 **Plugin Name:** JPKCom Simple Lang  
 **Plugin URI:** https://github.com/JPKCom/jpkcom-simple-lang  
 **Description:** Simple language selection for frontend pages.  
-**Version:** 1.2.6  
+**Version:** 1.2.7  
 **Author:** Jean Pierre Kolb <jpk@jpkc.com>  
 **Author URI:** https://www.jpkc.com/  
 **Contributors:** JPKCom  
 **Tags:** Language, Lang, Locale, Multilingual, Translation, i18n, Hreflang, SEO, Oxygen Builder  
 **Requires at least:** 6.9  
-**Tested up to:** 7.0  
+**Tested up to:** 7.1  
 **Requires PHP:** 8.3  
 **Network:** true  
-**Stable tag:** 1.2.6  
+**Stable tag:** 1.2.7  
 **License:** GPL-2.0-or-later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 **Text Domain:** jpkcom-simple-lang  
@@ -349,7 +349,7 @@ Yes, if you enable language selection for the `product` post type in settings. H
 
 Before installing this plugin, ensure you have:
 
-- **WordPress 6.8 or higher**
+- **WordPress 6.9 or higher**
 - **PHP 8.3 or higher**
 - At least one additional language pack installed (optional but recommended)
 
@@ -457,6 +457,12 @@ DELETE FROM wp_postmeta WHERE meta_key = '_jpkcom_simplelang_language';
 
 
 ## Changelog
+
+### 1.2.7
+* Changed: `Tested up to` raised to WordPress 7.1
+* Changed: the bundled updater's runtime floor now matches the plugin's own minimum. It bailed out below WordPress 6.8 while the plugin header has required 6.9 for several releases, so the check could never fire on a supported installation
+* Docs: the remaining "WordPress 6.8" requirement statements now say 6.9, matching the plugin header
+* CI: the release manifest's fallback values for `requires` and `tested` now say 6.9 and 7.1. They only apply when the README metadata cannot be read, but a stale fallback would have published a minimum the plugin no longer supports
 
 ### 1.2.6
 * Changed: the plugin banners (`assets/banner-1544x500.avif`, `assets/banner-772x250.avif`) are now a plain `#3c4955` surface with no lettering
