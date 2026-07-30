@@ -33,8 +33,8 @@ This is particularly useful for sites that are primarily in one language but occ
 - **WordPress Core Languages**: Uses WordPress's built-in language system - no additional translation files needed
 - **Post Type Control**: Enable or disable language selection per post type via settings page
 - **Frontend Locale Override**: Automatically switches locale in frontend for proper translation support
-- **HTML Lang Attribute**: Updates the `<html lang="">` attribute to match the selected language
-- **Translation Links & Hreflang**: Link related posts in different languages and automatically generate SEO-friendly hreflang meta tags
+- **HTML Lang Attribute**: Updates the `<html lang="">` attribute to match the selected language, region included (`lang="de-DE"`)
+- **Translation Links & Hreflang**: Link related posts in different languages and automatically generate SEO-friendly hreflang meta tags as proper BCP 47, including an `x-default`
 - **SEO Plugin Compatible**: SEO plugins (Yoast, Rank Math, etc.) automatically detect the locale change and output correct `og:locale` meta tags
 - **Plugin Compatibility**: Other plugins respect the locale change for their frontend output
 - **Oxygen Builder Support**: Provides conditional logic for Oxygen Builder based on selected language
@@ -115,17 +115,42 @@ You have three versions of the same page:
 - Post 3 automatically links to Posts 1 & 2
 - All three posts display proper hreflang tags
 
-**Generated HTML on each page:**
+**Generated HTML on each page** (site default language `de_DE`):
 ```html
-<!-- On German page -->
-<link rel="alternate" hreflang="de" href="https://example.com/german-page/" />
-<link rel="alternate" hreflang="en" href="https://example.com/english-page/" />
-<link rel="alternate" hreflang="fr" href="https://example.com/french-page/" />
+<!-- Hreflang tags by JPKCom Simple Lang -->
+<link rel="alternate" hreflang="de-DE" href="https://example.com/german-page/" />
+<link rel="alternate" hreflang="en-US" href="https://example.com/english-page/" />
+<link rel="alternate" hreflang="fr-FR" href="https://example.com/french-page/" />
+<link rel="alternate" hreflang="x-default" href="https://example.com/german-page/" />
+<!-- End hreflang tags -->
 ```
+
+#### Tag format
+
+Tags are proper BCP 47 and carry the region: `de-DE`, `de-AT`, `pt-BR`. WordPress
+variant suffixes have no BCP 47 meaning and are dropped, so `de_DE_formal` and
+`de_CH_informal` become `de-DE` and `de-CH`, and `pt_PT_ao90` becomes `pt-PT` — a
+formal and an informal German page are the same language and region as far as a
+search engine is concerned.
+
+Because the set is keyed by tag, two versions that resolve to the same tag —
+two posts both set to `de_DE`, or `de_DE` plus `de_DE_formal` — contribute one
+entry rather than a contradictory pair. The first one wins. Tags are sorted
+alphabetically for a stable output.
+
+#### x-default
+
+`x-default` points at the version in the site's default language: the page to
+serve when none of the declared languages matches the visitor. It is emitted in
+addition to that version's own tag, which is how the annotation is meant to be
+used, and matched on the BCP 47 tag — so on a `de_DE` site a page set to
+`de_DE_formal` still counts as the German version. When none of the linked
+versions carries the default language, no `x-default` is emitted.
 
 #### SEO Benefits
 
 - **Language Targeting**: Search engines understand which language each page targets
+- **Regional Targeting**: `de_DE` and `de_AT` are told apart instead of both collapsing to `de`
 - **Duplicate Content Prevention**: Signals that pages are translations, not duplicates
 - **Regional Search Results**: Users see the correct language version in their regional search results
 - **Self-Referencing Tags**: Each page includes its own language in hreflang tags (SEO best practice)
@@ -150,12 +175,29 @@ $current_lang = jpkcom_simplelang_get_current_language();
 // Returns: 'de_DE', 'fr_FR', etc. or null if using site default
 ```
 
-#### Convert locale to language code:
+#### Convert a locale to a BCP 47 tag:
 ```php
-// Convert locale (de_DE) to language code (de) for HTML lang attribute
+// Convert locale (de_DE) to a BCP 47 tag (de-DE) for lang / hreflang
+$tag = jpkcom_simplelang_get_bcp47( 'de_DE' );
+// Returns: 'de-DE'
+
+// WordPress variant suffixes are dropped
+$tag = jpkcom_simplelang_get_bcp47( 'de_DE_formal' );
+// Returns: 'de-DE'
+```
+
+This is what the plugin itself uses for the `lang` attribute and the hreflang
+tags since 1.2.9. Prefer it for any language markup.
+
+#### Convert locale to a bare language code:
+```php
+// Convert locale (de_DE) to the language subtag (de)
 $lang_code = jpkcom_simplelang_get_language_code( 'de_DE' );
 // Returns: 'de'
 ```
+
+Still available and unchanged, but the poorer choice for markup: a bare subtag
+cannot express the region. Use `jpkcom_simplelang_get_bcp47()` instead.
 
 ### Oxygen Builder Conditions
 
@@ -222,6 +264,10 @@ Simple Lang is intentionally simple. It doesn't create separate translations of 
 
 Simple Lang uses WordPress's built-in language system. Any language pack installed on your WordPress site is automatically available in the dropdown. You can install language packs via **Settings → General → Site Language**.
 
+A locale is accepted when `get_available_languages()` reports it, plus `en_US`. That includes WordPress variant locales such as `de_DE_formal`, `nl_NL_formal`, `de_CH_informal` and `pt_PT_ao90`. Up to 1.2.8 a regex rejected exactly those: the meta box offered them, `save_post` dropped them, and nothing said so.
+
+If a post's language pack is missing — uninstalled after the fact, for instance — the editor says so and the stored language stays selectable, so pressing Update does not silently clear it. In the frontend such a post falls back to the site language rather than advertising a language WordPress has not loaded.
+
 WordPress supports 200+ languages. See the [full list of available languages](https://translate.wordpress.org/).
 
 ### Does this translate my content?
@@ -257,10 +303,12 @@ Simple Lang automatically generates hreflang tags when you link posts together u
 
 **What's included:**
 - Automatic hreflang tag generation
+- Proper BCP 47 tags with the region (`de-DE`, `de-AT`, `pt-BR`), since 1.2.9
+- An `x-default` pointing at the version in the site's default language, since 1.2.9
 - Self-referencing hreflang tags (SEO best practice)
 - Bidirectional translation linking
 - Only published posts appear in hreflang tags
-- Tags sorted by language code for consistency
+- Tags sorted for consistency
 
 **SEO Plugin Compatibility:**
 - Works alongside Yoast SEO, Rank Math, and other SEO plugins
@@ -268,7 +316,6 @@ Simple Lang automatically generates hreflang tags when you link posts together u
 - Hreflang tags appear early in `<head>` (before most SEO plugins)
 
 **What's NOT included:**
-- x-default hreflang tags (may be added in future versions)
 - Automatic translation suggestions
 - Language switcher widgets
 
