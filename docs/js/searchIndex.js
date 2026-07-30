@@ -91,6 +91,11 @@ Search.appendIndex(
             "summary": "Convert\u0020locale\u0020to\u0020language\u0020code",
             "url": "namespaces/default.html#function_jpkcom_simplelang_get_language_code"
         },                {
+            "fqsen": "\\jpkcom_simplelang_get_bcp47\u0028\u0029",
+            "name": "jpkcom_simplelang_get_bcp47",
+            "summary": "Convert\u0020a\u0020WordPress\u0020locale\u0020to\u0020a\u0020BCP\u002047\u0020language\u0020tag",
+            "url": "namespaces/default.html#function_jpkcom_simplelang_get_bcp47"
+        },                {
             "fqsen": "\\jpkcom_simplelang_get_current_language\u0028\u0029",
             "name": "jpkcom_simplelang_get_current_language",
             "summary": "Get\u0020current\u0020frontend\u0020language",
@@ -140,6 +145,11 @@ Search.appendIndex(
             "name": "jpkcom_simplelang_render_meta_box",
             "summary": "Render\u0020language\u0020selection\u0020meta\u0020box",
             "url": "namespaces/default.html#function_jpkcom_simplelang_render_meta_box"
+        },                {
+            "fqsen": "\\jpkcom_simplelang_is_valid_locale\u0028\u0029",
+            "name": "jpkcom_simplelang_is_valid_locale",
+            "summary": "Check\u0020whether\u0020a\u0020locale\u0020may\u0020be\u0020stored\u0020as\u0020a\u0020post\u0020language",
+            "url": "namespaces/default.html#function_jpkcom_simplelang_is_valid_locale"
         },                {
             "fqsen": "\\jpkcom_simplelang_get_post_language\u0028\u0029",
             "name": "jpkcom_simplelang_get_post_language",

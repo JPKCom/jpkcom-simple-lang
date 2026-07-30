@@ -3,7 +3,7 @@
 **Plugin Name:** JPKCom Simple Lang  
 **Plugin URI:** https://github.com/JPKCom/jpkcom-simple-lang  
 **Description:** Simple language selection for frontend pages.  
-**Version:** 1.2.8  
+**Version:** 1.2.9  
 **Author:** Jean Pierre Kolb <jpk@jpkc.com>  
 **Author URI:** https://www.jpkc.com/  
 **Contributors:** JPKCom  
@@ -12,7 +12,7 @@
 **Tested up to:** 7.1  
 **Requires PHP:** 8.3  
 **Network:** true  
-**Stable tag:** 1.2.8  
+**Stable tag:** 1.2.9  
 **License:** GPL-2.0-or-later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 **Text Domain:** jpkcom-simple-lang  
@@ -457,6 +457,19 @@ DELETE FROM wp_postmeta WHERE meta_key = '_jpkcom_simplelang_language';
 
 
 ## Changelog
+
+### 1.2.9
+* Fixed: WordPress variant locales could not be saved. The check was a regex, `/^[a-z]{2,3}(_[A-Z]{2})?$/`, which silently rejected `de_DE_formal`, `nl_NL_formal`, `de_CH_informal`, `pt_PT_ao90` and `art_xemoji` — the meta box offered them, `save_post` dropped them, and nothing said so. This plugin even ships its own `de_DE_formal` translation. Validation now runs against `get_available_languages()` plus `en_US`, which is both stricter (no invented locales) and complete
+* Fixed: hreflang lost the region. `de_DE` and `de_AT` both came out as `hreflang="de"`, so a two-language set advertised the same value for two different URLs and the annotation became ambiguous — regional variants are exactly what hreflang is for. Tags are now proper BCP 47 (`de-DE`, `de-AT`, `pt-BR`), WordPress variant suffixes are dropped (`de_DE_formal` → `de-DE`), and two versions resolving to the same tag contribute one entry instead of a contradictory pair
+* Added: an `x-default` link pointing at the version in the site's default language, matched on the BCP 47 tag so a `de_DE_formal` page still counts as the German version on a `de_DE` site. Omitted when no version carries the default language
+* Fixed: the `lang` attribute on `<html>` now carries the region too (`lang="de-DE"` instead of `lang="de"`)
+* Fixed: a failed locale switch is no longer treated as a success. `switch_to_locale()` returns false when the language pack is missing; that return value was ignored, so a page set to an uninstalled language advertised `lang="fr"` and `hreflang="fr"` while serving the site language, and `wp_footer` restored a switch that had never happened
+* Added: the editor now warns when a post's language pack is not installed, and the stored language stays selectable in the meta box. Previously it vanished from the dropdown, so simply pressing Update silently cleared the post's language without anyone touching the field
+* Removed: the plugin's own `locale` filter. `switch_to_locale()` installs WordPress' own filter, so it was redundant when the switch succeeded — and when it failed it was the thing that made the request claim a language WordPress had not loaded. It also ran ahead of the core locale switcher, so a later `switch_to_locale()` by other code could be overridden
+* Fixed: the settings sanitiser raised a `TypeError` on a non-array value. It was typed `?array`, which rejected the value before the `is_array()` guard inside could run, so a hand-edited options form produced a fatal instead of the intended fallback
+* Added: `tests/test-language.php` — 36 cases covering locale validation, BCP 47 conversion, the hreflang and x-default output and the settings sanitiser; 13 of them fail against 1.2.8. CI runs it on every pull request and push to `main`
+* i18n: new strings translated for `de_DE` and `de_DE_formal`, `.pot`, `.mo` and `.l10n.php` regenerated. A `translators:` comment that sat too far from its `_n()` call to reach the POT was moved next to it
+* i18n: the shipped translation files were carrying about 110 foreign strings — entries extracted from WordPress core's `theme.json`, WooCommerce's email editor and the Twenty Twenty-Five theme, from a POT that had once been generated in the wrong working directory. Regenerating from the plugin directory alone brings the catalogue down to the 47 strings this plugin actually has. The `.po` headers, including `Plural-Forms`, are unchanged
 
 ### 1.2.8
 * Changed: the update manifest generator now defaults a missing `Network:` header to false instead of true, matching WordPress' own default. No change for this plugin, which declares `Network: true` explicitly

@@ -4,7 +4,7 @@
 https://github.com/JPKCom/jpkcom-simple-lang<br />
 <strong>Description:</strong> Simple language selection for frontend
 pages.<br />
-<strong>Version:</strong> 1.2.8<br />
+<strong>Version:</strong> 1.2.9<br />
 <strong>Author:</strong> Jean Pierre Kolb <a href="mailto:jpk@jpkc.com"
 class="email">jpk@jpkc.com</a><br />
 <strong>Author URI:</strong> https://www.jpkc.com/<br />
@@ -15,7 +15,7 @@ Translation, i18n, Hreflang, SEO, Oxygen Builder<br />
 <strong>Tested up to:</strong> 7.1<br />
 <strong>Requires PHP:</strong> 8.3<br />
 <strong>Network:</strong> true<br />
-<strong>Stable tag:</strong> 1.2.8<br />
+<strong>Stable tag:</strong> 1.2.9<br />
 <strong>License:</strong> GPL-2.0-or-later<br />
 <strong>License URI:</strong>
 https://www.gnu.org/licenses/gpl-2.0.html<br />
@@ -522,7 +522,76 @@ the database. If you want to remove this data, run:</p>
 <div class="sourceCode" id="cb7"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> wp_postmeta <span class="kw">WHERE</span> meta_key <span class="op">=</span> <span class="st">&#39;_jpkcom_simplelang_language&#39;</span>;</span></code></pre></div>
 <h2 id="changelog">Changelog</h2>
-<h3 id="section">1.2.8</h3>
+<h3 id="section">1.2.9</h3>
+<ul>
+<li>Fixed: WordPress variant locales could not be saved. The check was a
+regex, <code>/^[a-z]{2,3}(_[A-Z]{2})?$/</code>, which silently rejected
+<code>de_DE_formal</code>, <code>nl_NL_formal</code>,
+<code>de_CH_informal</code>, <code>pt_PT_ao90</code> and
+<code>art_xemoji</code> — the meta box offered them,
+<code>save_post</code> dropped them, and nothing said so. This plugin
+even ships its own <code>de_DE_formal</code> translation. Validation now
+runs against <code>get_available_languages()</code> plus
+<code>en_US</code>, which is both stricter (no invented locales) and
+complete</li>
+<li>Fixed: hreflang lost the region. <code>de_DE</code> and
+<code>de_AT</code> both came out as <code>hreflang="de"</code>, so a
+two-language set advertised the same value for two different URLs and
+the annotation became ambiguous — regional variants are exactly what
+hreflang is for. Tags are now proper BCP 47 (<code>de-DE</code>,
+<code>de-AT</code>, <code>pt-BR</code>), WordPress variant suffixes are
+dropped (<code>de_DE_formal</code> → <code>de-DE</code>), and two
+versions resolving to the same tag contribute one entry instead of a
+contradictory pair</li>
+<li>Added: an <code>x-default</code> link pointing at the version in the
+site’s default language, matched on the BCP 47 tag so a
+<code>de_DE_formal</code> page still counts as the German version on a
+<code>de_DE</code> site. Omitted when no version carries the default
+language</li>
+<li>Fixed: the <code>lang</code> attribute on <code>&lt;html&gt;</code>
+now carries the region too (<code>lang="de-DE"</code> instead of
+<code>lang="de"</code>)</li>
+<li>Fixed: a failed locale switch is no longer treated as a success.
+<code>switch_to_locale()</code> returns false when the language pack is
+missing; that return value was ignored, so a page set to an uninstalled
+language advertised <code>lang="fr"</code> and
+<code>hreflang="fr"</code> while serving the site language, and
+<code>wp_footer</code> restored a switch that had never happened</li>
+<li>Added: the editor now warns when a post’s language pack is not
+installed, and the stored language stays selectable in the meta box.
+Previously it vanished from the dropdown, so simply pressing Update
+silently cleared the post’s language without anyone touching the
+field</li>
+<li>Removed: the plugin’s own <code>locale</code> filter.
+<code>switch_to_locale()</code> installs WordPress’ own filter, so it
+was redundant when the switch succeeded — and when it failed it was the
+thing that made the request claim a language WordPress had not loaded.
+It also ran ahead of the core locale switcher, so a later
+<code>switch_to_locale()</code> by other code could be overridden</li>
+<li>Fixed: the settings sanitiser raised a <code>TypeError</code> on a
+non-array value. It was typed <code>?array</code>, which rejected the
+value before the <code>is_array()</code> guard inside could run, so a
+hand-edited options form produced a fatal instead of the intended
+fallback</li>
+<li>Added: <code>tests/test-language.php</code> — 36 cases covering
+locale validation, BCP 47 conversion, the hreflang and x-default output
+and the settings sanitiser; 13 of them fail against 1.2.8. CI runs it on
+every pull request and push to <code>main</code></li>
+<li>i18n: new strings translated for <code>de_DE</code> and
+<code>de_DE_formal</code>, <code>.pot</code>, <code>.mo</code> and
+<code>.l10n.php</code> regenerated. A <code>translators:</code> comment
+that sat too far from its <code>_n()</code> call to reach the POT was
+moved next to it</li>
+<li>i18n: the shipped translation files were carrying about 110 foreign
+strings — entries extracted from WordPress core’s
+<code>theme.json</code>, WooCommerce’s email editor and the Twenty
+Twenty-Five theme, from a POT that had once been generated in the wrong
+working directory. Regenerating from the plugin directory alone brings
+the catalogue down to the 47 strings this plugin actually has. The
+<code>.po</code> headers, including <code>Plural-Forms</code>, are
+unchanged</li>
+</ul>
+<h3 id="section-1">1.2.8</h3>
 <ul>
 <li>Changed: the update manifest generator now defaults a missing
 <code>Network:</code> header to false instead of true, matching
@@ -536,7 +605,7 @@ repository are now English throughout, and the developer notes in
 <code>CLAUDE.md</code> were translated and trimmed. No effect on the
 shipped plugin</li>
 </ul>
-<h3 id="section-1">1.2.7</h3>
+<h3 id="section-2">1.2.7</h3>
 <ul>
 <li>Changed: <code>Tested up to</code> raised to WordPress 7.1</li>
 <li>Changed: the bundled updater’s runtime floor now matches the
@@ -550,14 +619,14 @@ and <code>tested</code> now say 6.9 and 7.1. They only apply when the
 README metadata cannot be read, but a stale fallback would have
 published a minimum the plugin no longer supports</li>
 </ul>
-<h3 id="section-2">1.2.6</h3>
+<h3 id="section-3">1.2.6</h3>
 <ul>
 <li>Changed: the plugin banners
 (<code>assets/banner-1544x500.avif</code>,
 <code>assets/banner-772x250.avif</code>) are now a plain
 <code>#3c4955</code> surface with no lettering</li>
 </ul>
-<h3 id="section-3">1.2.5</h3>
+<h3 id="section-4">1.2.5</h3>
 <ul>
 <li>CI: the release step no longer copies the staging directory into
 itself, so the ZIP has no empty
@@ -570,7 +639,7 @@ to full commit SHAs</li>
 <li>CI: security and regression tests now run on every pull request,
 where a plugin has them</li>
 </ul>
-<h3 id="section-4">1.2.4</h3>
+<h3 id="section-5">1.2.4</h3>
 <ul>
 <li>Security: update packages are now verified <em>before</em>
 installation — the verified file is handed to WordPress instead of being
@@ -597,14 +666,14 @@ check, YAML validation, action-pinning guard)</li>
 <li>Housekeeping: removed stray editor backups from the release
 package</li>
 </ul>
-<h3 id="section-5">1.2.3 - 2026-06-16</h3>
+<h3 id="section-6">1.2.3 - 2026-06-16</h3>
 <ul>
 <li>Raised the minimum WordPress version to 6.9 and “Tested up to” to
 WordPress 7.0</li>
 <li>Switched license metadata to the SPDX identifier
 <code>GPL-2.0-or-later</code> with the HTTPS license URI</li>
 </ul>
-<h3 id="section-6">1.2.2 - 2026-06-16</h3>
+<h3 id="section-7">1.2.2 - 2026-06-16</h3>
 <ul>
 <li>Security: updater prefers an exact match against the manifest
 <code>download_url</code> over the slug heuristic, so a tampered
@@ -621,7 +690,7 @@ completing the <code>no_update</code> transient entry
 (<code>new_version</code>, <code>package</code>, <code>tested</code>,
 <code>requires_php</code>)</li>
 </ul>
-<h3 id="section-7">1.2.1 - 2026-03-13</h3>
+<h3 id="section-8">1.2.1 - 2026-03-13</h3>
 <p><strong>Bug Fixes</strong></p>
 <ul>
 <li>Fixed manual ZIP upload failing with “No valid URL” error caused by
@@ -631,7 +700,7 @@ URLs</li>
 WordPress from recognizing it as an update to the existing
 installation</li>
 </ul>
-<h3 id="section-8">1.2.0 - 2026-03-13</h3>
+<h3 id="section-9">1.2.0 - 2026-03-13</h3>
 <p><strong>Bug Fixes</strong></p>
 <ul>
 <li>Fixed language selection not saving for locales without country code
@@ -639,7 +708,7 @@ installation</li>
 <li>Updated locale validation regex to accept both short
 (<code>xx</code>) and full (<code>xx_XX</code>) locale formats</li>
 </ul>
-<h3 id="section-9">1.1.1 - 2025-12-17</h3>
+<h3 id="section-10">1.1.1 - 2025-12-17</h3>
 <p><strong>Bug Fixes</strong></p>
 <ul>
 <li>Fixed duplicate “Settings saved” message on admin settings page</li>
@@ -672,7 +741,7 @@ condition</li>
 <li>Removed redundant <code>settings_errors()</code> call in admin
 settings page</li>
 </ul>
-<h3 id="section-10">1.1.0 - 2025-12-17</h3>
+<h3 id="section-11">1.1.0 - 2025-12-17</h3>
 <p><strong>New Features</strong></p>
 <ul>
 <li><strong>Translation Links</strong>: New meta box for linking posts
@@ -711,7 +780,7 @@ entries per post)</li>
 <li>All translation sync operations use loop prevention for data
 integrity</li>
 </ul>
-<h3 id="section-11">1.0.0 - 2025-12-16</h3>
+<h3 id="section-12">1.0.0 - 2025-12-16</h3>
 <p><strong>Initial Release</strong></p>
 <ul>
 <li>Language selection dropdown in post editor sidebar</li>

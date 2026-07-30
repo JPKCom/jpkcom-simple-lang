@@ -162,6 +162,13 @@
 <dd>Convert locale to language code</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_get_bcp47">jpkcom_simplelang_get_bcp47()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Convert a WordPress locale to a BCP 47 language tag</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
     <a class="" href="namespaces/default.html#function_jpkcom_simplelang_get_current_language">jpkcom_simplelang_get_current_language()</a>
     <span>
                                 &nbsp;: string|null    </span>
@@ -188,7 +195,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/frontend-language.php"><a href="files/includes-frontend-language.html"><abbr title="includes/frontend-language.php">frontend-language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">124</span>
+    <span class="phpdocumentor-element-found-in__line">136</span>
 
     </aside>
 
@@ -200,6 +207,9 @@
                     <span class="phpdocumentor-signature__name">jpkcom_simplelang_get_language_code</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$locale</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
         <section class="phpdocumentor-description"><p>Converts a locale string (e.g., de_DE) to a language code (e.g., de).</p>
+<p>Kept for backwards compatibility. For markup that needs a language tag use
+<a href="namespaces/default.html#function_jpkcom_simplelang_get_bcp47"><abbr title="\jpkcom_simplelang_get_bcp47()">jpkcom_simplelang_get_bcp47()</abbr></a> instead — a bare subtag cannot express
+de-DE versus de-AT, and hreflang needs that distinction.</p>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -242,6 +252,72 @@
 
 </article>
                     <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_get_bcp47">
+        jpkcom_simplelang_get_bcp47()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_get_bcp47" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/frontend-language.php"><a href="files/includes-frontend-language.html"><abbr title="includes/frontend-language.php">frontend-language.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">156</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Convert a WordPress locale to a BCP 47 language tag</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_get_bcp47</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$locale</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+        <section class="phpdocumentor-description"><p><code class="prettyprint">de_DE</code> becomes <code class="prettyprint">de-DE</code>, <code class="prettyprint">en_US</code> becomes <code class="prettyprint">en-US</code>, <code class="prettyprint">ca</code> stays <code class="prettyprint">ca</code>. WordPress
+variant suffixes carry no BCP 47 meaning and are dropped, so <code class="prettyprint">de_DE_formal</code>
+and <code class="prettyprint">de_CH_informal</code> become <code class="prettyprint">de-DE</code> and <code class="prettyprint">de-CH</code>, and <code class="prettyprint">pt_PT_ao90</code> becomes
+<code class="prettyprint">pt-PT</code> — a formal and an informal German page are the same language and
+region as far as a search engine is concerned.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$locale</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The WordPress locale (e.g. 'de_DE', 'de_DE_formal').</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="function_jpkcom_simplelang_get_bcp47_tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_get_bcp47_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.2.9</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The BCP 47 tag (e.g. 'de-DE').</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
     <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_get_current_language">
         jpkcom_simplelang_get_current_language()
         <a href="namespaces/default.html#function_jpkcom_simplelang_get_current_language" class="headerlink"><i class="fas fa-link"></i></a>
@@ -250,7 +326,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/frontend-language.php"><a href="files/includes-frontend-language.html"><abbr title="includes/frontend-language.php">frontend-language.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">139</span>
+    <span class="phpdocumentor-element-found-in__line">171</span>
 
     </aside>
 
@@ -313,6 +389,7 @@
                             <li class="phpdocumentor-on-this-page-section__title">Functions</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_get_bcp47">jpkcom_simplelang_get_bcp47()</a></li>
                                                     <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_get_current_language">jpkcom_simplelang_get_current_language()</a></li>
                                                     <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_get_language_code">jpkcom_simplelang_get_language_code()</a></li>
                                             </ul>

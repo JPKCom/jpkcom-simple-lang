@@ -162,6 +162,13 @@
 <dd>Render language selection meta box</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_is_valid_locale">jpkcom_simplelang_is_valid_locale()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+<dd>Check whether a locale may be stored as a post language</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
     <a class="" href="namespaces/default.html#function_jpkcom_simplelang_get_post_language">jpkcom_simplelang_get_post_language()</a>
     <span>
                                 &nbsp;: string|null    </span>
@@ -234,6 +241,76 @@
     
 </article>
                     <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_is_valid_locale">
+        jpkcom_simplelang_is_valid_locale()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_is_valid_locale" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/meta-box.php"><a href="files/includes-meta-box.html"><abbr title="includes/meta-box.php">meta-box.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">201</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Check whether a locale may be stored as a post language</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_is_valid_locale</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$locale</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+        <section class="phpdocumentor-description"><p>Validated against the locales WordPress actually has installed, plus <code class="prettyprint">en_US</code>,
+which needs no language pack. That is the same list the meta box builds its
+options from, so anything offered can also be saved.</p>
+<p>Up to 1.2.8 this was a regex, <code class="prettyprint">/^[a-z]{2,3}(_[A-Z]{2})?$/</code>, which silently
+rejected every WordPress variant locale: <code class="prettyprint">de_DE_formal</code>, <code class="prettyprint">nl_NL_formal</code>,
+<code class="prettyprint">de_CH_informal</code>, <code class="prettyprint">pt_PT_ao90</code> and <code class="prettyprint">art_xemoji</code>. The meta box offered them,
+<code class="prettyprint">save_post</code> dropped them, and nothing said so — this plugin even ships
+<code class="prettyprint">de_DE_formal</code> translations of its own. A whitelist is both stricter (no
+invented locales) and complete (every real one).</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$locale</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The locale to check.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="function_jpkcom_simplelang_is_valid_locale_tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_is_valid_locale_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.2.9</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>True when the locale may be stored.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
     <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_get_post_language">
         jpkcom_simplelang_get_post_language()
         <a href="namespaces/default.html#function_jpkcom_simplelang_get_post_language" class="headerlink"><i class="fas fa-link"></i></a>
@@ -242,7 +319,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/meta-box.php"><a href="files/includes-meta-box.html"><abbr title="includes/meta-box.php">meta-box.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">177</span>
+    <span class="phpdocumentor-element-found-in__line">282</span>
 
     </aside>
 
@@ -318,6 +395,7 @@
                 <li>
                     <ul class="phpdocumentor-list -clean">
                                                     <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_get_post_language">jpkcom_simplelang_get_post_language()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_is_valid_locale">jpkcom_simplelang_is_valid_locale()</a></li>
                                                     <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_render_meta_box">jpkcom_simplelang_render_meta_box()</a></li>
                                             </ul>
                 </li>
