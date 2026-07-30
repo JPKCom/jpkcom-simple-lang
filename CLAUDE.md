@@ -273,60 +273,25 @@ Provides three custom conditions for Oxygen Builder if `oxygen_vsb_register_cond
 
 ## Version Management
 
-Version numbers appear in:
-- `jpkcom-simple-lang.php` (plugin header line 6)
-- `jpkcom-simple-lang.php` (JPKCOM_SIMPLELANG_VERSION constant)
-- `README.md` (header metadata and changelog)
-- `phpdoc.xml` (version number attribute)
+Version numbers appear in five places and must be kept in sync:
 
-When releasing a new version, update all four locations.
+- `jpkcom-simple-lang.php` — header `Version:`
+- `jpkcom-simple-lang.php` — header `Stable tag:`
+- `jpkcom-simple-lang.php` — `JPKCOM_SIMPLELANG_VERSION`
+- `phpdoc.xml` — `<version number="…">`
+- `README.md` — `**Version:**`, `**Stable tag:**`, plus a new `### x.y.z` changelog block
 
 ## Release Process
 
-**Supply-chain: GitHub Actions sind auf Commit-SHAs gepinnt.** Alle `uses:`-Zeilen in `.github/workflows/` referenzieren einen 40-stelligen Commit-SHA statt eines Tags (`@v4`), mit der Version als Kommentar dahinter. Grund: ein Tag ist ein beweglicher Zeiger und lässt sich umhängen, ein SHA nicht. Da dieser Workflow die Plugin-ZIP **und** die SHA256-Summe erzeugt, der der Auto-Updater vertraut, würde eine kompromittierte Action ein manipuliertes ZIP samt passender Prüfsumme ausliefern — die Prüfsumme sichert den Transportweg, das Pinning den Build. `.github/dependabot.yml` hält die Pins wöchentlich aktuell (ein gesammelter PR). Beim Aktualisieren immer SHA *und* Versionskommentar zusammen ändern.
+**Actions are pinned to commit SHAs.** Every `uses:` line in `.github/workflows/` references a 40-character commit SHA instead of a tag (`@v4`), with the version as a trailing comment. A tag is a movable pointer and can be repointed; a SHA cannot. Since the release workflow builds the plugin ZIP **and** the SHA256 checksum the auto-updater trusts, a compromised action would ship a tampered ZIP together with a matching checksum — the checksum secures the transport, the pinning secures the build. `.github/dependabot.yml` keeps the pins current weekly in one combined PR; when updating, always change the SHA *and* the version comment together.
 
-**CI & Dependabot-Auto-Merge.** Zwei zusätzliche Workflows:
+**CI** (`.github/workflows/ci.yml`) runs on every pull request *and* on every push to `main` — a required status check only covers pull requests, so a direct push with bypass rights would otherwise skip the checks entirely. It runs `php -l` over all PHP files; flags invalid named arguments to internal PHP functions (catches `sprintf(format:, values:)` → `ArgumentCountError`, which `php -l` does not see); validates the YAML of every `.github` file; asserts every action is pinned to a 40-character commit SHA; and executes `tests/test-*.php` where present.
 
-- `.github/workflows/ci.yml` — läuft auf jedem `pull_request`. Prüft: `php -l` über alle PHP-Dateien; ungültige benannte Argumente an internen PHP-Funktionen (fängt die Klasse `sprintf(format:, values:)` → `ArgumentCountError`, die `php -l` nicht sieht); YAML-Validität aller `.github`-Dateien; und dass jede Action auf einem 40-stelligen Commit-SHA gepinnt ist (beide YAML-Formen, `uses:` und `- uses:`).
-- `.github/workflows/dependabot-auto-merge.yml` — merged Dependabot-PRs automatisch, aber nur `semver-patch` und `semver-minor`. Major-Updates bekommen stattdessen einen Kommentar und bleiben manuell. Greift nur bei PRs von `dependabot[bot]` aus diesem Repo, nie aus Forks.
+**Dependabot auto-merge** (`.github/workflows/dependabot-auto-merge.yml`) merges only `semver-patch` and `semver-minor`, and only PRs from `dependabot[bot]` in this repo — never from forks. Major updates get a comment and stay manual. Two repo settings are prerequisites, otherwise this is useless or outright dangerous: "Allow auto-merge" must be enabled, and branch protection must list `CI / Lint & Guards` as a **required status check** — without it `gh pr merge --auto` merges *immediately*, since there is nothing left to wait for. Together with `cooldown: default-days: 7` no action release is adopted during its first week.
 
-> **Zwei Repo-Einstellungen sind Voraussetzung, sonst ist der Auto-Merge wirkungslos oder gefährlich:**
-> 1. **„Allow auto-merge"** muss in den Repo-Settings aktiv sein.
-> 2. Der Branch-Schutz muss den CI-Job als **Required status check** führen (`CI / Lint & Guards`). Fehlt das, merged `gh pr merge --auto` **sofort** — es gibt dann nichts, worauf es warten müsste, und die CI wäre reine Dekoration.
+**Releasing.** Bump the five version locations, add the changelog block, commit, then push a `v*` tag — that tag push is the only trigger. `.github/workflows/release.yml` creates the GitHub release itself; do **not** create it by hand first. Pipeline: README metadata via Pandoc → slug-named ZIP (excludes `.git`, `.github`, `.claude`, `CLAUDE.md`, `tests`, `tools`, `phpdoc.xml`, `docs`, build artefacts) → SHA256 → upload ZIP + `.sha256` → `plugin_jpkcom-simple-lang.json` manifest → PHPDoc → deploy to `gh-pages`.
 
-Zusammen mit `cooldown: default-days: 7` in der `dependabot.yml` heißt das: kein Action-Release wird in seiner ersten Woche übernommen, patch/minor laufen danach automatisch durch (sofern CI grün), major bleibt eine bewusste Entscheidung.
-
-
-The plugin uses GitHub Actions for automated releases (`.github/workflows/release.yml`):
-
-### Workflow Steps:
-
-1. **Trigger:** Publishing a GitHub release
-2. **Extract metadata** from README.md
-3. **Package plugin** excluding development files
-4. **Generate SHA256 checksum** for security
-5. **Upload to release** as ZIP attachment
-6. **Generate JSON manifest** for auto-updates
-7. **Generate PHPDoc** API documentation
-8. **Deploy to GitHub Pages** (docs and manifest)
-
-### Files Excluded from ZIP:
-
-- `.git`, `.github`, `.claude` directories
-- `.gitignore`, `CLAUDE.md`
-- `phpdoc.xml`, `phpDocumentor.phar`
-- `.phpdoc/`, `docs/` directories
-- Any `.tgz` or `.DS_Store` files
-
-### Manual Release Steps:
-
-1. Update version numbers in all locations
-2. Update `README.md` changelog
-3. Commit changes: `git commit -m "Release vX.Y.Z"`
-4. Create tag: `git tag vX.Y.Z`
-5. Push: `git push origin main --tags`
-6. Create GitHub release from tag
-7. GitHub Actions automatically builds and deploys
+The manifest's `checksum_sha256` is what the updater verifies on every update, so ZIP and manifest must come from the same run — which is why the manifest is only rebuilt on a tag push.
 
 ## Common Patterns
 
@@ -411,105 +376,9 @@ The plugin will load your file instead of its own.
 - **Option keys:** `jpkcom_simplelang_*` (no leading underscore)
 - **CSS classes:** `jpkcom-simplelang-*` (lowercase with hyphens)
 
-### File Structure
+### File and Function Conventions
 
-```php
-<?php
-/**
- * File Description
- *
- * Longer description of what this file does.
- *
- * @package   JPKCom_Simple_Lang
- * @since     1.0.0
- */
-
-declare(strict_types=1);
-
-if ( ! defined( constant_name: 'ABSPATH' ) ) {
-    exit;
-}
-
-// Code here
-```
-
-### Function Documentation
-
-```php
-/**
- * Brief one-line description
- *
- * Longer description explaining what the function does,
- * including implementation details and important notes.
- *
- * @since 1.0.0
- *
- * @param string $param_name Brief description. Defaults to ''.
- * @param int    $another    Brief description.
- * @return string|null Description of return value.
- *
- * @global WP_Post $post Current post object (if applicable).
- */
-function jpkcom_simplelang_example( string $param_name = '', int $another = 0 ): ?string {
-    // Function body
-}
-```
-
-### Hook Usage
-
-```php
-// Action hooks
-add_action( 'hook_name', function(): void {
-    // Code here
-}, priority );
-
-// Filter hooks
-add_filter( 'filter_name', function( string $value ): string {
-    return $value;
-}, priority );
-
-// With callback function
-add_action( 'hook_name', 'jpkcom_simplelang_callback_function', priority );
-```
-
-### Security Patterns
-
-**1. Input Validation:**
-```php
-$value = sanitize_text_field( $_POST['field'] );
-$email = sanitize_email( $_POST['email'] );
-$url = esc_url_raw( $_POST['url'] );
-$post_types = array_map( 'sanitize_key', $_POST['post_types'] );
-```
-
-**2. Output Escaping:**
-```php
-echo esc_html( $text );                  // Plain text
-echo esc_attr( $attribute );             // HTML attributes
-echo esc_url( $url );                    // URLs in HTML
-echo esc_url_raw( $url );                // URLs in functions
-echo wp_kses_post( $html );              // HTML content
-```
-
-**3. Nonce Verification:**
-```php
-wp_nonce_field( 'action_name', 'nonce_name' );
-
-if ( ! wp_verify_nonce( $_POST['nonce_name'], 'action_name' ) ) {
-    return;
-}
-```
-
-**4. Capability Checks:**
-```php
-if ( ! current_user_can( 'manage_options' ) ) {
-    return;
-}
-
-if ( ! current_user_can( $post_type->cap->edit_post, $post_id ) ) {
-    return;
-}
-```
+Every file opens with a PHPDoc file block (`@package JPKCom_Simple_Lang`, `@since`), then `declare(strict_types=1);`, then an `ABSPATH` guard. Every function carries a docblock with `@since`, typed `@param`s and `@return`. Standard WordPress sanitising/escaping and nonce plus capability checks apply — see the existing files for the house style rather than a template here.
 
 ## Plugin Constants
 
@@ -699,15 +568,9 @@ add_action( 'template_redirect', function() {
 }, 999 );
 ```
 
-## Security Best Practices
+## Security Notes
 
-1. **Never trust user input** - Always sanitize and validate
-2. **Always escape output** - Use appropriate `esc_*()` functions
-3. **Check capabilities** - Verify user permissions before actions
-4. **Use nonces** - Verify form submissions with `wp_verify_nonce()`
-5. **Validate locale format** - Use regex to validate locale strings
-6. **Checksum verification** - Auto-updater verifies SHA256 checksums
-7. **Prevent direct access** - All files check for `ABSPATH` constant
+Beyond the usual sanitise/escape/nonce/capability discipline, two things are specific to this plugin: locale strings are validated against a regex before they reach `switch_to_locale()`, and the auto-updater verifies the SHA256 checksum from the manifest before installing.
 
 ## Performance Considerations
 
@@ -747,25 +610,4 @@ add_action( 'template_redirect', function() {
 
 ## API Documentation
 
-Complete PHPDoc-generated API documentation is available at:
-[https://jpkcom.github.io/jpkcom-simple-lang/docs/](https://jpkcom.github.io/jpkcom-simple-lang/docs/)
-
-The documentation includes:
-- All functions with parameters and return types
-- Code examples
-- Cross-references between related functions
-- Class documentation for the updater
-
-## Support & Contributing
-
-- **Bug reports:** [GitHub Issues](https://github.com/JPKCom/jpkcom-simple-lang/issues)
-- **Feature requests:** [GitHub Issues](https://github.com/JPKCom/jpkcom-simple-lang/issues)
-- **Source code:** [GitHub Repository](https://github.com/JPKCom/jpkcom-simple-lang)
-
-When reporting issues, please include:
-- WordPress version
-- PHP version
-- Active theme and plugins
-- Steps to reproduce
-- Expected vs actual behavior
-- Debug log output (if available)
+PHPDoc output is regenerated on every release and published to [jpkcom.github.io/jpkcom-simple-lang/docs/](https://jpkcom.github.io/jpkcom-simple-lang/docs/).
