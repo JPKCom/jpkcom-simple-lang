@@ -86,7 +86,13 @@ add_action( 'admin_init', function(): void {
  * @param array<int, string>|null $value The post types array to sanitize.
  * @return array<int, string> Sanitized array of valid post types.
  */
-function jpkcom_simplelang_sanitize_post_types( ?array $value ): array {
+function jpkcom_simplelang_sanitize_post_types( mixed $value ): array {
+	/*
+	 * `mixed`, not `?array`: the Settings API hands this whatever arrived in
+	 * $_POST. Up to 1.2.8 the parameter was typed `?array`, so a scalar value
+	 * raised a TypeError before the guard below could run — the guard was
+	 * unreachable and a hand-edited form produced a fatal instead of a fallback.
+	 */
 	if ( ! is_array( $value ) ) {
 		return [ 'post', 'page' ];
 	}

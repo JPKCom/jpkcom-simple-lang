@@ -358,9 +358,9 @@ function jpkcom_simplelang_render_translations_meta_box( WP_Post $post ): void {
 		?>
 		<p>
 			<?php
-			/* translators: %d: number of translations */
 			echo esc_html(
 				sprintf(
+					/* translators: %d: number of linked translations. */
 					_n(
 						'%d translation linked',
 						'%d translations linked',
@@ -498,39 +498,84 @@ function jpkcom_simplelang_output_hreflang_tags( int $post_id, array $translatio
 	// Get all posts in a single query
 	$version_posts = jpkcom_simplelang_get_translation_posts( $all_versions );
 
-	// Build tag data
+	$default_locale = jpkcom_simplelang_get_site_default_locale();
+
+	/*
+	 * Build tag data keyed by the BCP 47 tag.
+	 *
+	 * Up to 1.2.8 this used jpkcom_simplelang_get_language_code(), i.e. only the
+	 * language subtag: de_DE and de_AT both came out as "de", so a two-language
+	 * set emitted the same hreflang value for two different URLs, which makes
+	 * the whole annotation ambiguous. The regional variants are exactly the
+	 * case hreflang exists for.
+	 *
+	 * Keying by tag also means two versions that map to the same tag - two posts
+	 * both set to de_DE, or de_DE plus de_DE_formal - contribute one entry
+	 * instead of a contradictory pair. First one wins.
+	 */
 	$hreflang_data = [];
+	$default_url   = '';
+	$default_tag   = jpkcom_simplelang_get_bcp47( $default_locale );
 
 	foreach ( $version_posts as $version_post ) {
 		// Get language
 		$locale = get_post_meta( $version_post->ID, '_jpkcom_simplelang_language', true );
 		if ( empty( $locale ) ) {
-			$locale = jpkcom_simplelang_get_site_default_locale(); // Site default
+			$locale = $default_locale; // Site default
 		}
 
-		// Convert locale to language code (de_DE -> de)
-		$lang_code = jpkcom_simplelang_get_language_code( $locale );
-
-		// Get URL
+		$tag = jpkcom_simplelang_get_bcp47( $locale );
 		$url = get_permalink( $version_post->ID );
 
-		$hreflang_data[] = [
-			'lang' => $lang_code,
-			'url'  => $url,
-		];
+		if ( ! $url ) {
+			continue;
+		}
+
+		if ( ! isset( $hreflang_data[ $tag ] ) ) {
+			$hreflang_data[ $tag ] = $url;
+		}
+
+		/*
+		 * Remember the version in the site's default language for x-default.
+		 * Compared on the BCP 47 tag, not the raw locale: on a de_DE site a page
+		 * set to de_DE_formal is still the German version, and comparing the raw
+		 * locales would leave such a set without an x-default at all.
+		 */
+		if ( $default_url === '' && $tag === $default_tag ) {
+			$default_url = $url;
+		}
 	}
 
-	// Sort by language code for consistency
-	usort( $hreflang_data, fn( $a, $b ) => strcmp( $a['lang'], $b['lang'] ) );
+	if ( empty( $hreflang_data ) ) {
+		return;
+	}
+
+	// Sort by tag for consistency
+	ksort( $hreflang_data );
 
 	// Output tags
 	echo "\n<!-- Hreflang tags by JPKCom Simple Lang -->\n";
-	foreach ( $hreflang_data as $data ) {
+
+	foreach ( $hreflang_data as $tag => $url ) {
 		printf(
 			'<link rel="alternate" hreflang="%s" href="%s" />' . "\n",
-			esc_attr( $data['lang'] ),
-			esc_url( $data['url'] )
+			esc_attr( $tag ),
+			esc_url( $url )
 		);
 	}
+
+	/*
+	 * x-default points at the version in the site's default language — the page
+	 * to serve when none of the declared languages matches the visitor. Emitted
+	 * in addition to that version's own tag, which is how the annotation is
+	 * meant to be used. Omitted when no version carries the default language.
+	 */
+	if ( $default_url !== '' ) {
+		printf(
+			'<link rel="alternate" hreflang="x-default" href="%s" />' . "\n",
+			esc_url( $default_url )
+		);
+	}
+
 	echo "<!-- End hreflang tags -->\n\n";
 }

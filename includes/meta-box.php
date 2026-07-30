@@ -85,6 +85,24 @@ function jpkcom_simplelang_render_meta_box( WP_Post $post ): void {
 		}
 	}
 
+	/*
+	 * Keep a stored language in the list even when its pack is gone.
+	 *
+	 * Without this the select has no matching option, the browser falls back to
+	 * the first one ("Default"), and simply pressing Update wipes the post's
+	 * language without anyone touching that field. See the notice below, which
+	 * explains the state to the editor.
+	 */
+	$missing_pack = '' !== $current_language && ! isset( $language_options[ $current_language ] );
+
+	if ( $missing_pack ) {
+		$language_options[ $current_language ] = sprintf(
+			/* translators: %s: locale code, e.g. fr_FR. */
+			__( '%s — language pack not installed', 'jpkcom-simple-lang' ),
+			$current_language
+		);
+	}
+
 	?>
 	<p>
 		<label for="jpkcom_simplelang_language">
@@ -149,20 +167,107 @@ add_action( 'save_post', function( int $post_id, WP_Post $post ): void {
 
 	// Save or delete the language meta
 	if ( isset( $_POST['jpkcom_simplelang_language'] ) ) {
-		$language = sanitize_text_field( $_POST['jpkcom_simplelang_language'] );
+		$language = sanitize_text_field( wp_unslash( $_POST['jpkcom_simplelang_language'] ) );
 
 		// Delete meta if empty (use default)
 		if ( empty( $language ) ) {
 			delete_post_meta( $post_id, '_jpkcom_simplelang_language' );
-		} else {
-			// Validate locale format (basic check)
-			if ( preg_match( '/^[a-z]{2,3}(_[A-Z]{2})?$/', $language ) || $language === 'en_US' ) {
-				update_post_meta( $post_id, '_jpkcom_simplelang_language', $language );
-			}
+		} elseif ( jpkcom_simplelang_is_valid_locale( $language ) ) {
+			update_post_meta( $post_id, '_jpkcom_simplelang_language', $language );
 		}
 	}
 
 }, 10, 2 );
+
+/**
+ * Check whether a locale may be stored as a post language
+ *
+ * Validated against the locales WordPress actually has installed, plus `en_US`,
+ * which needs no language pack. That is the same list the meta box builds its
+ * options from, so anything offered can also be saved.
+ *
+ * Up to 1.2.8 this was a regex, `/^[a-z]{2,3}(_[A-Z]{2})?$/`, which silently
+ * rejected every WordPress variant locale: `de_DE_formal`, `nl_NL_formal`,
+ * `de_CH_informal`, `pt_PT_ao90` and `art_xemoji`. The meta box offered them,
+ * `save_post` dropped them, and nothing said so — this plugin even ships
+ * `de_DE_formal` translations of its own. A whitelist is both stricter (no
+ * invented locales) and complete (every real one).
+ *
+ * @since 1.2.9
+ *
+ * @param string $locale The locale to check.
+ * @return bool True when the locale may be stored.
+ */
+function jpkcom_simplelang_is_valid_locale( string $locale ): bool {
+	if ( 'en_US' === $locale ) {
+		return true;
+	}
+
+	return in_array( $locale, get_available_languages(), true );
+}
+
+/**
+ * Warn on the edit screen when a post's language pack is missing
+ *
+ * A language selected while its pack was installed keeps sitting in the post
+ * meta after the pack is removed — and from 1.2.9 the front end no longer
+ * pretends to switch to it, so the page is simply delivered in the site
+ * language. Nothing in the editor would otherwise say why.
+ *
+ * @since 1.2.9
+ *
+ * @return void
+ */
+add_action( 'admin_notices', function(): void {
+
+	$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+
+	if ( ! $screen || 'post' !== $screen->base ) {
+		return;
+	}
+
+	$post = get_post();
+
+	if ( ! $post instanceof WP_Post ) {
+		return;
+	}
+
+	$enabled_post_types = get_option( 'jpkcom_simplelang_enabled_post_types', [ 'post', 'page' ] );
+
+	if ( ! is_array( $enabled_post_types ) || ! in_array( $post->post_type, $enabled_post_types, true ) ) {
+		return;
+	}
+
+	$language = get_post_meta( $post->ID, '_jpkcom_simplelang_language', true );
+
+	if ( ! is_string( $language ) || '' === $language || jpkcom_simplelang_is_valid_locale( $language ) ) {
+		return;
+	}
+
+	?>
+	<div class="notice notice-warning">
+		<p>
+			<strong>JPKCom Simple Lang:</strong>
+			<?php
+			printf(
+				/* translators: %s: locale code wrapped in a <code> tag, e.g. fr_FR. */
+				esc_html__( 'This content is set to the language %s, but that language pack is not installed. WordPress cannot switch to it, so the page is delivered in the site language and no hreflang is claimed for it.', 'jpkcom-simple-lang' ),
+				'<code>' . esc_html( $language ) . '</code>'
+			);
+
+			if ( current_user_can( 'install_languages' ) ) {
+				printf(
+					' <a href="%1$s">%2$s</a>',
+					esc_url( admin_url( 'options-general.php' ) ),
+					esc_html__( 'Install the language under Settings → General.', 'jpkcom-simple-lang' )
+				);
+			}
+			?>
+		</p>
+	</div>
+	<?php
+
+} );
 
 /**
  * Get post language

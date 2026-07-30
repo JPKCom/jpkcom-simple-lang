@@ -78,7 +78,14 @@ Adds a "Frontend Language Select" dropdown to the post editor sidebar for enable
 **Security:**
 - Nonce verification: `jpkcom_simplelang_nonce`
 - Capability check: Uses post type's `edit_post` capability
-- Locale validation: Regex pattern `/^[a-z]{2,3}_[A-Z]{2}$/`
+- Locale validation: `jpkcom_simplelang_is_valid_locale()` — a whitelist against `get_available_languages()` plus `en_US`
+
+> **Never validate locales with a regex here.** Until 1.2.9 this used `/^[a-z]{2,3}(_[A-Z]{2})?$/`, which rejects every WordPress variant locale — `de_DE_formal`, `nl_NL_formal`, `de_CH_informal`, `pt_PT_ao90`, `art_xemoji`. The meta box offered them, `save_post` dropped them with no `else` branch and no feedback, and this plugin ships a `de_DE_formal` translation of its own. A whitelist against the installed languages is stricter *and* complete, and it is the same list the dropdown is built from — so anything offered can also be saved.
+
+**Missing language packs.** A language selected while its pack was installed stays in the post meta after the pack is removed. Two things follow from that:
+
+- The stored locale is added back into the dropdown, labelled as missing. Without that it has no matching `<option>`, the browser falls back to the first one, and pressing Update silently clears the post's language — data loss without anyone touching the field.
+- `admin_notices` warns on the edit screen, since the front end deliberately no longer pretends to switch (see the Frontend Language section) and nothing else would explain the missing effect.
 
 ### Frontend Language (`includes/frontend-language.php`)
 
@@ -86,7 +93,8 @@ Handles locale switching and HTML attribute modifications in the frontend.
 
 **Key Functions:**
 - `jpkcom_simplelang_get_current_language()` - Returns active frontend language
-- `jpkcom_simplelang_get_language_code()` - Converts locale to language code (de_DE → de)
+- `jpkcom_simplelang_get_bcp47()` - Converts a locale to a BCP 47 tag (`de_DE` → `de-DE`, `de_DE_formal` → `de-DE`). **Use this for markup.**
+- `jpkcom_simplelang_get_language_code()` - Converts locale to bare language subtag (`de_DE` → `de`). Kept for backwards compatibility; it cannot tell `de-DE` from `de-AT`, which is why hreflang no longer uses it.
 
 **Hooks Used:**
 
@@ -94,20 +102,26 @@ Handles locale switching and HTML attribute modifications in the frontend.
    - Checks if current request is singular
    - Verifies post type is enabled
    - Retrieves post language meta
-   - Calls `switch_to_locale()` to change WordPress locale
+   - Calls `switch_to_locale()` and **bails out if it returns false**
    - Stores language in global: `$GLOBALS['jpkcom_simplelang_current_language']`
 
 2. **`language_attributes` filter** - Modifies HTML `<html lang="">` attribute
-   - Uses regex to replace lang attribute value
-   - Converts locale to language code (de_DE → de)
+   - Replaces the first `lang="…"` via `preg_replace_callback` (literal replacement)
+   - Emits the full BCP 47 tag, so `de_DE` yields `lang="de-DE"`
 
-3. **`locale` filter** - Ensures locale consistency throughout rendering
-   - Returns custom language if set, otherwise returns default
-   - SEO plugins automatically detect this via `get_locale()` and output correct `og:locale` meta tags
-
-4. **`wp_footer` (priority 999)** - Restores original locale after rendering
+3. **`wp_footer` (priority 999)** - Restores original locale after rendering
    - Calls `restore_previous_locale()`
    - Cleans up global variable
+
+There is deliberately **no `locale` filter** any more. `switch_to_locale()` installs `WP_Locale_Switcher::filter_locale()` itself, so `get_locale()` already reports the switched locale; the plugin's own filter was redundant on success and actively wrong on failure. It also ran ahead of the core switcher (both priority 10, registered earlier), so a later `switch_to_locale()` by other code — sending mail in the visitor's language, for instance — could be overridden.
+
+> **`switch_to_locale()` returns `false` in two different situations,** and both must be treated as "do not claim this language":
+> - the language pack is not installed, and
+> - the requested locale is already the active one.
+>
+> The second case means a page whose language equals the site language simply leaves WordPress' own output alone — which is correct, there is nothing to override.
+>
+> Measured before 1.2.9, with a page set to `fr_FR` and no French pack: the markup advertised `lang="fr"` and `hreflang="fr"` while the page served German content, and `wp_footer` called `restore_previous_locale()` for a switch that never happened.
 
 **Language Cascade:**
 1. Check for custom language in post meta
@@ -156,6 +170,25 @@ Handles bidirectional translation linking between posts and automatic hreflang m
 3. **`wp_head` (priority 1)** - Outputs hreflang tags in HTML `<head>`
    - Only on singular pages with enabled post types
    - Requires at least one translation link to output tags
+
+#### hreflang values are BCP 47, not bare language subtags
+
+Up to 1.2.8 the tags came from `jpkcom_simplelang_get_language_code()`, i.e. only the part before the underscore. A `de_DE` and a `de_AT` version therefore both emitted `hreflang="de"` — the same value for two different URLs, which makes the whole annotation ambiguous. Regional variants are precisely the case hreflang exists for, so this broke the plugin's main purpose while looking fine on a `de` + `en` site.
+
+Measured on a live instance before the fix:
+
+```html
+<link rel="alternate" hreflang="de" href=".../sl-probe-de/" />
+<link rel="alternate" hreflang="de" href=".../sl-probe-de-formal/" />
+```
+
+Since 1.2.9 the entries are keyed by BCP 47 tag, so two versions resolving to the same tag — two `de_DE` posts, or `de_DE` plus `de_DE_formal` — contribute one entry rather than a contradictory pair. First one wins.
+
+#### x-default
+
+`x-default` points at the version in the site's default language (`WPLANG`), which is the page to serve when none of the declared languages matches the visitor. It is emitted **in addition** to that version's own tag, and omitted entirely when no version carries the default language — better no annotation than a guess.
+
+The match is made on the **BCP 47 tag, not the raw locale**. That detail was found by testing: on a `de_DE` site whose German page is set to `de_DE_formal`, comparing raw locales produced no `x-default` at all, because `de_DE_formal !== de_DE`. Both map to `de-DE`, so the tag comparison is the right one.
    - Calls `jpkcom_simplelang_output_hreflang_tags()`
 
 **Translation Set Sync Logic:**
@@ -570,7 +603,23 @@ add_action( 'template_redirect', function() {
 
 ## Security Notes
 
-Beyond the usual sanitise/escape/nonce/capability discipline, two things are specific to this plugin: locale strings are validated against a regex before they reach `switch_to_locale()`, and the auto-updater verifies the SHA256 checksum from the manifest before installing.
+Beyond the usual sanitise/escape/nonce/capability discipline, two things are specific to this plugin: a locale must be in `get_available_languages()` (plus `en_US`) before it can be stored or reach `switch_to_locale()`, and the auto-updater verifies the SHA256 checksum from the manifest before installing.
+
+The settings sanitiser takes `mixed`, not `?array`. It used to be typed `?array`, which meant a non-array value from a hand-edited options form raised a `TypeError` *before* the `is_array()` guard inside could run — the guard was unreachable and the result was a fatal instead of the intended fallback.
+
+## Coexistence with WPML
+
+This plugin and WPML both hook the locale, and they are conceptually alternatives — a lightweight per-post override versus a full multilingual stack. Running both on one site has not been tested and is not a supported combination. During the 1.2.9 review both were briefly active on the `posts.ddev.site` instance; no concrete conflict was demonstrated, but note that WPML also filters `bloginfo`/`language`, so a bare `<html lang="de">` there may come from WPML rather than from this plugin.
+
+## Tests
+
+`tests/test-language.php` runs standalone — no WordPress. It stubs the functions the modules touch, requires the four includes, and calls their functions directly; the hreflang assertions capture output from the real emitter, so they read the markup a visitor would get. 36 cases across locale validation, BCP 47 conversion, hreflang and `x-default`, the `language_attributes` filter and the settings sanitiser. 13 of them fail against 1.2.8.
+
+```bash
+php tests/test-language.php   # exit 0 = green
+```
+
+What the suite cannot cover is `switch_to_locale()` itself — whether a pack is installed, and the fact that it also returns `false` for a no-op switch. That needs a real instance; see the note in the Frontend Language section.
 
 ## Performance Considerations
 
