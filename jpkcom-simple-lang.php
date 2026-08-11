@@ -108,6 +108,8 @@ add_action( 'plugins_loaded', function(): void {
 		'frontend-language.php',
 		'oxygen-conditions.php',
 		'hreflang-translations.php',
+		// Last: it reads through the modules above rather than restating them.
+		'abilities.php',
 	];
 
 	foreach ( $modules as $module ) {
