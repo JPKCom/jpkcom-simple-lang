@@ -3,16 +3,16 @@
 **Plugin Name:** JPKCom Simple Lang  
 **Plugin URI:** https://github.com/JPKCom/jpkcom-simple-lang  
 **Description:** Simple language selection for frontend pages.  
-**Version:** 1.2.9  
+**Version:** 1.3.0  
 **Author:** Jean Pierre Kolb <jpk@jpkc.com>  
 **Author URI:** https://www.jpkc.com/  
 **Contributors:** JPKCom  
 **Tags:** Language, Lang, Locale, Multilingual, Translation, i18n, Hreflang, SEO, Oxygen Builder  
-**Requires at least:** 6.9  
+**Requires at least:** 7.0  
 **Tested up to:** 7.1  
 **Requires PHP:** 8.3  
 **Network:** true  
-**Stable tag:** 1.2.9  
+**Stable tag:** 1.3.0  
 **License:** GPL-2.0-or-later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 **Text Domain:** jpkcom-simple-lang  
@@ -504,6 +504,14 @@ DELETE FROM wp_postmeta WHERE meta_key = '_jpkcom_simplelang_language';
 
 
 ## Changelog
+
+### 1.3.0
+* Added: two read-only WordPress Abilities, so an AI assistant, an MCP client or REST automation can read this site's language setup as structured data. `jpkcom-simple-lang/list-languages` reports which post types have language selection enabled, the site default, the installed language packs and which locales published posts actually carry. `jpkcom-simple-lang/check-translation-sets` reports the translation sets whose hreflang annotation comes out incomplete
+* Added: the check makes a silent outcome visible. Two versions in one set that resolve to the same hreflang value — two German pages, or German together with German (formal) — produce **one** entry, and the other page is annotated nowhere. That has always been deliberate, because two contradictory entries for one language would be worse, but nothing in the editor said a page had been left out. The check names the set, the shared value and the pages sharing it
+* Added: also reported are sets with no `x-default` (none of their versions is in the site language), links to pages that were deleted, links that only point one way, and pages whose language pack is no longer installed — where the front end deliberately stops switching while the page still claims that language
+* Added: a set whose only peculiarity is an unpublished translation is **not** reported. A draft translation is ordinary work in progress, and a report that flags every one of them stops being read. It is still listed when the set has something else wrong, because it explains why fewer languages appear than the set contains
+* Added: both abilities require the `edit_posts` capability and can be switched off entirely with `define( 'JPKCOM_SIMPLELANG_ABILITIES', false )`, or narrowed through a filter
+* Changed: WordPress 7.0 is now the minimum
 
 ### 1.2.9
 * Fixed: WordPress variant locales could not be saved. The check was a regex, `/^[a-z]{2,3}(_[A-Z]{2})?$/`, which silently rejected `de_DE_formal`, `nl_NL_formal`, `de_CH_informal`, `pt_PT_ao90` and `art_xemoji` — the meta box offered them, `save_post` dropped them, and nothing said so. This plugin even ships its own `de_DE_formal` translation. Validation now runs against `get_available_languages()` plus `en_US`, which is both stricter (no invented locales) and complete

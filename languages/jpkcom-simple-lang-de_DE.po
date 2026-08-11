@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: JPKCom Simple Lang 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/jpkcom-simple-"
 "lang\n"
-"POT-Creation-Date: 2026-07-30T15:29:22+02:00\n"
+"POT-Creation-Date: 2026-08-11T13:43:20+02:00\n"
 "PO-Revision-Date: 2025-12-16 12:00+0100\n"
 "Last-Translator: Jean Pierre Kolb <jpk@jpkc.com>\n"
 "Language-Team: German\n"
@@ -43,6 +43,247 @@ msgstr ""
 #. Author URI of the plugin
 #: jpkcom-simple-lang.php
 msgid "https://www.jpkc.com/"
+msgstr ""
+
+#: includes/abilities.php:204
+msgid ""
+"The language data on this site could not be read. This is a condition on the "
+"site, not a problem with the request, so repeating the call unchanged will "
+"not help; the details are in the site error log."
+msgstr ""
+
+#. translators: 1: comma-separated rejected keys, 2: comma-separated accepted keys.
+#: includes/abilities.php:386
+#, php-format
+msgid ""
+"Unknown input key: %1$s. This ability accepts: %2$s. A key it does not "
+"declare is never read, so the request would be answered as though that key "
+"had not been sent."
+msgstr ""
+
+#: includes/abilities.php:388
+msgid "no input at all"
+msgstr ""
+
+#: includes/abilities.php:471
+msgid "This ability takes no parameters. Call it with no input at all."
+msgstr ""
+
+#: includes/abilities.php:820
+msgid ""
+"The input has to be an object, for example {\"per_page\": 50}. Both "
+"parameters are optional; calling this ability with no input at all returns "
+"the first page."
+msgstr ""
+
+#: includes/abilities.php:1001
+msgid ""
+"WordPress locale, for example de_DE or de_DE_formal. Empty means the post "
+"carries no language of its own."
+msgstr ""
+
+#: includes/abilities.php:1002
+msgid ""
+"The BCP 47 tag this locale produces in markup. de_DE and de_DE_formal both "
+"produce de-DE, which is why two such versions collide in one hreflang set."
+msgstr ""
+
+#: includes/abilities.php:1003
+msgid "Native language name, where WordPress knows one."
+msgstr ""
+
+#: includes/abilities.php:1004
+msgid ""
+"Whether the language pack is installed. When it is not, the front end "
+"deliberately does not switch: the page keeps the site language while its "
+"meta still claims another one."
+msgstr ""
+
+#: includes/abilities.php:1011
+msgid "List the languages this site uses"
+msgstr ""
+
+#: includes/abilities.php:1012
+msgid ""
+"Returns which post types have language selection enabled, the site default "
+"language, the installed language packs, and which locales published posts "
+"actually carry, with counts. Call this before jpkcom-simple-lang/check-"
+"translation-sets so locales and their BCP 47 tags never have to be guessed."
+msgstr ""
+
+#: includes/abilities.php:1032
+msgid ""
+"Post types with language selection enabled. Everything else this plugin does "
+"is scoped to these."
+msgstr ""
+
+#: includes/abilities.php:1033
+msgid ""
+"The site default language, read from WPLANG rather than from get_locale(), "
+"so a temporary locale switch cannot distort it."
+msgstr ""
+
+#: includes/abilities.php:1034
+msgid ""
+"Language packs installed on this site. en_US is always available and is not "
+"listed here."
+msgstr ""
+
+#: includes/abilities.php:1037
+msgid ""
+"Locales that published posts carry, most used first. A locale with "
+"installed=false is the case worth acting on: those posts claim a language "
+"the front end cannot actually serve."
+msgstr ""
+
+#: includes/abilities.php:1041
+msgid "Published posts carrying this locale."
+msgstr ""
+
+#: includes/abilities.php:1045
+msgid "Published posts in the enabled post types altogether."
+msgstr ""
+
+#: includes/abilities.php:1046
+msgid ""
+"Published posts with no language of their own. This is not a gap: they are "
+"served in the site default language, and hreflang reads them as that "
+"language too."
+msgstr ""
+
+#: includes/abilities.php:1047 includes/abilities.php:1093
+msgid "Locale this answer was read in."
+msgstr ""
+
+#: includes/abilities.php:1057
+msgid "Check the translation sets for incomplete hreflang"
+msgstr ""
+
+#: includes/abilities.php:1058
+msgid ""
+"Returns the translation sets whose hreflang annotation comes out incomplete, "
+"and why. The emitter keeps one entry per BCP 47 tag, so two versions "
+"resolving to the same tag - two de_DE pages, or de_DE together with "
+"de_DE_formal - produce a single entry and the other URL is annotated "
+"nowhere. That is deliberate, because a contradictory pair would be worse, "
+"but nothing in the admin says a page was dropped. This ability is what makes "
+"it visible. Also reports sets with no x-default, links to unpublished or "
+"deleted posts, one-way links, and members whose language pack is missing."
+msgstr ""
+
+#: includes/abilities.php:1068
+msgid "Page number, starting at 1."
+msgstr ""
+
+#: includes/abilities.php:1074
+msgid "Sets per page."
+msgstr ""
+
+#: includes/abilities.php:1085
+msgid ""
+"The site default language. A set with no version in this language gets no x-"
+"default."
+msgstr ""
+
+#: includes/abilities.php:1086
+msgid ""
+"How many translation sets exist altogether, so \"total\" can be read as a "
+"proportion."
+msgstr ""
+
+#: includes/abilities.php:1087
+msgid "How many of those sets have at least one finding."
+msgstr ""
+
+#: includes/abilities.php:1088
+msgid "The page that was returned."
+msgstr ""
+
+#: includes/abilities.php:1089
+msgid "The page size that was applied after clamping."
+msgstr ""
+
+#: includes/abilities.php:1090
+msgid "Number of pages available."
+msgstr ""
+
+#: includes/abilities.php:1091
+msgid ""
+"True when this site has more linked posts than one call examines, so the "
+"answer describes only the part that was read. Reported rather than applied "
+"quietly, because an answer that stopped early while looking complete is the "
+"worse failure."
+msgstr ""
+
+#: includes/abilities.php:1092
+msgid "How many linked posts one call examines."
+msgstr ""
+
+#: includes/abilities.php:1096
+msgid "The sets with findings, on the requested page."
+msgstr ""
+
+#: includes/abilities.php:1100
+msgid ""
+"Every post ID in this set, including ones that do not appear in the output."
+msgstr ""
+
+#: includes/abilities.php:1101
+msgid ""
+"How many hreflang entries this set actually produces. Compare with the "
+"number of published members: a smaller number means versions were dropped."
+msgstr ""
+
+#: includes/abilities.php:1104
+msgid "The published members and the tag each resolves to."
+msgstr ""
+
+#: includes/abilities.php:1108
+msgid "Post ID."
+msgstr ""
+
+#: includes/abilities.php:1109
+msgid "Post title."
+msgstr ""
+
+#: includes/abilities.php:1110
+msgid "Locale stored on the post, empty when it carries none."
+msgstr ""
+
+#: includes/abilities.php:1111
+msgid ""
+"True when the post carries no language of its own and is therefore read as "
+"the site default - which is how a version with no language collides with an "
+"explicit one in that language."
+msgstr ""
+
+#: includes/abilities.php:1112
+msgid "The tag this version resolves to."
+msgstr ""
+
+#: includes/abilities.php:1118
+msgid ""
+"What is wrong with this set. An \"unpublished_member\" entry alone does not "
+"put a set in this report - a draft translation is ordinary work in progress, "
+"and flagging every one of them would make the report unreadable; it is "
+"listed when the set qualifies on something else, because it explains a tag "
+"count below the member count. \"tag_collision\" lists the tag and the post "
+"IDs sharing it, with emitted=1 because only one of them is annotated; which "
+"one survives depends on the order the posts come back in, so no winner is "
+"named. \"no_x_default\" means no member carries the site default language. "
+"\"unpublished_member\" and \"dangling_member\" list linked posts that never "
+"appear because they are not published or no longer exist. \"one_way_link\" "
+"lists members that do not link back, which the editor sync would normally "
+"prevent. \"language_pack_missing\" lists members whose locale is no longer "
+"installed."
+msgstr ""
+
+#: includes/abilities.php:1165
+msgid "JPKCom Content"
+msgstr ""
+
+#: includes/abilities.php:1166
+msgid "Read-only access to content managed by the JPKCom content plugins."
 msgstr ""
 
 #: includes/admin-settings.php:28

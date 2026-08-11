@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This is a WordPress plugin called **JPKCom Simple Lang** - a lightweight solution for per-post language selection that overrides the site-wide language setting in the frontend. It allows content editors to display individual pages or posts in different languages without the complexity of full multilingual plugins.
 
 **Requirements:**
-- WordPress 6.9+
+- WordPress 7.0+
 - PHP 8.3+
 - At least one additional language pack installed (optional but recommended)
 
@@ -279,6 +279,75 @@ Provides three custom conditions for Oxygen Builder if `oxygen_vsb_register_cond
 - Hook: `init` (priority 20)
 - Checks: `if ( ! function_exists( 'oxygen_vsb_register_condition' ) )` before registering
 - All conditions work only on singular pages (`is_singular()`)
+
+## Abilities API (since 1.3.0)
+
+`includes/abilities.php` registers two read-only abilities in the `jpkcom-content` category the
+sibling JPKCom content plugins share. Loaded last in the module list, because it reads through the
+modules above rather than restating them.
+
+| Ability | Answers |
+|---|---|
+| `jpkcom-simple-lang/list-languages` | Enabled post types, the site default, installed packs, and which locales published posts carry |
+| `jpkcom-simple-lang/check-translation-sets` | The sets whose hreflang comes out incomplete, and why |
+
+### What the check is for
+
+The emitter keys entries by BCP 47 tag and keeps the **first per tag**. Two versions resolving to
+one tag — two `de_DE` posts, or `de_DE` plus `de_DE_formal` — therefore contribute one entry and the
+other URL is annotated nowhere. That is deliberate and documented above; what it is not is visible.
+Nothing in the editor says a page was left out. This ability is what makes it visible.
+
+Same for a set with no version in the site default language: no `x-default` is emitted, on purpose,
+and silently.
+
+**Every finding is derived from what the emitter does, not from an opinion about what it should do:**
+
+- A member with **no language of its own is read as the site default**, so it collides with an
+  explicit member in that language rather than being ignored. Treating it as "no language" would
+  miss exactly those collisions.
+- Comparison is on the **BCP 47 tag**, never the raw locale. `de_DE` and `de_DE_formal` are two
+  locales and one tag; comparing locales would miss the collision this exists to surface.
+- A collision reports **no winner.** Which version keeps its entry depends on the order the posts
+  come back in, which this ability does not control, so naming one would be a claim it cannot
+  support. It reports the tag, the members sharing it, and `emitted: 1`.
+
+### Deliberately not a finding
+
+An unpublished member alone does not put a set in the report. A draft translation is the ordinary
+state of work in progress, and a report that flags every unfinished translation stops being read —
+the same cost as a guard with false positives. It stays in `issues` when the set qualifies on
+something else, because it explains a tag count below the member count.
+
+### Verified against the markup, not against intent
+
+Four fixture sets on a WPML-free 7.0.3 instance: the real emitter's output captured, its tags
+counted, and compared with what the ability reports. Zero disagreements, `tags_emitted` matching the
+markup in every case, and the collision set producing **two tags for three published members** — the
+case this exists to surface.
+
+> **Do not measure this on an instance with WPML active.** `posts.ddev.site` has it, and WPML filters
+> `get_permalink()` among other things, so what you would be measuring is not this plugin. Use
+> `jobs.ddev.site`, which is 7.0.3 and WPML-free.
+
+> **`global $x` in a `wp eval-file` helper does not reach the top-level variable** — the file is
+> evaluated inside a function scope. A cleanup loop written that way runs over an empty array and
+> leaves every fixture behind. Collect leftovers by a title pattern instead.
+
+### Exposure
+
+Default capability **`edit_posts`**, not `read`: this reports an editorial and SEO condition and
+names unpublished and deleted posts while doing so. `JPKCOM_SIMPLELANG_ABILITIES = false` in
+`wp-config.php` suppresses registration; `jpkcom_simplelang_ability_capability` and
+`jpkcom_simplelang_ability_meta` narrow it further.
+
+The set scan is capped at `JPKCOM_SIMPLELANG_ABILITY_SCAN_LIMIT` linked posts and reports
+`scan_truncated` when it hits the cap — an answer that stopped early while looking complete is the
+worse failure.
+
+> **The Abilities API messages stay English, in every language.** All 43 catalogue entries from
+> `includes/abilities.php` are untranslated on purpose — they are read by MCP clients and agents, and
+> their wording is the feature. Do not read an empty `msgstr` there as a backlog.
 
 ## Development Workflow
 
