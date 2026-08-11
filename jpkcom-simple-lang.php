@@ -3,16 +3,16 @@
 Plugin Name: JPKCom Simple Lang
 Plugin URI: https://github.com/JPKCom/jpkcom-simple-lang
 Description: Simple language selection for frontend pages.
-Version: 1.2.9
+Version: 1.3.0
 Author: Jean Pierre Kolb <jpk@jpkc.com>
 Author URI: https://www.jpkc.com/
 Contributors: JPKCom
 Tags: Language, Lang
-Requires at least: 6.9
+Requires at least: 7.0
 Tested up to: 7.1
 Requires PHP: 8.3
 Network: true
-Stable tag: 1.2.9
+Stable tag: 1.3.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: jpkcom-simple-lang
@@ -31,7 +31,7 @@ if ( ! defined( constant_name: 'WPINC' ) ) {
  * @since 1.0.0
  */
 if ( ! defined( 'JPKCOM_SIMPLELANG_VERSION' ) ) {
-	define( 'JPKCOM_SIMPLELANG_VERSION', '1.2.9' );
+	define( 'JPKCOM_SIMPLELANG_VERSION', '1.3.0' );
 }
 
 if ( ! defined( 'JPKCOM_SIMPLELANG_BASENAME' ) ) {
@@ -108,6 +108,8 @@ add_action( 'plugins_loaded', function(): void {
 		'frontend-language.php',
 		'oxygen-conditions.php',
 		'hreflang-translations.php',
+		// Last: it reads through the modules above rather than restating them.
+		'abilities.php',
 	];
 
 	foreach ( $modules as $module ) {
