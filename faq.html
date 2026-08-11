@@ -19,6 +19,17 @@ available?</h3>
 pack installed on your WordPress site is automatically available in the
 dropdown. You can install language packs via <strong>Settings → General
 → Site Language</strong>.</p>
+<p>A locale is accepted when <code>get_available_languages()</code>
+reports it, plus <code>en_US</code>. That includes WordPress variant
+locales such as <code>de_DE_formal</code>, <code>nl_NL_formal</code>,
+<code>de_CH_informal</code> and <code>pt_PT_ao90</code>. Up to 1.2.8 a
+regex rejected exactly those: the meta box offered them,
+<code>save_post</code> dropped them, and nothing said so.</p>
+<p>If a post’s language pack is missing — uninstalled after the fact,
+for instance — the editor says so and the stored language stays
+selectable, so pressing Update does not silently clear it. In the
+frontend such a post falls back to the site language rather than
+advertising a language WordPress has not loaded.</p>
 <p>WordPress supports 200+ languages. See the <a
 href="https://translate.wordpress.org/">full list of available
 languages</a>.</p>
@@ -55,16 +66,18 @@ proper <code>&lt;link rel="alternate" hreflang="XX"&gt;</code> tags in
 the HTML <code>&lt;head&gt;</code> section for all linked
 translations.</p>
 <p><strong>What’s included:</strong> - Automatic hreflang tag generation
-- Self-referencing hreflang tags (SEO best practice) - Bidirectional
-translation linking - Only published posts appear in hreflang tags -
-Tags sorted by language code for consistency</p>
+- Proper BCP 47 tags with the region (<code>de-DE</code>,
+<code>de-AT</code>, <code>pt-BR</code>), since 1.2.9 - An
+<code>x-default</code> pointing at the version in the site’s default
+language, since 1.2.9 - Self-referencing hreflang tags (SEO best
+practice) - Bidirectional translation linking - Only published posts
+appear in hreflang tags - Tags sorted for consistency</p>
 <p><strong>SEO Plugin Compatibility:</strong> - Works alongside Yoast
 SEO, Rank Math, and other SEO plugins - SEO plugins automatically output
 correct <code>og:locale</code> meta tags - Hreflang tags appear early in
 <code>&lt;head&gt;</code> (before most SEO plugins)</p>
-<p><strong>What’s NOT included:</strong> - x-default hreflang tags (may
-be added in future versions) - Automatic translation suggestions -
-Language switcher widgets</p>
+<p><strong>What’s NOT included:</strong> - Automatic translation
+suggestions - Language switcher widgets</p>
 <h3 id="can-i-restrict-which-post-types-have-language-selection">Can I
 restrict which post types have language selection?</h3>
 <p>Yes! Go to <strong>Settings → Simple Lang</strong> and check/uncheck

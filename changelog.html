@@ -1,4 +1,36 @@
-<h3 id="section">1.2.9</h3>
+<h3 id="section">1.3.0</h3>
+<ul>
+<li>Added: two read-only WordPress Abilities, so an AI assistant, an MCP
+client or REST automation can read this site’s language setup as
+structured data. <code>jpkcom-simple-lang/list-languages</code> reports
+which post types have language selection enabled, the site default, the
+installed language packs and which locales published posts actually
+carry. <code>jpkcom-simple-lang/check-translation-sets</code> reports
+the translation sets whose hreflang annotation comes out incomplete</li>
+<li>Added: the check makes a silent outcome visible. Two versions in one
+set that resolve to the same hreflang value — two German pages, or
+German together with German (formal) — produce <strong>one</strong>
+entry, and the other page is annotated nowhere. That has always been
+deliberate, because two contradictory entries for one language would be
+worse, but nothing in the editor said a page had been left out. The
+check names the set, the shared value and the pages sharing it</li>
+<li>Added: also reported are sets with no <code>x-default</code> (none
+of their versions is in the site language), links to pages that were
+deleted, links that only point one way, and pages whose language pack is
+no longer installed — where the front end deliberately stops switching
+while the page still claims that language</li>
+<li>Added: a set whose only peculiarity is an unpublished translation is
+<strong>not</strong> reported. A draft translation is ordinary work in
+progress, and a report that flags every one of them stops being read. It
+is still listed when the set has something else wrong, because it
+explains why fewer languages appear than the set contains</li>
+<li>Added: both abilities require the <code>edit_posts</code> capability
+and can be switched off entirely with
+<code>define( 'JPKCOM_SIMPLELANG_ABILITIES', false )</code>, or narrowed
+through a filter</li>
+<li>Changed: WordPress 7.0 is now the minimum</li>
+</ul>
+<h3 id="section-1">1.2.9</h3>
 <ul>
 <li>Fixed: WordPress variant locales could not be saved. The check was a
 regex, <code>/^[a-z]{2,3}(_[A-Z]{2})?$/</code>, which silently rejected
@@ -67,7 +99,7 @@ the catalogue down to the 47 strings this plugin actually has. The
 <code>.po</code> headers, including <code>Plural-Forms</code>, are
 unchanged</li>
 </ul>
-<h3 id="section-1">1.2.8</h3>
+<h3 id="section-2">1.2.8</h3>
 <ul>
 <li>Changed: the update manifest generator now defaults a missing
 <code>Network:</code> header to false instead of true, matching
@@ -81,7 +113,7 @@ repository are now English throughout, and the developer notes in
 <code>CLAUDE.md</code> were translated and trimmed. No effect on the
 shipped plugin</li>
 </ul>
-<h3 id="section-2">1.2.7</h3>
+<h3 id="section-3">1.2.7</h3>
 <ul>
 <li>Changed: <code>Tested up to</code> raised to WordPress 7.1</li>
 <li>Changed: the bundled updater’s runtime floor now matches the
@@ -95,14 +127,14 @@ and <code>tested</code> now say 6.9 and 7.1. They only apply when the
 README metadata cannot be read, but a stale fallback would have
 published a minimum the plugin no longer supports</li>
 </ul>
-<h3 id="section-3">1.2.6</h3>
+<h3 id="section-4">1.2.6</h3>
 <ul>
 <li>Changed: the plugin banners
 (<code>assets/banner-1544x500.avif</code>,
 <code>assets/banner-772x250.avif</code>) are now a plain
 <code>#3c4955</code> surface with no lettering</li>
 </ul>
-<h3 id="section-4">1.2.5</h3>
+<h3 id="section-5">1.2.5</h3>
 <ul>
 <li>CI: the release step no longer copies the staging directory into
 itself, so the ZIP has no empty
@@ -115,7 +147,7 @@ to full commit SHAs</li>
 <li>CI: security and regression tests now run on every pull request,
 where a plugin has them</li>
 </ul>
-<h3 id="section-5">1.2.4</h3>
+<h3 id="section-6">1.2.4</h3>
 <ul>
 <li>Security: update packages are now verified <em>before</em>
 installation — the verified file is handed to WordPress instead of being
@@ -142,14 +174,14 @@ check, YAML validation, action-pinning guard)</li>
 <li>Housekeeping: removed stray editor backups from the release
 package</li>
 </ul>
-<h3 id="section-6">1.2.3 - 2026-06-16</h3>
+<h3 id="section-7">1.2.3 - 2026-06-16</h3>
 <ul>
 <li>Raised the minimum WordPress version to 6.9 and “Tested up to” to
 WordPress 7.0</li>
 <li>Switched license metadata to the SPDX identifier
 <code>GPL-2.0-or-later</code> with the HTTPS license URI</li>
 </ul>
-<h3 id="section-7">1.2.2 - 2026-06-16</h3>
+<h3 id="section-8">1.2.2 - 2026-06-16</h3>
 <ul>
 <li>Security: updater prefers an exact match against the manifest
 <code>download_url</code> over the slug heuristic, so a tampered
@@ -166,7 +198,7 @@ completing the <code>no_update</code> transient entry
 (<code>new_version</code>, <code>package</code>, <code>tested</code>,
 <code>requires_php</code>)</li>
 </ul>
-<h3 id="section-8">1.2.1 - 2026-03-13</h3>
+<h3 id="section-9">1.2.1 - 2026-03-13</h3>
 <p><strong>Bug Fixes</strong></p>
 <ul>
 <li>Fixed manual ZIP upload failing with “No valid URL” error caused by
@@ -176,7 +208,7 @@ URLs</li>
 WordPress from recognizing it as an update to the existing
 installation</li>
 </ul>
-<h3 id="section-9">1.2.0 - 2026-03-13</h3>
+<h3 id="section-10">1.2.0 - 2026-03-13</h3>
 <p><strong>Bug Fixes</strong></p>
 <ul>
 <li>Fixed language selection not saving for locales without country code
@@ -184,7 +216,7 @@ installation</li>
 <li>Updated locale validation regex to accept both short
 (<code>xx</code>) and full (<code>xx_XX</code>) locale formats</li>
 </ul>
-<h3 id="section-10">1.1.1 - 2025-12-17</h3>
+<h3 id="section-11">1.1.1 - 2025-12-17</h3>
 <p><strong>Bug Fixes</strong></p>
 <ul>
 <li>Fixed duplicate “Settings saved” message on admin settings page</li>
@@ -217,7 +249,7 @@ condition</li>
 <li>Removed redundant <code>settings_errors()</code> call in admin
 settings page</li>
 </ul>
-<h3 id="section-11">1.1.0 - 2025-12-17</h3>
+<h3 id="section-12">1.1.0 - 2025-12-17</h3>
 <p><strong>New Features</strong></p>
 <ul>
 <li><strong>Translation Links</strong>: New meta box for linking posts
@@ -256,7 +288,7 @@ entries per post)</li>
 <li>All translation sync operations use loop prevention for data
 integrity</li>
 </ul>
-<h3 id="section-12">1.0.0 - 2025-12-16</h3>
+<h3 id="section-13">1.0.0 - 2025-12-16</h3>
 <p><strong>Initial Release</strong></p>
 <ul>
 <li>Language selection dropdown in post editor sidebar</li>

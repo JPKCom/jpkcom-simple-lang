@@ -19,10 +19,11 @@ selection per post type via settings page</li>
 locale in frontend for proper translation support</li>
 <li><strong>HTML Lang Attribute</strong>: Updates the
 <code>&lt;html lang=""&gt;</code> attribute to match the selected
-language</li>
+language, region included (<code>lang="de-DE"</code>)</li>
 <li><strong>Translation Links &amp; Hreflang</strong>: Link related
 posts in different languages and automatically generate SEO-friendly
-hreflang meta tags</li>
+hreflang meta tags as proper BCP 47, including an
+<code>x-default</code></li>
 <li><strong>SEO Plugin Compatible</strong>: SEO plugins (Yoast, Rank
 Math, etc.) automatically detect the locale change and output correct
 <code>og:locale</code> meta tags</li>
@@ -138,16 +139,44 @@ Links” select Post 2 and Post 3 3. Save Post 1</p>
 <p><strong>Result:</strong> - Post 1 now links to Posts 2 &amp; 3 - Post
 2 automatically links to Posts 1 &amp; 3 - Post 3 automatically links to
 Posts 1 &amp; 2 - All three posts display proper hreflang tags</p>
-<p><strong>Generated HTML on each page:</strong></p>
+<p><strong>Generated HTML on each page</strong> (site default language
+<code>de_DE</code>):</p>
 <div class="sourceCode" id="cb1"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- On German page --&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;alternate&quot;</span> <span class="er">hreflang</span><span class="ot">=</span><span class="st">&quot;de&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;https://example.com/german-page/&quot;</span> <span class="dt">/&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;alternate&quot;</span> <span class="er">hreflang</span><span class="ot">=</span><span class="st">&quot;en&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;https://example.com/english-page/&quot;</span> <span class="dt">/&gt;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;alternate&quot;</span> <span class="er">hreflang</span><span class="ot">=</span><span class="st">&quot;fr&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;https://example.com/french-page/&quot;</span> <span class="dt">/&gt;</span></span></code></pre></div>
+class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Hreflang tags by JPKCom Simple Lang --&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;alternate&quot;</span> <span class="er">hreflang</span><span class="ot">=</span><span class="st">&quot;de-DE&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;https://example.com/german-page/&quot;</span> <span class="dt">/&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;alternate&quot;</span> <span class="er">hreflang</span><span class="ot">=</span><span class="st">&quot;en-US&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;https://example.com/english-page/&quot;</span> <span class="dt">/&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;alternate&quot;</span> <span class="er">hreflang</span><span class="ot">=</span><span class="st">&quot;fr-FR&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;https://example.com/french-page/&quot;</span> <span class="dt">/&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;alternate&quot;</span> <span class="er">hreflang</span><span class="ot">=</span><span class="st">&quot;x-default&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;https://example.com/german-page/&quot;</span> <span class="dt">/&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End hreflang tags --&gt;</span></span></code></pre></div>
+<h4 id="tag-format">Tag format</h4>
+<p>Tags are proper BCP 47 and carry the region: <code>de-DE</code>,
+<code>de-AT</code>, <code>pt-BR</code>. WordPress variant suffixes have
+no BCP 47 meaning and are dropped, so <code>de_DE_formal</code> and
+<code>de_CH_informal</code> become <code>de-DE</code> and
+<code>de-CH</code>, and <code>pt_PT_ao90</code> becomes
+<code>pt-PT</code> — a formal and an informal German page are the same
+language and region as far as a search engine is concerned.</p>
+<p>Because the set is keyed by tag, two versions that resolve to the
+same tag — two posts both set to <code>de_DE</code>, or
+<code>de_DE</code> plus <code>de_DE_formal</code> — contribute one entry
+rather than a contradictory pair. The first one wins. Tags are sorted
+alphabetically for a stable output.</p>
+<h4 id="x-default">x-default</h4>
+<p><code>x-default</code> points at the version in the site’s default
+language: the page to serve when none of the declared languages matches
+the visitor. It is emitted in addition to that version’s own tag, which
+is how the annotation is meant to be used, and matched on the BCP 47 tag
+— so on a <code>de_DE</code> site a page set to
+<code>de_DE_formal</code> still counts as the German version. When none
+of the linked versions carries the default language, no
+<code>x-default</code> is emitted.</p>
 <h4 id="seo-benefits">SEO Benefits</h4>
 <ul>
 <li><strong>Language Targeting</strong>: Search engines understand which
 language each page targets</li>
+<li><strong>Regional Targeting</strong>: <code>de_DE</code> and
+<code>de_AT</code> are told apart instead of both collapsing to
+<code>de</code></li>
 <li><strong>Duplicate Content Prevention</strong>: Signals that pages
 are translations, not duplicates</li>
 <li><strong>Regional Search Results</strong>: Users see the correct
@@ -173,12 +202,28 @@ active frontend language:</h4>
 class="sourceCode php"><code class="sourceCode php"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Get the active language in frontend (after locale switch)</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">$current_lang</span> <span class="op">=</span> jpkcom_simplelang_get_current_language()<span class="ot">;</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Returns: &#39;de_DE&#39;, &#39;fr_FR&#39;, etc. or null if using site default</span></span></code></pre></div>
-<h4 id="convert-locale-to-language-code">Convert locale to language
-code:</h4>
+<h4 id="convert-a-locale-to-a-bcp-47-tag">Convert a locale to a BCP 47
+tag:</h4>
 <div class="sourceCode" id="cb4"><pre
-class="sourceCode php"><code class="sourceCode php"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Convert locale (de_DE) to language code (de) for HTML lang attribute</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">$lang_code</span> <span class="op">=</span> jpkcom_simplelang_get_language_code( <span class="st">&#39;de_DE&#39;</span> )<span class="ot">;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Returns: &#39;de&#39;</span></span></code></pre></div>
+class="sourceCode php"><code class="sourceCode php"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Convert locale (de_DE) to a BCP 47 tag (de-DE) for lang / hreflang</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">$tag</span> <span class="op">=</span> jpkcom_simplelang_get_bcp47( <span class="st">&#39;de_DE&#39;</span> )<span class="ot">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Returns: &#39;de-DE&#39;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">// WordPress variant suffixes are dropped</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="va">$tag</span> <span class="op">=</span> jpkcom_simplelang_get_bcp47( <span class="st">&#39;de_DE_formal&#39;</span> )<span class="ot">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Returns: &#39;de-DE&#39;</span></span></code></pre></div>
+<p>This is what the plugin itself uses for the <code>lang</code>
+attribute and the hreflang tags since 1.2.9. Prefer it for any language
+markup.</p>
+<h4 id="convert-locale-to-a-bare-language-code">Convert locale to a bare
+language code:</h4>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode php"><code class="sourceCode php"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Convert locale (de_DE) to the language subtag (de)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">$lang_code</span> <span class="op">=</span> jpkcom_simplelang_get_language_code( <span class="st">&#39;de_DE&#39;</span> )<span class="ot">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Returns: &#39;de&#39;</span></span></code></pre></div>
+<p>Still available and unchanged, but the poorer choice for markup: a
+bare subtag cannot express the region. Use
+<code>jpkcom_simplelang_get_bcp47()</code> instead.</p>
 <h3 id="oxygen-builder-conditions">Oxygen Builder Conditions</h3>
 <p>If <a href="https://oxygenbuilder.com/">Oxygen Builder</a> is
 installed, Simple Lang provides three custom conditions:</p>
@@ -206,15 +251,15 @@ custom language is selected.</p>
 default language pages.</p>
 <h3 id="filters">Filters</h3>
 <h4 id="modify-file-search-paths">Modify file search paths</h4>
-<div class="sourceCode" id="cb5"><pre
-class="sourceCode php"><code class="sourceCode php"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"> * Filter the file search paths for template overrides</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"> *</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">array</span><span class="co">  $paths    Default search paths</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">string</span><span class="co"> $filename The filename being located</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"> */</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>add_filter( <span class="st">&#39;jpkcom_simplelang_file_paths&#39;</span><span class="ot">,</span> <span class="kw">function</span>( <span class="va">$paths</span><span class="ot">,</span> <span class="va">$filename</span> ) {</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Add custom search path</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">$paths</span>[] <span class="op">=</span> <span class="st">&#39;/custom/path/to/overrides/&#39;</span> <span class="op">.</span> <span class="va">$filename</span><span class="ot">;</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">$paths</span><span class="ot">;</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>}<span class="ot">,</span> <span class="dv">10</span><span class="ot">,</span> <span class="dv">2</span> )<span class="ot">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode php"><code class="sourceCode php"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"> * Filter the file search paths for template overrides</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"> *</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">array</span><span class="co">  $paths    Default search paths</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">string</span><span class="co"> $filename The filename being located</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"> */</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>add_filter( <span class="st">&#39;jpkcom_simplelang_file_paths&#39;</span><span class="ot">,</span> <span class="kw">function</span>( <span class="va">$paths</span><span class="ot">,</span> <span class="va">$filename</span> ) {</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Add custom search path</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">$paths</span>[] <span class="op">=</span> <span class="st">&#39;/custom/path/to/overrides/&#39;</span> <span class="op">.</span> <span class="va">$filename</span><span class="ot">;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">$paths</span><span class="ot">;</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>}<span class="ot">,</span> <span class="dv">10</span><span class="ot">,</span> <span class="dv">2</span> )<span class="ot">;</span></span></code></pre></div>

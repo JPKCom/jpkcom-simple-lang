@@ -123,6 +123,48 @@
 
 
 
+<h4 id="toc-constants">
+    Constants
+    <a href="packages/JPKCom-Simple-Lang.html#toc-constants" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a class="" href="namespaces/default.html#constant_JPKCOM_SIMPLELANG_ABILITY_CATEGORY">JPKCOM_SIMPLELANG_ABILITY_CATEGORY</a>
+    <span>
+        &nbsp;: mixed&nbsp;= &#039;jpkcom-content&#039;                            </span>
+</dt>
+<dd>Ability category.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a class="" href="namespaces/default.html#constant_JPKCOM_SIMPLELANG_ABILITY_INPUT_KEYS">JPKCOM_SIMPLELANG_ABILITY_INPUT_KEYS</a>
+    <span>
+        &nbsp;: mixed&nbsp;= [&#039;jpkcom-simple-lang/list-languages&#039; =&gt; [], &#039;jp...                            </span>
+</dt>
+<dd>Top-level input keys each ability declares.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a class="" href="namespaces/default.html#constant_JPKCOM_SIMPLELANG_ABILITY_PER_PAGE_DEFAULT">JPKCOM_SIMPLELANG_ABILITY_PER_PAGE_DEFAULT</a>
+    <span>
+        &nbsp;: mixed&nbsp;= 20                            </span>
+</dt>
+<dd>Default page size for the set check.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a class="" href="namespaces/default.html#constant_JPKCOM_SIMPLELANG_ABILITY_PER_PAGE_MAX">JPKCOM_SIMPLELANG_ABILITY_PER_PAGE_MAX</a>
+    <span>
+        &nbsp;: mixed&nbsp;= 100                            </span>
+</dt>
+<dd>Largest page size honoured.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a class="" href="namespaces/default.html#constant_JPKCOM_SIMPLELANG_ABILITY_SCAN_LIMIT">JPKCOM_SIMPLELANG_ABILITY_SCAN_LIMIT</a>
+    <span>
+        &nbsp;: mixed&nbsp;= 2000                            </span>
+</dt>
+<dd>Largest number of linked posts examined in one call.</dd>
+
+    </dl>
 
 
 
@@ -133,6 +175,160 @@
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_abilities_enabled">jpkcom_simplelang_abilities_enabled()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+<dd>Decide whether the abilities should be registered at all.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_ability_log">jpkcom_simplelang_ability_log()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Write a debug line, and only with WP_DEBUG.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_ability_error">jpkcom_simplelang_ability_error()</a>
+    <span>
+                                &nbsp;: <abbr title="\WP_Error">WP_Error</abbr>    </span>
+</dt>
+<dd>Build a WP_Error carrying an HTTP status.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_ability_boundary">jpkcom_simplelang_ability_boundary()</a>
+    <span>
+                                &nbsp;: array&lt;string, mixed&gt;|<abbr title="\WP_Error">WP_Error</abbr>    </span>
+</dt>
+<dd>Turn a Throwable out of a callback into a WP_Error.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_ability_json_object">jpkcom_simplelang_ability_json_object()</a>
+    <span>
+                                &nbsp;: array&lt;string, mixed&gt;|<abbr title="\stdClass">stdClass</abbr>    </span>
+</dt>
+<dd>Wrap an empty map so it encodes as {} rather than [].</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_ability_capability">jpkcom_simplelang_ability_capability()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+<dd>Check the capability required to run an ability.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_ability_meta">jpkcom_simplelang_ability_meta()</a>
+    <span>
+                                &nbsp;: array&lt;string, mixed&gt;    </span>
+</dt>
+<dd>Build the meta array for an ability.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_ability_normalise_input">jpkcom_simplelang_ability_normalise_input()</a>
+    <span>
+                                &nbsp;: array&lt;string, mixed&gt;|null    </span>
+</dt>
+<dd>Bring the value core hands the callback into array form.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_ability_validate_input_keys">jpkcom_simplelang_ability_validate_input_keys()</a>
+    <span>
+                                &nbsp;: true|<abbr title="\WP_Error">WP_Error</abbr>    </span>
+</dt>
+<dd>Refuse a top-level input key the ability does not declare.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_ability_enabled_post_types">jpkcom_simplelang_ability_enabled_post_types()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, string&gt;    </span>
+</dt>
+<dd>The post types language selection is enabled for.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_ability_describe_locale">jpkcom_simplelang_ability_describe_locale()</a>
+    <span>
+                                &nbsp;: array&lt;string, mixed&gt;    </span>
+</dt>
+<dd>Describe a locale the way the front end resolves it.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_ability_list_languages_inner">jpkcom_simplelang_ability_list_languages_inner()</a>
+    <span>
+                                &nbsp;: array&lt;string, mixed&gt;|<abbr title="\WP_Error">WP_Error</abbr>    </span>
+</dt>
+<dd>Report which languages this site actually uses.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_ability_build_sets">jpkcom_simplelang_ability_build_sets()</a>
+    <span>
+                                &nbsp;: array{sets: array<string,int[]>, scanned: int, truncated: bool}    </span>
+</dt>
+<dd>Collect the translation sets on this site.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_ability_inspect_set">jpkcom_simplelang_ability_inspect_set()</a>
+    <span>
+                                &nbsp;: array&lt;string, mixed&gt;    </span>
+</dt>
+<dd>Report what the hreflang output for one set will and will not contain.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_ability_check_sets_inner">jpkcom_simplelang_ability_check_sets_inner()</a>
+    <span>
+                                &nbsp;: array&lt;string, mixed&gt;|<abbr title="\WP_Error">WP_Error</abbr>    </span>
+</dt>
+<dd>Report the translation sets whose hreflang output comes out incomplete.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_ability_permission_list_languages">jpkcom_simplelang_ability_permission_list_languages()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+<dd>Permission callback for list-languages.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_ability_permission_check_sets">jpkcom_simplelang_ability_permission_check_sets()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+<dd>Permission callback for check-translation-sets.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_ability_list_languages">jpkcom_simplelang_ability_list_languages()</a>
+    <span>
+                                &nbsp;: array&lt;string, mixed&gt;|<abbr title="\WP_Error">WP_Error</abbr>    </span>
+</dt>
+<dd>Execute callback for jpkcom-simple-lang/list-languages.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_ability_check_sets">jpkcom_simplelang_ability_check_sets()</a>
+    <span>
+                                &nbsp;: array&lt;string, mixed&gt;|<abbr title="\WP_Error">WP_Error</abbr>    </span>
+</dt>
+<dd>Execute callback for jpkcom-simple-lang/check-translation-sets.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_get_ability_definitions">jpkcom_simplelang_get_ability_definitions()</a>
+    <span>
+                                &nbsp;: array&lt;string, array&lt;string, mixed&gt;&gt;    </span>
+</dt>
+<dd>Build the registration arguments for both abilities.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_register_ability_category">jpkcom_simplelang_register_ability_category()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Register the shared category, unless a sibling plugin already did.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/default.html#function_jpkcom_simplelang_register_abilities">jpkcom_simplelang_register_abilities()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Register both abilities.</dd>
+
             <dt class="phpdocumentor-table-of-contents__entry -function -">
     <a class="" href="namespaces/default.html#function_jpkcom_simplelang_sanitize_post_types">jpkcom_simplelang_sanitize_post_types()</a>
     <span>
@@ -283,6 +479,252 @@
     </dl>
 
         
+    <section class="phpdocumentor-constants">
+        <h3 class="phpdocumentor-elements__header" id="constants">
+            Constants
+            <a href="packages/JPKCom-Simple-Lang.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_JPKCOM_SIMPLELANG_ABILITY_CATEGORY">
+        JPKCOM_SIMPLELANG_ABILITY_CATEGORY
+        <a href="namespaces/default.html#constant_JPKCOM_SIMPLELANG_ABILITY_CATEGORY" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/abilities.php"><a href="files/includes-abilities.html"><abbr title="includes/abilities.php">abilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">41</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Ability category.</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">JPKCOM_SIMPLELANG_ABILITY_CATEGORY</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;jpkcom-content&#039;</span>
+</code>
+
+
+        <section class="phpdocumentor-description"><p>Categories are global and registration is FIRST-WINS, so this goes through
+wp_has_ability_category() rather than assuming.</p>
+</section>
+
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="constant_JPKCOM_SIMPLELANG_ABILITY_CATEGORY_tags">
+        Tags
+        <a href="namespaces/default.html#constant_JPKCOM_SIMPLELANG_ABILITY_CATEGORY_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.3.0</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+        
+    </article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_JPKCOM_SIMPLELANG_ABILITY_INPUT_KEYS">
+        JPKCOM_SIMPLELANG_ABILITY_INPUT_KEYS
+        <a href="namespaces/default.html#constant_JPKCOM_SIMPLELANG_ABILITY_INPUT_KEYS" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/abilities.php"><a href="files/includes-abilities.html"><abbr title="includes/abilities.php">abilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">96</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Top-level input keys each ability declares.</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">JPKCOM_SIMPLELANG_ABILITY_INPUT_KEYS</span>
+    = <span class="phpdocumentor-signature__default-value">[&#039;jpkcom-simple-lang/list-languages&#039; =&gt; [], &#039;jpkcom-simple-lang/check-translation-sets&#039; =&gt; [&#039;page&#039;, &#039;per_page&#039;]]</span>
+</code>
+
+
+        <section class="phpdocumentor-description"><p>Cross-checked against the registered schemas by tests/test-abilities.php.
+additionalProperties is deliberately not declared on the schema that
+carries properties: validate_input() runs before the execute callback and
+would preempt the guard below, replacing a message naming the accepted keys
+with core's &quot;not a valid property of the object&quot;.</p>
+</section>
+
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="constant_JPKCOM_SIMPLELANG_ABILITY_INPUT_KEYS_tags">
+        Tags
+        <a href="namespaces/default.html#constant_JPKCOM_SIMPLELANG_ABILITY_INPUT_KEYS_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.3.0</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+        
+    </article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_JPKCOM_SIMPLELANG_ABILITY_PER_PAGE_DEFAULT">
+        JPKCOM_SIMPLELANG_ABILITY_PER_PAGE_DEFAULT
+        <a href="namespaces/default.html#constant_JPKCOM_SIMPLELANG_ABILITY_PER_PAGE_DEFAULT" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/abilities.php"><a href="files/includes-abilities.html"><abbr title="includes/abilities.php">abilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">52</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Default page size for the set check.</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">JPKCOM_SIMPLELANG_ABILITY_PER_PAGE_DEFAULT</span>
+    = <span class="phpdocumentor-signature__default-value">20</span>
+</code>
+
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="constant_JPKCOM_SIMPLELANG_ABILITY_PER_PAGE_DEFAULT_tags">
+        Tags
+        <a href="namespaces/default.html#constant_JPKCOM_SIMPLELANG_ABILITY_PER_PAGE_DEFAULT_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.3.0</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+        
+    </article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_JPKCOM_SIMPLELANG_ABILITY_PER_PAGE_MAX">
+        JPKCOM_SIMPLELANG_ABILITY_PER_PAGE_MAX
+        <a href="namespaces/default.html#constant_JPKCOM_SIMPLELANG_ABILITY_PER_PAGE_MAX" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/abilities.php"><a href="files/includes-abilities.html"><abbr title="includes/abilities.php">abilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">63</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Largest page size honoured.</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">JPKCOM_SIMPLELANG_ABILITY_PER_PAGE_MAX</span>
+    = <span class="phpdocumentor-signature__default-value">100</span>
+</code>
+
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="constant_JPKCOM_SIMPLELANG_ABILITY_PER_PAGE_MAX_tags">
+        Tags
+        <a href="namespaces/default.html#constant_JPKCOM_SIMPLELANG_ABILITY_PER_PAGE_MAX_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.3.0</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+        
+    </article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_JPKCOM_SIMPLELANG_ABILITY_SCAN_LIMIT">
+        JPKCOM_SIMPLELANG_ABILITY_SCAN_LIMIT
+        <a href="namespaces/default.html#constant_JPKCOM_SIMPLELANG_ABILITY_SCAN_LIMIT" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/abilities.php"><a href="files/includes-abilities.html"><abbr title="includes/abilities.php">abilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">79</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Largest number of linked posts examined in one call.</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">JPKCOM_SIMPLELANG_ABILITY_SCAN_LIMIT</span>
+    = <span class="phpdocumentor-signature__default-value">2000</span>
+</code>
+
+
+        <section class="phpdocumentor-description"><p>Building the sets means reading every post that carries a translation link,
+which is unbounded on a large site. The cap is reported back rather than
+applied silently: an answer that stopped early while looking complete is
+the failure this field exists to prevent.</p>
+</section>
+
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="constant_JPKCOM_SIMPLELANG_ABILITY_SCAN_LIMIT_tags">
+        Tags
+        <a href="namespaces/default.html#constant_JPKCOM_SIMPLELANG_ABILITY_SCAN_LIMIT_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.3.0</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+        
+    </article>
+            </section>
 
             <section class="phpdocumentor-functions">
         <h3 class="phpdocumentor-elements__header" id="functions">
@@ -290,6 +732,1359 @@
             <a href="packages/JPKCom-Simple-Lang.html#functions" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_abilities_enabled">
+        jpkcom_simplelang_abilities_enabled()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_abilities_enabled" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/abilities.php"><a href="files/includes-abilities.html"><abbr title="includes/abilities.php">abilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">116</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Decide whether the abilities should be registered at all.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_abilities_enabled</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="function_jpkcom_simplelang_abilities_enabled_tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_abilities_enabled_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.3.0</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>True when registration should proceed.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_ability_log">
+        jpkcom_simplelang_ability_log()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_log" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/abilities.php"><a href="files/includes-abilities.html"><abbr title="includes/abilities.php">abilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">143</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Write a debug line, and only with WP_DEBUG.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_ability_log</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$message</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$message</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Message.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="function_jpkcom_simplelang_ability_log_tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_log_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.3.0</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+    
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_ability_error">
+        jpkcom_simplelang_ability_error()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_error" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/abilities.php"><a href="files/includes-abilities.html"><abbr title="includes/abilities.php">abilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">172</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Build a WP_Error carrying an HTTP status.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_ability_error</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$code</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$message</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$status</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">400</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\WP_Error">WP_Error</abbr></span></code>
+
+        <section class="phpdocumentor-description"><p>Without data['status'] rest_ensure_response() defaults to 500, and a 5xx
+tells an agent &quot;transient fault, retry unchanged&quot; - the opposite of what a
+caller mistake needs to hear.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$code</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Error code.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$message</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Message.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$status</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">400</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>HTTP status.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="function_jpkcom_simplelang_ability_error_tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_error_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.3.0</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\WP_Error">WP_Error</abbr></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Error.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_ability_boundary">
+        jpkcom_simplelang_ability_boundary()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_boundary" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/abilities.php"><a href="files/includes-abilities.html"><abbr title="includes/abilities.php">abilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">192</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Turn a Throwable out of a callback into a WP_Error.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_ability_boundary</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">callable&nbsp;</span><span class="phpdocumentor-signature__argument__name">$body</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$ability</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;|<abbr title="\WP_Error">WP_Error</abbr></span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$body</span>
+                : <span class="phpdocumentor-argument-list__argument__type">callable</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Callback.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$ability</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Ability name.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="function_jpkcom_simplelang_ability_boundary_tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_boundary_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.3.0</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;|<abbr title="\WP_Error">WP_Error</abbr></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Result or error.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_ability_json_object">
+        jpkcom_simplelang_ability_json_object()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_json_object" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/abilities.php"><a href="files/includes-abilities.html"><abbr title="includes/abilities.php">abilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">225</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Wrap an empty map so it encodes as {} rather than [].</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_ability_json_object</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$map</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;|<abbr title="\stdClass">stdClass</abbr></span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$map</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Map.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="function_jpkcom_simplelang_ability_json_object_tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_json_object_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.3.0</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;|<abbr title="\stdClass">stdClass</abbr></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Map, or an empty object.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_ability_capability">
+        jpkcom_simplelang_ability_capability()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_capability" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/abilities.php"><a href="files/includes-abilities.html"><abbr title="includes/abilities.php">abilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">249</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Check the capability required to run an ability.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_ability_capability</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$ability</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+        <section class="phpdocumentor-description"><p><code class="prettyprint">edit_posts</code>, not <code class="prettyprint">read</code>. This reports an editorial and SEO condition of
+the site - which pages are annotated for which language, and where that
+annotation comes out incomplete - and it names unpublished and dangling
+posts while doing so. That is not visitor-facing content.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$ability</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Ability name.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="function_jpkcom_simplelang_ability_capability_tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_capability_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.3.0</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>True when the current user may run it.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_ability_meta">
+        jpkcom_simplelang_ability_meta()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_meta" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/abilities.php"><a href="files/includes-abilities.html"><abbr title="includes/abilities.php">abilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">282</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Build the meta array for an ability.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_ability_meta</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$ability</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span></code>
+
+        <section class="phpdocumentor-description"><p>All three annotations explicit: they default to null and the REST run
+controller derives the HTTP verb from them, so without readonly the run
+route would be POST-only.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$ability</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Ability name.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="function_jpkcom_simplelang_ability_meta_tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_meta_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.3.0</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Meta array.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_ability_normalise_input">
+        jpkcom_simplelang_ability_normalise_input()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_normalise_input" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/abilities.php"><a href="files/includes-abilities.html"><abbr title="includes/abilities.php">abilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">326</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Bring the value core hands the callback into array form.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_ability_normalise_input</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$input</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;|null</span></code>
+
+        <section class="phpdocumentor-description"><p>normalize_input() substitutes the schema's top-level default when the input
+is exactly null, and that default is a stdClass - so the callback receives
+an object and must read it.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$input</span>
+                : <span class="phpdocumentor-argument-list__argument__type">mixed</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Raw input.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="function_jpkcom_simplelang_ability_normalise_input_tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_normalise_input_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.3.0</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;|null</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Array form, or null when unusable.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_ability_validate_input_keys">
+        jpkcom_simplelang_ability_validate_input_keys()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_validate_input_keys" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/abilities.php"><a href="files/includes-abilities.html"><abbr title="includes/abilities.php">abilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">362</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Refuse a top-level input key the ability does not declare.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_ability_validate_input_keys</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$input</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string|int, string&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$allowed</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">true|<abbr title="\WP_Error">WP_Error</abbr></span></code>
+
+        <section class="phpdocumentor-description"><p>On EVERY ability, not a subset: a caller that learned the refusal on one
+assumes it everywhere, and the ability that silently accepts is the one it
+will trust.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$input</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Raw input.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$allowed</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, string&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Declared keys.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="function_jpkcom_simplelang_ability_validate_input_keys_tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_validate_input_keys_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.3.0</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">true|<abbr title="\WP_Error">WP_Error</abbr></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>True when every key is declared.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_ability_enabled_post_types">
+        jpkcom_simplelang_ability_enabled_post_types()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_enabled_post_types" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/abilities.php"><a href="files/includes-abilities.html"><abbr title="includes/abilities.php">abilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">410</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">The post types language selection is enabled for.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_ability_enabled_post_types</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, string&gt;</span></code>
+
+        <section class="phpdocumentor-description"><p>Reads the same option and the same default the rest of the plugin reads,
+rather than restating either.</p>
+</section>
+
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="function_jpkcom_simplelang_ability_enabled_post_types_tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_enabled_post_types_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.3.0</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, string&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Post type names.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_ability_describe_locale">
+        jpkcom_simplelang_ability_describe_locale()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_describe_locale" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/abilities.php"><a href="files/includes-abilities.html"><abbr title="includes/abilities.php">abilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">437</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Describe a locale the way the front end resolves it.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_ability_describe_locale</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$locale</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string|int, string&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$installed</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span></code>
+
+        <section class="phpdocumentor-description"><p><code class="prettyprint">installed</code> matters more than it looks: a locale whose language pack was
+removed stays in the post meta, and switch_to_locale() then returns false,
+so the front end deliberately does NOT switch. The page keeps the site
+language while its meta still claims another one.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$locale</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Locale, or '' for &quot;no language of its own&quot;.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$installed</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, string&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Installed locales.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="function_jpkcom_simplelang_ability_describe_locale_tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_describe_locale_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.3.0</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Description.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_ability_list_languages_inner">
+        jpkcom_simplelang_ability_list_languages_inner()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_list_languages_inner" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/abilities.php"><a href="files/includes-abilities.html"><abbr title="includes/abilities.php">abilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">461</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Report which languages this site actually uses.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_ability_list_languages_inner</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$input</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;|<abbr title="\WP_Error">WP_Error</abbr></span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$input</span>
+                : <span class="phpdocumentor-argument-list__argument__type">mixed</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Ability input.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="function_jpkcom_simplelang_ability_list_languages_inner_tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_list_languages_inner_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.3.0</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;|<abbr title="\WP_Error">WP_Error</abbr></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Result.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_ability_build_sets">
+        jpkcom_simplelang_ability_build_sets()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_build_sets" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/abilities.php"><a href="files/includes-abilities.html"><abbr title="includes/abilities.php">abilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">580</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Collect the translation sets on this site.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_ability_build_sets</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, string&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$types</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array{sets: array<string,int[]>, scanned: int, truncated: bool}</span></code>
+
+        <section class="phpdocumentor-description"><p>A set is a post plus everything it links to. Because the links are
+bidirectional, the same set is reachable from each of its members, so sets
+are deduplicated by their sorted member list.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$types</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, string&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Enabled post types.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="function_jpkcom_simplelang_ability_build_sets_tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_build_sets_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.3.0</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array{sets: array<string,int[]>, scanned: int, truncated: bool}</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Sets.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_ability_inspect_set">
+        jpkcom_simplelang_ability_inspect_set()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_inspect_set" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/abilities.php"><a href="files/includes-abilities.html"><abbr title="includes/abilities.php">abilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">678</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Report what the hreflang output for one set will and will not contain.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_ability_inspect_set</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, int&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$members</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$default_tag</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string|int, string&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$installed</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span></code>
+
+        <section class="phpdocumentor-description"><p>Every finding below is derived from what the emitter does, not from an
+opinion about what it should do:</p>
+<ul>
+<li>It keys entries by BCP 47 tag and keeps the FIRST per tag, so two members
+resolving to one tag yield one entry and the other URL is annotated
+nowhere. Which of the two survives depends on the order the posts come
+back in, so this reports the collision and does NOT claim a winner.</li>
+<li>A member with no language of its own is read as the site default, so it
+collides with an explicit member in that language rather than being
+ignored.</li>
+<li>x-default is emitted only when some member carries the site default tag.</li>
+<li>Only published posts are fetched, so an unpublished member never appears.</li>
+</ul>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$members</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, int&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Member post IDs.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$default_tag</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Site default BCP 47 tag.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$installed</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, string&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Installed locales.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="function_jpkcom_simplelang_ability_inspect_set_tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_inspect_set_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.3.0</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Report for this set.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_ability_check_sets_inner">
+        jpkcom_simplelang_ability_check_sets_inner()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_check_sets_inner" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/abilities.php"><a href="files/includes-abilities.html"><abbr title="includes/abilities.php">abilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">812</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Report the translation sets whose hreflang output comes out incomplete.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_ability_check_sets_inner</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$input</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;|<abbr title="\WP_Error">WP_Error</abbr></span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$input</span>
+                : <span class="phpdocumentor-argument-list__argument__type">mixed</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Ability input.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="function_jpkcom_simplelang_ability_check_sets_inner_tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_check_sets_inner_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.3.0</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;|<abbr title="\WP_Error">WP_Error</abbr></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Result.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_ability_permission_list_languages">
+        jpkcom_simplelang_ability_permission_list_languages()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_permission_list_languages" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/abilities.php"><a href="files/includes-abilities.html"><abbr title="includes/abilities.php">abilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">912</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Permission callback for list-languages.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_ability_permission_list_languages</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$input</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$input</span>
+                : <span class="phpdocumentor-argument-list__argument__type">mixed</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Validated input, unused.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="function_jpkcom_simplelang_ability_permission_list_languages_tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_permission_list_languages_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.3.0</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>True when the current user may run it.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_ability_permission_check_sets">
+        jpkcom_simplelang_ability_permission_check_sets()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_permission_check_sets" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/abilities.php"><a href="files/includes-abilities.html"><abbr title="includes/abilities.php">abilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">931</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Permission callback for check-translation-sets.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_ability_permission_check_sets</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$input</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$input</span>
+                : <span class="phpdocumentor-argument-list__argument__type">mixed</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Validated input, unused.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="function_jpkcom_simplelang_ability_permission_check_sets_tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_permission_check_sets_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.3.0</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>True when the current user may run it.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_ability_list_languages">
+        jpkcom_simplelang_ability_list_languages()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_list_languages" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/abilities.php"><a href="files/includes-abilities.html"><abbr title="includes/abilities.php">abilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">950</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Execute callback for jpkcom-simple-lang/list-languages.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_ability_list_languages</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$input</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;|<abbr title="\WP_Error">WP_Error</abbr></span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$input</span>
+                : <span class="phpdocumentor-argument-list__argument__type">mixed</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Ability input.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="function_jpkcom_simplelang_ability_list_languages_tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_list_languages_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.3.0</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;|<abbr title="\WP_Error">WP_Error</abbr></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Result.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_ability_check_sets">
+        jpkcom_simplelang_ability_check_sets()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_check_sets" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/abilities.php"><a href="files/includes-abilities.html"><abbr title="includes/abilities.php">abilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">972</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Execute callback for jpkcom-simple-lang/check-translation-sets.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_ability_check_sets</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$input</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;|<abbr title="\WP_Error">WP_Error</abbr></span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$input</span>
+                : <span class="phpdocumentor-argument-list__argument__type">mixed</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Ability input.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="function_jpkcom_simplelang_ability_check_sets_tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_ability_check_sets_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.3.0</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;|<abbr title="\WP_Error">WP_Error</abbr></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Result.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_get_ability_definitions">
+        jpkcom_simplelang_get_ability_definitions()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_get_ability_definitions" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/abilities.php"><a href="files/includes-abilities.html"><abbr title="includes/abilities.php">abilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">996</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Build the registration arguments for both abilities.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_get_ability_definitions</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, array&lt;string, mixed&gt;&gt;</span></code>
+
+        <section class="phpdocumentor-description"><p>Reads no WordPress state and touches no registry, which is what lets the CI
+harness assert the shape of these arrays without a WordPress installation.</p>
+</section>
+
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="function_jpkcom_simplelang_get_ability_definitions_tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_get_ability_definitions_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.3.0</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string, array&lt;string, mixed&gt;&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Ability name =&gt; registration args.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_register_ability_category">
+        jpkcom_simplelang_register_ability_category()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_register_ability_category" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/abilities.php"><a href="files/includes-abilities.html"><abbr title="includes/abilities.php">abilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">1147</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Register the shared category, unless a sibling plugin already did.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_register_ability_category</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="function_jpkcom_simplelang_register_ability_category_tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_register_ability_category_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.3.0</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+    
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_register_abilities">
+        jpkcom_simplelang_register_abilities()
+        <a href="namespaces/default.html#function_jpkcom_simplelang_register_abilities" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/abilities.php"><a href="files/includes-abilities.html"><abbr title="includes/abilities.php">abilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">1194</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Register both abilities.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">jpkcom_simplelang_register_abilities</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+        <section class="phpdocumentor-description"><p>wp_register_ability() returns null on EVERY failure path and reports only
+through _doing_it_wrong(), which is silent in production - and so is the
+debug log without WP_DEBUG.</p>
+</section>
+
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="function_jpkcom_simplelang_register_abilities_tags">
+        Tags
+        <a href="namespaces/default.html#function_jpkcom_simplelang_register_abilities_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">since</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.3.0</span>
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+    
+</article>
                     <article class="phpdocumentor-element -function - ">
     <h4 class="phpdocumentor-element__name" id="function_jpkcom_simplelang_sanitize_post_types">
         jpkcom_simplelang_sanitize_post_types()
@@ -1571,15 +3366,46 @@ invented locales) and complete (every real one).</p>
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                                                                                                                                        <li><a href="packages/JPKCom-Simple-Lang.html#toc-functions">Functions</a></li>
+                                                                                                                                                                    <li><a href="packages/JPKCom-Simple-Lang.html#toc-constants">Constants</a></li>
+                                                                <li><a href="packages/JPKCom-Simple-Lang.html#toc-functions">Functions</a></li>
                                     </ul>
             </li>
 
+                            <li class="phpdocumentor-on-this-page-section__title">Constants</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="namespaces/default.html#constant_JPKCOM_SIMPLELANG_ABILITY_CATEGORY">JPKCOM_SIMPLELANG_ABILITY_CATEGORY</a></li>
+                                                    <li class=""><a href="namespaces/default.html#constant_JPKCOM_SIMPLELANG_ABILITY_INPUT_KEYS">JPKCOM_SIMPLELANG_ABILITY_INPUT_KEYS</a></li>
+                                                    <li class=""><a href="namespaces/default.html#constant_JPKCOM_SIMPLELANG_ABILITY_PER_PAGE_DEFAULT">JPKCOM_SIMPLELANG_ABILITY_PER_PAGE_DEFAULT</a></li>
+                                                    <li class=""><a href="namespaces/default.html#constant_JPKCOM_SIMPLELANG_ABILITY_PER_PAGE_MAX">JPKCOM_SIMPLELANG_ABILITY_PER_PAGE_MAX</a></li>
+                                                    <li class=""><a href="namespaces/default.html#constant_JPKCOM_SIMPLELANG_ABILITY_SCAN_LIMIT">JPKCOM_SIMPLELANG_ABILITY_SCAN_LIMIT</a></li>
+                                            </ul>
+                </li>
             
                             <li class="phpdocumentor-on-this-page-section__title">Functions</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_abilities_enabled">jpkcom_simplelang_abilities_enabled()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_ability_boundary">jpkcom_simplelang_ability_boundary()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_ability_build_sets">jpkcom_simplelang_ability_build_sets()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_ability_capability">jpkcom_simplelang_ability_capability()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_ability_check_sets">jpkcom_simplelang_ability_check_sets()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_ability_check_sets_inner">jpkcom_simplelang_ability_check_sets_inner()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_ability_describe_locale">jpkcom_simplelang_ability_describe_locale()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_ability_enabled_post_types">jpkcom_simplelang_ability_enabled_post_types()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_ability_error">jpkcom_simplelang_ability_error()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_ability_inspect_set">jpkcom_simplelang_ability_inspect_set()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_ability_json_object">jpkcom_simplelang_ability_json_object()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_ability_list_languages">jpkcom_simplelang_ability_list_languages()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_ability_list_languages_inner">jpkcom_simplelang_ability_list_languages_inner()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_ability_log">jpkcom_simplelang_ability_log()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_ability_meta">jpkcom_simplelang_ability_meta()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_ability_normalise_input">jpkcom_simplelang_ability_normalise_input()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_ability_permission_check_sets">jpkcom_simplelang_ability_permission_check_sets()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_ability_permission_list_languages">jpkcom_simplelang_ability_permission_list_languages()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_ability_validate_input_keys">jpkcom_simplelang_ability_validate_input_keys()</a></li>
                                                     <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_enabled_post_types_field">jpkcom_simplelang_enabled_post_types_field()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_get_ability_definitions">jpkcom_simplelang_get_ability_definitions()</a></li>
                                                     <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_get_bcp47">jpkcom_simplelang_get_bcp47()</a></li>
                                                     <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_get_current_language">jpkcom_simplelang_get_current_language()</a></li>
                                                     <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_get_language_code">jpkcom_simplelang_get_language_code()</a></li>
@@ -1594,6 +3420,8 @@ invented locales) and complete (every real one).</p>
                                                     <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_oxygen_has_custom_language">jpkcom_simplelang_oxygen_has_custom_language()</a></li>
                                                     <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_oxygen_post_language_is">jpkcom_simplelang_oxygen_post_language_is()</a></li>
                                                     <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_oxygen_uses_default_language">jpkcom_simplelang_oxygen_uses_default_language()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_register_abilities">jpkcom_simplelang_register_abilities()</a></li>
+                                                    <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_register_ability_category">jpkcom_simplelang_register_ability_category()</a></li>
                                                     <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_render_meta_box">jpkcom_simplelang_render_meta_box()</a></li>
                                                     <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_render_translations_meta_box">jpkcom_simplelang_render_translations_meta_box()</a></li>
                                                     <li class=""><a href="namespaces/default.html#function_jpkcom_simplelang_sanitize_post_types">jpkcom_simplelang_sanitize_post_types()</a></li>

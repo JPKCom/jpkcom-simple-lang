@@ -4,18 +4,18 @@
 https://github.com/JPKCom/jpkcom-simple-lang<br />
 <strong>Description:</strong> Simple language selection for frontend
 pages.<br />
-<strong>Version:</strong> 1.2.9<br />
+<strong>Version:</strong> 1.3.0<br />
 <strong>Author:</strong> Jean Pierre Kolb <a href="mailto:jpk@jpkc.com"
 class="email">jpk@jpkc.com</a><br />
 <strong>Author URI:</strong> https://www.jpkc.com/<br />
 <strong>Contributors:</strong> JPKCom<br />
 <strong>Tags:</strong> Language, Lang, Locale, Multilingual,
 Translation, i18n, Hreflang, SEO, Oxygen Builder<br />
-<strong>Requires at least:</strong> 6.9<br />
+<strong>Requires at least:</strong> 7.0<br />
 <strong>Tested up to:</strong> 7.1<br />
 <strong>Requires PHP:</strong> 8.3<br />
 <strong>Network:</strong> true<br />
-<strong>Stable tag:</strong> 1.2.9<br />
+<strong>Stable tag:</strong> 1.3.0<br />
 <strong>License:</strong> GPL-2.0-or-later<br />
 <strong>License URI:</strong>
 https://www.gnu.org/licenses/gpl-2.0.html<br />
@@ -45,10 +45,11 @@ selection per post type via settings page</li>
 locale in frontend for proper translation support</li>
 <li><strong>HTML Lang Attribute</strong>: Updates the
 <code>&lt;html lang=""&gt;</code> attribute to match the selected
-language</li>
+language, region included (<code>lang="de-DE"</code>)</li>
 <li><strong>Translation Links &amp; Hreflang</strong>: Link related
 posts in different languages and automatically generate SEO-friendly
-hreflang meta tags</li>
+hreflang meta tags as proper BCP 47, including an
+<code>x-default</code></li>
 <li><strong>SEO Plugin Compatible</strong>: SEO plugins (Yoast, Rank
 Math, etc.) automatically detect the locale change and output correct
 <code>og:locale</code> meta tags</li>
@@ -164,16 +165,44 @@ Links” select Post 2 and Post 3 3. Save Post 1</p>
 <p><strong>Result:</strong> - Post 1 now links to Posts 2 &amp; 3 - Post
 2 automatically links to Posts 1 &amp; 3 - Post 3 automatically links to
 Posts 1 &amp; 2 - All three posts display proper hreflang tags</p>
-<p><strong>Generated HTML on each page:</strong></p>
+<p><strong>Generated HTML on each page</strong> (site default language
+<code>de_DE</code>):</p>
 <div class="sourceCode" id="cb1"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- On German page --&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;alternate&quot;</span> <span class="er">hreflang</span><span class="ot">=</span><span class="st">&quot;de&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;https://example.com/german-page/&quot;</span> <span class="dt">/&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;alternate&quot;</span> <span class="er">hreflang</span><span class="ot">=</span><span class="st">&quot;en&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;https://example.com/english-page/&quot;</span> <span class="dt">/&gt;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;alternate&quot;</span> <span class="er">hreflang</span><span class="ot">=</span><span class="st">&quot;fr&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;https://example.com/french-page/&quot;</span> <span class="dt">/&gt;</span></span></code></pre></div>
+class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Hreflang tags by JPKCom Simple Lang --&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;alternate&quot;</span> <span class="er">hreflang</span><span class="ot">=</span><span class="st">&quot;de-DE&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;https://example.com/german-page/&quot;</span> <span class="dt">/&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;alternate&quot;</span> <span class="er">hreflang</span><span class="ot">=</span><span class="st">&quot;en-US&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;https://example.com/english-page/&quot;</span> <span class="dt">/&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;alternate&quot;</span> <span class="er">hreflang</span><span class="ot">=</span><span class="st">&quot;fr-FR&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;https://example.com/french-page/&quot;</span> <span class="dt">/&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;alternate&quot;</span> <span class="er">hreflang</span><span class="ot">=</span><span class="st">&quot;x-default&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;https://example.com/german-page/&quot;</span> <span class="dt">/&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End hreflang tags --&gt;</span></span></code></pre></div>
+<h4 id="tag-format">Tag format</h4>
+<p>Tags are proper BCP 47 and carry the region: <code>de-DE</code>,
+<code>de-AT</code>, <code>pt-BR</code>. WordPress variant suffixes have
+no BCP 47 meaning and are dropped, so <code>de_DE_formal</code> and
+<code>de_CH_informal</code> become <code>de-DE</code> and
+<code>de-CH</code>, and <code>pt_PT_ao90</code> becomes
+<code>pt-PT</code> — a formal and an informal German page are the same
+language and region as far as a search engine is concerned.</p>
+<p>Because the set is keyed by tag, two versions that resolve to the
+same tag — two posts both set to <code>de_DE</code>, or
+<code>de_DE</code> plus <code>de_DE_formal</code> — contribute one entry
+rather than a contradictory pair. The first one wins. Tags are sorted
+alphabetically for a stable output.</p>
+<h4 id="x-default">x-default</h4>
+<p><code>x-default</code> points at the version in the site’s default
+language: the page to serve when none of the declared languages matches
+the visitor. It is emitted in addition to that version’s own tag, which
+is how the annotation is meant to be used, and matched on the BCP 47 tag
+— so on a <code>de_DE</code> site a page set to
+<code>de_DE_formal</code> still counts as the German version. When none
+of the linked versions carries the default language, no
+<code>x-default</code> is emitted.</p>
 <h4 id="seo-benefits">SEO Benefits</h4>
 <ul>
 <li><strong>Language Targeting</strong>: Search engines understand which
 language each page targets</li>
+<li><strong>Regional Targeting</strong>: <code>de_DE</code> and
+<code>de_AT</code> are told apart instead of both collapsing to
+<code>de</code></li>
 <li><strong>Duplicate Content Prevention</strong>: Signals that pages
 are translations, not duplicates</li>
 <li><strong>Regional Search Results</strong>: Users see the correct
@@ -199,12 +228,28 @@ active frontend language:</h4>
 class="sourceCode php"><code class="sourceCode php"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Get the active language in frontend (after locale switch)</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">$current_lang</span> <span class="op">=</span> jpkcom_simplelang_get_current_language()<span class="ot">;</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Returns: &#39;de_DE&#39;, &#39;fr_FR&#39;, etc. or null if using site default</span></span></code></pre></div>
-<h4 id="convert-locale-to-language-code">Convert locale to language
-code:</h4>
+<h4 id="convert-a-locale-to-a-bcp-47-tag">Convert a locale to a BCP 47
+tag:</h4>
 <div class="sourceCode" id="cb4"><pre
-class="sourceCode php"><code class="sourceCode php"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Convert locale (de_DE) to language code (de) for HTML lang attribute</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">$lang_code</span> <span class="op">=</span> jpkcom_simplelang_get_language_code( <span class="st">&#39;de_DE&#39;</span> )<span class="ot">;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Returns: &#39;de&#39;</span></span></code></pre></div>
+class="sourceCode php"><code class="sourceCode php"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Convert locale (de_DE) to a BCP 47 tag (de-DE) for lang / hreflang</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">$tag</span> <span class="op">=</span> jpkcom_simplelang_get_bcp47( <span class="st">&#39;de_DE&#39;</span> )<span class="ot">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Returns: &#39;de-DE&#39;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">// WordPress variant suffixes are dropped</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="va">$tag</span> <span class="op">=</span> jpkcom_simplelang_get_bcp47( <span class="st">&#39;de_DE_formal&#39;</span> )<span class="ot">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Returns: &#39;de-DE&#39;</span></span></code></pre></div>
+<p>This is what the plugin itself uses for the <code>lang</code>
+attribute and the hreflang tags since 1.2.9. Prefer it for any language
+markup.</p>
+<h4 id="convert-locale-to-a-bare-language-code">Convert locale to a bare
+language code:</h4>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode php"><code class="sourceCode php"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Convert locale (de_DE) to the language subtag (de)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">$lang_code</span> <span class="op">=</span> jpkcom_simplelang_get_language_code( <span class="st">&#39;de_DE&#39;</span> )<span class="ot">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Returns: &#39;de&#39;</span></span></code></pre></div>
+<p>Still available and unchanged, but the poorer choice for markup: a
+bare subtag cannot express the region. Use
+<code>jpkcom_simplelang_get_bcp47()</code> instead.</p>
 <h3 id="oxygen-builder-conditions">Oxygen Builder Conditions</h3>
 <p>If <a href="https://oxygenbuilder.com/">Oxygen Builder</a> is
 installed, Simple Lang provides three custom conditions:</p>
@@ -232,18 +277,18 @@ custom language is selected.</p>
 default language pages.</p>
 <h3 id="filters">Filters</h3>
 <h4 id="modify-file-search-paths">Modify file search paths</h4>
-<div class="sourceCode" id="cb5"><pre
-class="sourceCode php"><code class="sourceCode php"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"> * Filter the file search paths for template overrides</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"> *</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">array</span><span class="co">  $paths    Default search paths</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">string</span><span class="co"> $filename The filename being located</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"> */</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>add_filter( <span class="st">&#39;jpkcom_simplelang_file_paths&#39;</span><span class="ot">,</span> <span class="kw">function</span>( <span class="va">$paths</span><span class="ot">,</span> <span class="va">$filename</span> ) {</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Add custom search path</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">$paths</span>[] <span class="op">=</span> <span class="st">&#39;/custom/path/to/overrides/&#39;</span> <span class="op">.</span> <span class="va">$filename</span><span class="ot">;</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">$paths</span><span class="ot">;</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>}<span class="ot">,</span> <span class="dv">10</span><span class="ot">,</span> <span class="dv">2</span> )<span class="ot">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode php"><code class="sourceCode php"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"> * Filter the file search paths for template overrides</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"> *</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">array</span><span class="co">  $paths    Default search paths</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">string</span><span class="co"> $filename The filename being located</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"> */</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>add_filter( <span class="st">&#39;jpkcom_simplelang_file_paths&#39;</span><span class="ot">,</span> <span class="kw">function</span>( <span class="va">$paths</span><span class="ot">,</span> <span class="va">$filename</span> ) {</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Add custom search path</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">$paths</span>[] <span class="op">=</span> <span class="st">&#39;/custom/path/to/overrides/&#39;</span> <span class="op">.</span> <span class="va">$filename</span><span class="ot">;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">$paths</span><span class="ot">;</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>}<span class="ot">,</span> <span class="dv">10</span><span class="ot">,</span> <span class="dv">2</span> )<span class="ot">;</span></span></code></pre></div>
 <h2 id="faq">FAQ</h2>
 <h3
 id="whats-the-difference-between-this-and-a-full-multilingual-plugin-like-wpml-or-polylang">What’s
@@ -266,6 +311,17 @@ available?</h3>
 pack installed on your WordPress site is automatically available in the
 dropdown. You can install language packs via <strong>Settings → General
 → Site Language</strong>.</p>
+<p>A locale is accepted when <code>get_available_languages()</code>
+reports it, plus <code>en_US</code>. That includes WordPress variant
+locales such as <code>de_DE_formal</code>, <code>nl_NL_formal</code>,
+<code>de_CH_informal</code> and <code>pt_PT_ao90</code>. Up to 1.2.8 a
+regex rejected exactly those: the meta box offered them,
+<code>save_post</code> dropped them, and nothing said so.</p>
+<p>If a post’s language pack is missing — uninstalled after the fact,
+for instance — the editor says so and the stored language stays
+selectable, so pressing Update does not silently clear it. In the
+frontend such a post falls back to the site language rather than
+advertising a language WordPress has not loaded.</p>
 <p>WordPress supports 200+ languages. See the <a
 href="https://translate.wordpress.org/">full list of available
 languages</a>.</p>
@@ -302,16 +358,18 @@ proper <code>&lt;link rel="alternate" hreflang="XX"&gt;</code> tags in
 the HTML <code>&lt;head&gt;</code> section for all linked
 translations.</p>
 <p><strong>What’s included:</strong> - Automatic hreflang tag generation
-- Self-referencing hreflang tags (SEO best practice) - Bidirectional
-translation linking - Only published posts appear in hreflang tags -
-Tags sorted by language code for consistency</p>
+- Proper BCP 47 tags with the region (<code>de-DE</code>,
+<code>de-AT</code>, <code>pt-BR</code>), since 1.2.9 - An
+<code>x-default</code> pointing at the version in the site’s default
+language, since 1.2.9 - Self-referencing hreflang tags (SEO best
+practice) - Bidirectional translation linking - Only published posts
+appear in hreflang tags - Tags sorted for consistency</p>
 <p><strong>SEO Plugin Compatibility:</strong> - Works alongside Yoast
 SEO, Rank Math, and other SEO plugins - SEO plugins automatically output
 correct <code>og:locale</code> meta tags - Hreflang tags appear early in
 <code>&lt;head&gt;</code> (before most SEO plugins)</p>
-<p><strong>What’s NOT included:</strong> - x-default hreflang tags (may
-be added in future versions) - Automatic translation suggestions -
-Language switcher widgets</p>
+<p><strong>What’s NOT included:</strong> - Automatic translation
+suggestions - Language switcher widgets</p>
 <h3 id="can-i-restrict-which-post-types-have-language-selection">Can I
 restrict which post types have language selection?</h3>
 <p>Yes! Go to <strong>Settings → Simple Lang</strong> and check/uncheck
@@ -424,9 +482,9 @@ Releases</a></li>
 </ol>
 <h3 id="method-3-github-installation-developers">Method 3: GitHub
 Installation (Developers)</h3>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /path/to/wordpress/wp-content/plugins/</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/JPKCom/jpkcom-simple-lang.git</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /path/to/wordpress/wp-content/plugins/</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/JPKCom/jpkcom-simple-lang.git</span></code></pre></div>
 <p>Then activate via WordPress admin.</p>
 <h3 id="post-installation-steps">Post-Installation Steps</h3>
 <ol type="1">
@@ -519,10 +577,42 @@ version is released:</p>
 </ol>
 <p><strong>Note:</strong> Language selection meta data will remain in
 the database. If you want to remove this data, run:</p>
-<div class="sourceCode" id="cb7"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> wp_postmeta <span class="kw">WHERE</span> meta_key <span class="op">=</span> <span class="st">&#39;_jpkcom_simplelang_language&#39;</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> wp_postmeta <span class="kw">WHERE</span> meta_key <span class="op">=</span> <span class="st">&#39;_jpkcom_simplelang_language&#39;</span>;</span></code></pre></div>
 <h2 id="changelog">Changelog</h2>
-<h3 id="section">1.2.9</h3>
+<h3 id="section">1.3.0</h3>
+<ul>
+<li>Added: two read-only WordPress Abilities, so an AI assistant, an MCP
+client or REST automation can read this site’s language setup as
+structured data. <code>jpkcom-simple-lang/list-languages</code> reports
+which post types have language selection enabled, the site default, the
+installed language packs and which locales published posts actually
+carry. <code>jpkcom-simple-lang/check-translation-sets</code> reports
+the translation sets whose hreflang annotation comes out incomplete</li>
+<li>Added: the check makes a silent outcome visible. Two versions in one
+set that resolve to the same hreflang value — two German pages, or
+German together with German (formal) — produce <strong>one</strong>
+entry, and the other page is annotated nowhere. That has always been
+deliberate, because two contradictory entries for one language would be
+worse, but nothing in the editor said a page had been left out. The
+check names the set, the shared value and the pages sharing it</li>
+<li>Added: also reported are sets with no <code>x-default</code> (none
+of their versions is in the site language), links to pages that were
+deleted, links that only point one way, and pages whose language pack is
+no longer installed — where the front end deliberately stops switching
+while the page still claims that language</li>
+<li>Added: a set whose only peculiarity is an unpublished translation is
+<strong>not</strong> reported. A draft translation is ordinary work in
+progress, and a report that flags every one of them stops being read. It
+is still listed when the set has something else wrong, because it
+explains why fewer languages appear than the set contains</li>
+<li>Added: both abilities require the <code>edit_posts</code> capability
+and can be switched off entirely with
+<code>define( 'JPKCOM_SIMPLELANG_ABILITIES', false )</code>, or narrowed
+through a filter</li>
+<li>Changed: WordPress 7.0 is now the minimum</li>
+</ul>
+<h3 id="section-1">1.2.9</h3>
 <ul>
 <li>Fixed: WordPress variant locales could not be saved. The check was a
 regex, <code>/^[a-z]{2,3}(_[A-Z]{2})?$/</code>, which silently rejected
@@ -591,7 +681,7 @@ the catalogue down to the 47 strings this plugin actually has. The
 <code>.po</code> headers, including <code>Plural-Forms</code>, are
 unchanged</li>
 </ul>
-<h3 id="section-1">1.2.8</h3>
+<h3 id="section-2">1.2.8</h3>
 <ul>
 <li>Changed: the update manifest generator now defaults a missing
 <code>Network:</code> header to false instead of true, matching
@@ -605,7 +695,7 @@ repository are now English throughout, and the developer notes in
 <code>CLAUDE.md</code> were translated and trimmed. No effect on the
 shipped plugin</li>
 </ul>
-<h3 id="section-2">1.2.7</h3>
+<h3 id="section-3">1.2.7</h3>
 <ul>
 <li>Changed: <code>Tested up to</code> raised to WordPress 7.1</li>
 <li>Changed: the bundled updater’s runtime floor now matches the
@@ -619,14 +709,14 @@ and <code>tested</code> now say 6.9 and 7.1. They only apply when the
 README metadata cannot be read, but a stale fallback would have
 published a minimum the plugin no longer supports</li>
 </ul>
-<h3 id="section-3">1.2.6</h3>
+<h3 id="section-4">1.2.6</h3>
 <ul>
 <li>Changed: the plugin banners
 (<code>assets/banner-1544x500.avif</code>,
 <code>assets/banner-772x250.avif</code>) are now a plain
 <code>#3c4955</code> surface with no lettering</li>
 </ul>
-<h3 id="section-4">1.2.5</h3>
+<h3 id="section-5">1.2.5</h3>
 <ul>
 <li>CI: the release step no longer copies the staging directory into
 itself, so the ZIP has no empty
@@ -639,7 +729,7 @@ to full commit SHAs</li>
 <li>CI: security and regression tests now run on every pull request,
 where a plugin has them</li>
 </ul>
-<h3 id="section-5">1.2.4</h3>
+<h3 id="section-6">1.2.4</h3>
 <ul>
 <li>Security: update packages are now verified <em>before</em>
 installation — the verified file is handed to WordPress instead of being
@@ -666,14 +756,14 @@ check, YAML validation, action-pinning guard)</li>
 <li>Housekeeping: removed stray editor backups from the release
 package</li>
 </ul>
-<h3 id="section-6">1.2.3 - 2026-06-16</h3>
+<h3 id="section-7">1.2.3 - 2026-06-16</h3>
 <ul>
 <li>Raised the minimum WordPress version to 6.9 and “Tested up to” to
 WordPress 7.0</li>
 <li>Switched license metadata to the SPDX identifier
 <code>GPL-2.0-or-later</code> with the HTTPS license URI</li>
 </ul>
-<h3 id="section-7">1.2.2 - 2026-06-16</h3>
+<h3 id="section-8">1.2.2 - 2026-06-16</h3>
 <ul>
 <li>Security: updater prefers an exact match against the manifest
 <code>download_url</code> over the slug heuristic, so a tampered
@@ -690,7 +780,7 @@ completing the <code>no_update</code> transient entry
 (<code>new_version</code>, <code>package</code>, <code>tested</code>,
 <code>requires_php</code>)</li>
 </ul>
-<h3 id="section-8">1.2.1 - 2026-03-13</h3>
+<h3 id="section-9">1.2.1 - 2026-03-13</h3>
 <p><strong>Bug Fixes</strong></p>
 <ul>
 <li>Fixed manual ZIP upload failing with “No valid URL” error caused by
@@ -700,7 +790,7 @@ URLs</li>
 WordPress from recognizing it as an update to the existing
 installation</li>
 </ul>
-<h3 id="section-9">1.2.0 - 2026-03-13</h3>
+<h3 id="section-10">1.2.0 - 2026-03-13</h3>
 <p><strong>Bug Fixes</strong></p>
 <ul>
 <li>Fixed language selection not saving for locales without country code
@@ -708,7 +798,7 @@ installation</li>
 <li>Updated locale validation regex to accept both short
 (<code>xx</code>) and full (<code>xx_XX</code>) locale formats</li>
 </ul>
-<h3 id="section-10">1.1.1 - 2025-12-17</h3>
+<h3 id="section-11">1.1.1 - 2025-12-17</h3>
 <p><strong>Bug Fixes</strong></p>
 <ul>
 <li>Fixed duplicate “Settings saved” message on admin settings page</li>
@@ -741,7 +831,7 @@ condition</li>
 <li>Removed redundant <code>settings_errors()</code> call in admin
 settings page</li>
 </ul>
-<h3 id="section-11">1.1.0 - 2025-12-17</h3>
+<h3 id="section-12">1.1.0 - 2025-12-17</h3>
 <p><strong>New Features</strong></p>
 <ul>
 <li><strong>Translation Links</strong>: New meta box for linking posts
@@ -780,7 +870,7 @@ entries per post)</li>
 <li>All translation sync operations use loop prevention for data
 integrity</li>
 </ul>
-<h3 id="section-12">1.0.0 - 2025-12-16</h3>
+<h3 id="section-13">1.0.0 - 2025-12-16</h3>
 <p><strong>Initial Release</strong></p>
 <ul>
 <li>Language selection dropdown in post editor sidebar</li>
