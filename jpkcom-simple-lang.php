@@ -3,7 +3,7 @@
 Plugin Name: JPKCom Simple Lang
 Plugin URI: https://github.com/JPKCom/jpkcom-simple-lang
 Description: Simple language selection for frontend pages.
-Version: 1.3.0
+Version: 1.3.1
 Author: Jean Pierre Kolb <jpk@jpkc.com>
 Author URI: https://www.jpkc.com/
 Contributors: JPKCom
@@ -12,11 +12,12 @@ Requires at least: 7.0
 Tested up to: 7.1
 Requires PHP: 8.3
 Network: true
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: jpkcom-simple-lang
 Domain Path: /languages
+Update URI: https://github.com/JPKCom/jpkcom-simple-lang
 */
 
 declare(strict_types=1);
@@ -31,7 +32,7 @@ if ( ! defined( constant_name: 'WPINC' ) ) {
  * @since 1.0.0
  */
 if ( ! defined( 'JPKCOM_SIMPLELANG_VERSION' ) ) {
-	define( 'JPKCOM_SIMPLELANG_VERSION', '1.3.0' );
+	define( 'JPKCOM_SIMPLELANG_VERSION', '1.3.1' );
 }
 
 if ( ! defined( 'JPKCOM_SIMPLELANG_BASENAME' ) ) {
