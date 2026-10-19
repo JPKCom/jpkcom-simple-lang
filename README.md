@@ -3,7 +3,7 @@
 **Plugin Name:** JPKCom Simple Lang  
 **Plugin URI:** https://github.com/JPKCom/jpkcom-simple-lang  
 **Description:** Simple language selection for frontend pages.  
-**Version:** 1.3.0  
+**Version:** 1.3.1  
 **Author:** Jean Pierre Kolb <jpk@jpkc.com>  
 **Author URI:** https://www.jpkc.com/  
 **Contributors:** JPKCom  
@@ -12,11 +12,12 @@
 **Tested up to:** 7.1  
 **Requires PHP:** 8.3  
 **Network:** true  
-**Stable tag:** 1.3.0  
+**Stable tag:** 1.3.1  
 **License:** GPL-2.0-or-later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 **Text Domain:** jpkcom-simple-lang  
-**Domain Path:** /languages
+**Domain Path:** /languages  
+**Update URI:** https://github.com/JPKCom/jpkcom-simple-lang
 
 A plugin to provide per-post language selection that overrides the site-wide language setting in the frontend.
 
@@ -504,6 +505,11 @@ DELETE FROM wp_postmeta WHERE meta_key = '_jpkcom_simplelang_language';
 
 
 ## Changelog
+
+### 1.3.1
+* Security: the plugin header now carries `Update URI: https://github.com/JPKCom/jpkcom-simple-lang`. Without it, WordPress also asks wordpress.org for updates under this plugin's slug, so a same-named plugin published there with a higher version would be offered as an update of this one. With the header, wordpress.org answers nothing for this plugin and updates come only from this repository
+* Changed: the updater keeps its manifest cache, its failure marker and its fetch lock in site transients. On multisite the network now fetches the manifest once instead of once per site; on a single site nothing changes. The old per-site entries expire on their own within a day
+* Changed: the release workflow downloads phpDocumentor from a fixed GitHub release and verifies its SHA-256 before running it, instead of executing whatever phpdoc.org serves that day. No effect on the shipped plugin
 
 ### 1.3.0
 * Added: two read-only WordPress Abilities, so an AI assistant, an MCP client or REST automation can read this site's language setup as structured data. `jpkcom-simple-lang/list-languages` reports which post types have language selection enabled, the site default, the installed language packs and which locales published posts actually carry. `jpkcom-simple-lang/check-translation-sets` reports the translation sets whose hreflang annotation comes out incomplete
